@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Energiewet 2026: Wetgeving & Regelingen | Energiekenner.nl",
@@ -270,8 +271,88 @@ export default function EnergiewetPage() {
         </article>
       </section>
 
+      {/* Actieve afnemer */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl font-bold text-text-main mb-4">De actieve afnemer: jouw nieuwe rol</h2>
+          <div className="prose prose-sm max-w-none text-text-muted space-y-4">
+            <p>
+              De Energiewet introduceert een nieuw begrip: de &quot;actieve afnemer&quot;. Dit is een eindgebruiker die niet alleen energie verbruikt, maar ook produceert (zonnepanelen), opslaat (thuisbatterij), verkoopt of deelt. De wet erkent dat consumenten niet langer passief zijn.
+            </p>
+            <p>
+              Als actieve afnemer met een kleine aansluiting mag je onder voorwaarden zonder vergunning leveren — zolang dat niet je hoofdactiviteit is. Dit opent de deur naar{" "}
+              <Link href="/energie-delen" className="text-primary hover:underline">energie delen met buren</Link>,{" "}
+              <Link href="/thuisbatterij" className="text-primary hover:underline">batterij-arbitrage</Link> en deelname aan{" "}
+              <Link href="/duurzaamheid" className="text-primary hover:underline">energiegemeenschappen</Link>.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      {/* Gerelateerde pagina's */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <h2 className="text-xl font-bold text-text-main mb-4">Gerelateerde onderwerpen</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4">
+          {[
+            { href: "/energie-delen", title: "Energie Delen", desc: "Verkoop stroom aan buren sinds de Energiewet", color: "bg-emerald-100 text-emerald-600" },
+            { href: "/opzegvergoeding", title: "Opzegvergoeding", desc: "Wat kost voortijdig opzeggen?", color: "bg-rose-100 text-rose-600" },
+            { href: "/dynamisch", title: "Dynamische tarieven", desc: "Verplicht aanbod sinds 2026", color: "bg-blue-100 text-blue-600" },
+            { href: "/salderen", title: "Salderingsregeling", desc: "Laatste jaar salderen in 2026", color: "bg-green-100 text-green-600" },
+            { href: "/thuisbatterij", title: "Thuisbatterij", desc: "Opslaan en handelen als actieve afnemer", color: "bg-amber-100 text-amber-600" },
+            { href: "/energie-apps", title: "Energie-Apps", desc: "De beste apps voor slim energiebeheer", color: "bg-purple-100 text-purple-600" },
+          ].map((link) => (
+            <Link key={link.href} href={link.href} className="rounded-xl border border-border bg-white p-5 hover:shadow-md transition-all group">
+              <div className={`w-9 h-9 rounded-lg ${link.color} flex items-center justify-center mb-3`}>
+                <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+                </svg>
+              </div>
+              <h3 className="font-semibold text-text-main group-hover:text-primary transition-colors">{link.title}</h3>
+              <p className="text-xs text-text-muted mt-1">{link.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      {/* FAQ */}
+      <section id="faq" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <FAQSchema items={[
+          { question: "Wat verandert er door de Energiewet 2026?", answer: "De belangrijkste veranderingen zijn: opzegtermijn van 5 werkdagen, welkomstbonussen alleen in geld, 14 dagen bedenktijd, bescherming bij faillissement, transparante modelcontracten en het recht om energie te delen met buren." },
+          { question: "Kan ik sneller overstappen sinds de Energiewet?", answer: "Ja, de opzegtermijn is verkort van 30 naar 5 werkdagen. Je nieuwe leverancier regelt alles. Let op: bij vaste contracten kan er nog een opzegvergoeding gelden als je voortijdig stopt." },
+          { question: "Wat is een actieve afnemer?", answer: "Een actieve afnemer is iemand die naast energieverbruik ook produceert (zonnepanelen), opslaat (batterij) of deelt. De Energiewet geeft je als actieve afnemer het recht om zonder vergunning te leveren, zolang het niet je hoofdactiviteit is." },
+          { question: "Zijn dynamische contracten verplicht?", answer: "Leveranciers met meer dan 200.000 klanten moeten een dynamisch contract aanbieden. Je bent niet verplicht er een af te sluiten, maar het vergroot je keuze." },
+          { question: "Wat gebeurt er als mijn leverancier failliet gaat?", answer: "Je wordt automatisch binnen 20 werkdagen overgezet naar een nieuwe leverancier. Je zit nooit zonder stroom. Noteer wel je meterstand als je hoort dat je leverancier in problemen zit." },
+          { question: "Mag ik stroom verkopen aan mijn buren?", answer: "Ja, sinds de Energiewet 2026 mag je als actieve afnemer overtollige stroom delen of verkopen aan buren en familieleden. Beide partijen hebben een slimme meter nodig." },
+        ]} />
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl font-bold text-text-main mb-6">Veelgestelde vragen over de Energiewet</h2>
+          <div className="space-y-4">
+            {[
+              { question: "Wat verandert er door de Energiewet 2026?", answer: "De belangrijkste veranderingen zijn: opzegtermijn van 5 werkdagen, welkomstbonussen alleen in geld, 14 dagen bedenktijd, bescherming bij faillissement, transparante modelcontracten en het recht om energie te delen met buren." },
+              { question: "Kan ik sneller overstappen sinds de Energiewet?", answer: "Ja, de opzegtermijn is verkort van 30 naar 5 werkdagen. Je nieuwe leverancier regelt alles. Let op: bij vaste contracten kan er nog een opzegvergoeding gelden als je voortijdig stopt." },
+              { question: "Wat is een actieve afnemer?", answer: "Een actieve afnemer is iemand die naast energieverbruik ook produceert (zonnepanelen), opslaat (batterij) of deelt. De Energiewet geeft je als actieve afnemer het recht om zonder vergunning te leveren, zolang het niet je hoofdactiviteit is." },
+              { question: "Zijn dynamische contracten verplicht?", answer: "Leveranciers met meer dan 200.000 klanten moeten een dynamisch contract aanbieden. Je bent niet verplicht er een af te sluiten, maar het vergroot je keuze." },
+              { question: "Wat gebeurt er als mijn leverancier failliet gaat?", answer: "Je wordt automatisch binnen 20 werkdagen overgezet naar een nieuwe leverancier. Je zit nooit zonder stroom. Noteer wel je meterstand als je hoort dat je leverancier in problemen zit." },
+              { question: "Mag ik stroom verkopen aan mijn buren?", answer: "Ja, sinds de Energiewet 2026 mag je als actieve afnemer overtollige stroom delen of verkopen aan buren en familieleden. Beide partijen hebben een slimme meter nodig." },
+            ].map((item, idx) => (
+              <details key={idx} className={`group rounded-lg border border-border overflow-hidden ${idx % 2 === 1 ? "bg-stone-50/60" : ""}`}>
+                <summary className="flex items-center justify-between cursor-pointer p-4 hover:bg-stone-50 transition-colors">
+                  <h3 className="font-semibold text-text-main text-sm pr-4">{item.question}</h3>
+                  <svg className="w-5 h-5 flex-shrink-0 text-text-muted transition-transform group-open:rotate-180" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-4 pb-4">
+                  <p className="text-sm text-text-muted leading-relaxed">{item.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </article>
+      </section>
+
       {/* CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-8">
         <div className="rounded-xl bg-gradient-to-r from-indigo-500 to-purple-500 p-8 text-white text-center">
           <h2 className="text-2xl font-bold">Profiteer van je nieuwe rechten</h2>
           <p className="mt-2 text-indigo-100">Met de flitsoverstap switch je in 5 dagen. Vergelijk nu en bespaar.</p>

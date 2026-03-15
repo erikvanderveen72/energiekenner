@@ -30,6 +30,8 @@ export function Navbar() {
     { href: "/verbruik", label: "Energieverbruik" },
     { href: "/salderen", label: "Salderingsregeling 2027" },
     { href: "/thuisbatterij", label: "Thuisbatterij & V2G" },
+    { href: "/energie-delen", label: "Energie Delen" },
+    { href: "/energie-apps", label: "Energie-Apps" },
     { href: "/slimme-technologie", label: "Slim Energie Sturen" },
     { href: "/energiewet", label: "Energiewet 2026" },
     { href: "/opzegvergoeding", label: "Opzegvergoeding" },

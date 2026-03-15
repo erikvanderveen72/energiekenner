@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { fallbackProviders } from "@/lib/fallback-data";
 import type { EnergyProvider } from "@/lib/database.types";
@@ -380,6 +381,30 @@ export default async function ZonnepanelenPage() {
       {/* Keuzehulp */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <ZonnepanelenKeuzehulp />
+      </section>
+
+      {/* Strategie tip */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <div className="rounded-xl bg-yellow-50 border border-yellow-200 p-6 md:p-8">
+          <h2 className="text-xl font-bold text-text-main mb-3">Strategie: zo benut je het laatste saldeerjaar optimaal</h2>
+          <p className="text-sm text-yellow-900 mb-4">
+            2026 is het laatste jaar met volledige saldering. Combineer deze drie stappen voor maximaal rendement:
+          </p>
+          <div className="grid sm:grid-cols-3 gap-4">
+            <Link href="/dynamisch" className="bg-white rounded-lg p-4 border border-yellow-200 hover:shadow-md transition-all group">
+              <p className="font-semibold text-text-main text-sm group-hover:text-primary transition-colors">1. Slim contract kiezen</p>
+              <p className="text-xs text-text-muted mt-1">Kies een 1-jarig vast contract met hoge welkomstbonus (tot €400) om terugleverkosten te compenseren.</p>
+            </Link>
+            <Link href="/energie-delen" className="bg-white rounded-lg p-4 border border-yellow-200 hover:shadow-md transition-all group">
+              <p className="font-semibold text-text-main text-sm group-hover:text-primary transition-colors">2. Energie delen</p>
+              <p className="text-xs text-text-muted mt-1">Verkoop overtollige stroom aan buren voor €0,15/kWh — tot 7x meer dan de standaard terugleververgoeding.</p>
+            </Link>
+            <Link href="/thuisbatterij" className="bg-white rounded-lg p-4 border border-yellow-200 hover:shadow-md transition-all group">
+              <p className="font-semibold text-text-main text-sm group-hover:text-primary transition-colors">3. Thuisbatterij overwegen</p>
+              <p className="text-xs text-text-muted mt-1">Na 2027 is opslaan essentieel. Begin nu met onderzoek — LFP-prijzen dalen nog steeds.</p>
+            </Link>
+          </div>
+        </div>
       </section>
 
       {/* CTA Section */}

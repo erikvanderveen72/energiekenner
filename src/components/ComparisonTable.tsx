@@ -2,13 +2,56 @@
 
 import { useState, useMemo, useRef, useEffect } from "react";
 import Link from "next/link";
-import type { EnergyProvider } from "@/lib/database.types";
+import type { EnergyProvider, GridOperator } from "@/lib/database.types";
 
 type SortField = "estimated_monthly" | "kwh_rate" | "gas_rate" | "welcome_bonus";
 type SortDir = "asc" | "desc";
 
 interface Props {
   providers: EnergyProvider[];
+  gridOperators?: GridOperator[];
+}
+
+// Postcode → netbeheerder mapping (vereenvoudigd op basis van hoofdgebieden)
+// Bron: ACM netbeheerder-indeling
+function getGridOperatorByPostcode(postcode: string): string | null {
+  const num = parseInt(postcode.replace(/\D/g, "").substring(0, 4), 10);
+  if (isNaN(num) || num < 1000 || num > 9999) return null;
+
+  // Stedin: Zuid-Holland, Utrecht-stad, delen van Noord-Holland
+  if ((num >= 2000 && num <= 2999) || // Zuid-Holland groot
+      (num >= 3000 && num <= 3099) || // Utrecht-stad
+      (num >= 3300 && num <= 3399) || // Dordrecht/Gorinchem
+      (num >= 1300 && num <= 1399))   // Almere-Haven (Stedin gebied)
+    return "Stedin";
+
+  // Enexis: Noord-Brabant, Limburg, delen Overijssel/Groningen
+  if ((num >= 4600 && num <= 4699) || // Bergen op Zoom
+      (num >= 4700 && num <= 4999) || // West-Brabant
+      (num >= 5000 && num <= 5999) || // Noord-Brabant + Limburg
+      (num >= 6000 && num <= 6499) || // Limburg
+      (num >= 6500 && num <= 6599) || // Zuid-Limburg
+      (num >= 6600 && num <= 6999) || // Limburg
+      (num >= 7400 && num <= 7699) || // Overijssel-zuid
+      (num >= 9400 && num <= 9499) || // Assen
+      (num >= 9700 && num <= 9799))   // Groningen-stad
+    return "Enexis";
+
+  // Coteq: Oost-Overijssel
+  if ((num >= 7600 && num <= 7699) || // Almelo
+      (num >= 7700 && num <= 7799))   // Dedemsvaart/Hardenberg
+    return "Coteq";
+
+  // Rendo: Meppel/Hoogeveen/Coevorden
+  if (num >= 7900 && num <= 7999)
+    return "Rendo";
+
+  // Westland Infra: Westland
+  if (num >= 2670 && num <= 2690)
+    return "Westland Infra";
+
+  // Liander: rest (grootste netbeheerder - Noord-Holland, Gelderland, Flevoland, delen Friesland/Overijssel)
+  return "Liander";
 }
 
 // URLs per leverancier
@@ -69,7 +112,7 @@ const DEFAULT_KWH = 2400;
 const DEFAULT_GAS = 1000;
 const DEFAULT_SOLAR_KWH = 3000; // Gemiddelde opbrengst 10 panelen
 
-export function ComparisonTable({ providers }: Props) {
+export function ComparisonTable({ providers, gridOperators = [] }: Props) {
   const [greenOnly, setGreenOnly] = useState(false);
   const [sortField, setSortField] = useState<SortField>("estimated_monthly");
   const [sortDir, setSortDir] = useState<SortDir>("asc");
@@ -80,6 +123,16 @@ export function ComparisonTable({ providers }: Props) {
   const [gasUsage, setGasUsage] = useState(DEFAULT_GAS);
   const [hasSolar, setHasSolar] = useState(false);
   const [solarKwh, setSolarKwh] = useState(DEFAULT_SOLAR_KWH);
+  const [postcode, setPostcode] = useState("");
+
+  // Bepaal netbeheerder op basis van postcode
+  const detectedOperator = postcode.length >= 4 ? getGridOperatorByPostcode(postcode) : null;
+  const matchedGridOperator = detectedOperator
+    ? gridOperators.find((g) => g.name === detectedOperator) ?? null
+    : null;
+  const gridCostMonthly = matchedGridOperator
+    ? matchedGridOperator.total_yearly / 12
+    : null;
 
   // Sluit dropdown bij klik buiten
   useEffect(() => {
@@ -128,7 +181,12 @@ export function ComparisonTable({ providers }: Props) {
     return (solarKwh * Number(provider.feed_in_cost_kwh ?? 0)) / 12;
   }
 
-  const isCustomUsage = kwhUsage !== DEFAULT_KWH || gasUsage !== DEFAULT_GAS || hasSolar;
+  // Bereken totale jaarkosten inclusief welkomstbonus (1e jaar)
+  function calcYearlyCost(provider: EnergyProvider): number {
+    return calcMonthly(provider) * 12 - provider.welcome_bonus;
+  }
+
+  const isCustomUsage = kwhUsage !== DEFAULT_KWH || gasUsage !== DEFAULT_GAS || hasSolar || postcode.length > 0;
 
   const sorted = useMemo(() => {
     let filtered = providers;
@@ -284,7 +342,7 @@ export function ComparisonTable({ providers }: Props) {
           </svg>
           <span className="text-sm font-semibold text-text-main">Jouw verbruik:</span>
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_auto] gap-3 items-end">
+        <div className="grid grid-cols-1 sm:grid-cols-[1fr_1fr_1fr_auto] gap-3 items-end">
           <div>
             <label htmlFor="kwh-input" className="block text-sm text-text-muted mb-1">Stroom</label>
             <div className="flex items-center gap-2">
@@ -315,9 +373,23 @@ export function ComparisonTable({ providers }: Props) {
               <span className="text-xs text-text-muted whitespace-nowrap">m&sup3;/jaar</span>
             </div>
           </div>
+          <div>
+            <label htmlFor="postcode-input" className="block text-sm text-text-muted mb-1">Postcode</label>
+            <div className="flex items-center gap-2">
+              <input
+                id="postcode-input"
+                type="text"
+                value={postcode}
+                onChange={(e) => setPostcode(e.target.value.toUpperCase().substring(0, 6))}
+                placeholder="1234AB"
+                className="w-full px-3 py-2.5 rounded-lg border border-border bg-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-primary/30 focus:border-primary transition-all"
+                maxLength={6}
+              />
+            </div>
+          </div>
           {isCustomUsage && (
             <button
-              onClick={() => { setKwhUsage(DEFAULT_KWH); setGasUsage(DEFAULT_GAS); setHasSolar(false); setSolarKwh(DEFAULT_SOLAR_KWH); }}
+              onClick={() => { setKwhUsage(DEFAULT_KWH); setGasUsage(DEFAULT_GAS); setHasSolar(false); setSolarKwh(DEFAULT_SOLAR_KWH); setPostcode(""); }}
               className="text-xs text-primary hover:text-primary-dark font-medium transition-colors py-2.5"
             >
               Reset
@@ -371,6 +443,46 @@ export function ComparisonTable({ providers }: Props) {
             </div>
           )}
         </div>
+
+        {/* Netbeheerder resultaat */}
+        {detectedOperator && (
+          <div className="mt-4 pt-4 border-t border-border">
+            <div className="flex items-start gap-3 bg-sky-50 rounded-lg px-4 py-3 border border-sky-200">
+              <svg className="w-5 h-5 text-sky-600 flex-shrink-0 mt-0.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
+              </svg>
+              <div className="flex-1">
+                <p className="text-sm font-semibold text-sky-900">
+                  Jouw netbeheerder: {detectedOperator}
+                </p>
+                {matchedGridOperator ? (
+                  <div className="mt-1 grid grid-cols-3 gap-3 text-xs">
+                    <div>
+                      <span className="text-sky-700">Stroom:</span>
+                      <span className="font-medium text-sky-900 ml-1">€{matchedGridOperator.electricity_cost_yearly.toFixed(0)}/jaar</span>
+                    </div>
+                    <div>
+                      <span className="text-sky-700">Gas:</span>
+                      <span className="font-medium text-sky-900 ml-1">€{matchedGridOperator.gas_cost_yearly.toFixed(0)}/jaar</span>
+                    </div>
+                    <div>
+                      <span className="text-sky-700">Totaal:</span>
+                      <span className="font-bold text-sky-900 ml-1">€{matchedGridOperator.total_yearly.toFixed(0)}/jaar</span>
+                      <span className="text-sky-600 ml-1">(€{(matchedGridOperator.total_yearly / 12).toFixed(0)}/mnd)</span>
+                    </div>
+                  </div>
+                ) : (
+                  <p className="text-xs text-sky-700 mt-1">
+                    Netbeheerkosten zijn niet instelbaar — deze betaal je altijd bovenop je leverancierstarief.
+                  </p>
+                )}
+                <p className="text-xs text-sky-600 mt-2">
+                  Netbeheerkosten betaal je altijd, ongeacht je leverancier. <Link href="/netbeheer" className="underline hover:text-sky-800">Meer over netbeheerkosten →</Link>
+                </p>
+              </div>
+            </div>
+          </div>
+        )}
 
         <p className="text-xs text-text-muted mt-3">
           {isCustomUsage
@@ -471,11 +583,17 @@ export function ComparisonTable({ providers }: Props) {
               </div>
 
               {/* Price highlight */}
-              <div className="mt-3 flex items-baseline gap-1">
-                <span className="text-2xl font-bold text-text-main">
-                  {formatEuro(calcMonthly(provider))}
-                </span>
-                <span className="text-sm text-text-muted">/mnd</span>
+              <div className="mt-3 flex items-baseline gap-3">
+                <div className="flex items-baseline gap-1">
+                  <span className="text-2xl font-bold text-text-main">
+                    {formatEuro(calcMonthly(provider))}
+                  </span>
+                  <span className="text-sm text-text-muted">/mnd</span>
+                </div>
+                <div className="flex items-baseline gap-1 text-xs bg-stone-100 rounded-lg px-2 py-1">
+                  <span className="text-text-muted">1e jaar:</span>
+                  <span className="font-semibold text-text-main">{formatEuro(calcYearlyCost(provider))}</span>
+                </div>
               </div>
 
               {/* Details grid */}
@@ -572,6 +690,9 @@ export function ComparisonTable({ providers }: Props) {
               >
                 Geschat/mnd <SortIcon field="estimated_monthly" />
               </th>
+              <th className="text-right px-4 py-3 font-semibold text-text-muted whitespace-nowrap">
+                1e jaar
+              </th>
               <th className="text-center px-4 py-3 font-semibold text-text-muted">Groen</th>
               <th className="px-4 py-3"></th>
             </tr>
@@ -638,6 +759,14 @@ export function ComparisonTable({ providers }: Props) {
                       {formatEuro(calcMonthly(provider))}
                     </span>
                     <span className="text-text-muted text-xs">/mnd</span>
+                  </td>
+                  <td className="text-right px-4 py-4">
+                    <span className="font-semibold text-sm text-text-main">
+                      {formatEuro(calcYearlyCost(provider))}
+                    </span>
+                    {provider.welcome_bonus > 0 && (
+                      <div className="text-xs text-accent mt-0.5">incl. -€{provider.welcome_bonus} bonus</div>
+                    )}
                   </td>
                   <td className="text-center px-4 py-4">
                     {provider.green_energy ? (

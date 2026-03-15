@@ -1,13 +1,14 @@
 import { supabase } from "@/lib/supabase";
-import { fallbackProviders, fallbackTtfPrices } from "@/lib/fallback-data";
+import { fallbackProviders, fallbackTtfPrices, fallbackGridOperators } from "@/lib/fallback-data";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { TtfChart } from "@/components/TtfChart";
 import { StatsBar } from "@/components/StatsBar";
+import { DynamicVsFixed } from "@/components/DynamicVsFixed";
 import { FAQSchema, BreadcrumbSchema } from "@/components/StructuredData";
 
 // Herlaad data elke 60 seconden (ISR)
 export const revalidate = 60;
-import type { EnergyProvider, TtfPrice } from "@/lib/database.types";
+import type { EnergyProvider, TtfPrice, GridOperator } from "@/lib/database.types";
 import Link from "next/link";
 
 const faqItems = [
@@ -71,10 +72,24 @@ async function getTtfPrices(): Promise<TtfPrice[]> {
   }
 }
 
+async function getGridOperators(): Promise<GridOperator[]> {
+  try {
+    const { data, error } = await supabase
+      .from("grid_operators")
+      .select("*")
+      .order("name", { ascending: true });
+    if (error || !data) return fallbackGridOperators;
+    return data;
+  } catch {
+    return fallbackGridOperators;
+  }
+}
+
 export default async function Home() {
-  const [providers, ttfPrices] = await Promise.all([
+  const [providers, ttfPrices, gridOperators] = await Promise.all([
     getProviders(),
     getTtfPrices(),
+    getGridOperators(),
   ]);
 
   const cheapest = providers[0];
@@ -218,7 +233,7 @@ export default async function Home() {
             Alle tarieven inclusief energiebelasting en btw. Pas hieronder je verbruik aan voor een persoonlijke schatting.
           </p>
         </div>
-        <ComparisonTable providers={providers} />
+        <ComparisonTable providers={providers} gridOperators={gridOperators} />
       </section>
 
       {/* Market alert + TTF Chart */}
@@ -252,6 +267,20 @@ export default async function Home() {
             Dan worden tarieven doorgaans per kwartaal aangepast op basis van deze noteringen.
           </p>
         </div>
+      </section>
+
+      {/* Dynamisch vs. Vast Calculator */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-text-main">Dynamisch of vast contract?</h2>
+          <p className="text-text-muted mt-1">Simuleer wat je had betaald met een dynamisch tarief op basis van echte marktprijzen.</p>
+        </div>
+        <DynamicVsFixed
+          avgFixedKwhRate={providers.reduce((sum, p) => sum + Number(p.kwh_rate), 0) / providers.length}
+          avgFixedGasRate={providers.reduce((sum, p) => sum + Number(p.gas_rate), 0) / providers.length}
+          cheapestFixedName={cheapest?.name ?? ""}
+          cheapestFixedMonthly={cheapest?.estimated_monthly ?? 0}
+        />
       </section>
 
       {/* Info sections */}

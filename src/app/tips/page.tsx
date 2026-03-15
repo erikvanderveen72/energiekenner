@@ -297,7 +297,25 @@ export default function TipsPage() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+      {/* Gerelateerde pagina's */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14">
+        <h2 className="text-xl font-bold text-text-main mb-4">Meer besparen? Bekijk ook</h2>
+        <div className="grid sm:grid-cols-2 md:grid-cols-4 gap-4">
+          {[
+            { href: "/energie-delen", title: "Energie Delen", desc: "Verdien meer aan je zonnestroom" },
+            { href: "/energie-apps", title: "Energie-Apps", desc: "De slimste apps vergeleken" },
+            { href: "/thuisbatterij", title: "Thuisbatterij", desc: "Sla op en verdien met arbitrage" },
+            { href: "/dynamisch", title: "Dynamisch contract", desc: "Bespaar met uurprijzen" },
+          ].map((link) => (
+            <Link key={link.href} href={link.href} className="rounded-xl border border-border bg-white p-4 hover:shadow-md transition-all group">
+              <h3 className="font-semibold text-text-main group-hover:text-primary transition-colors text-sm">{link.title}</h3>
+              <p className="text-xs text-text-muted mt-1">{link.desc}</p>
+            </Link>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-14 mb-8">
         <div className="rounded-xl bg-gradient-to-r from-teal-500 to-emerald-500 p-8 text-white text-center">
           <h2 className="text-2xl font-bold">Stap 1: Vergelijk je leverancier</h2>
           <p className="mt-2 text-teal-100">De meeste besparingen beginnen bij het juiste contract.</p>
