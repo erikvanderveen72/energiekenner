@@ -112,7 +112,7 @@ export default function OpzegvergoedingPage() {
           <div className="grid md:grid-cols-2 gap-6 mt-8">
             <div className="rounded-xl border-2 border-stone-200 bg-stone-50/50 p-6 relative">
               <div className="absolute -top-3 left-4 px-3 py-0.5 rounded-full bg-stone-400 text-white text-xs font-bold">
-                V&Oacute;&Oacute;R juni 2023
+                VÓÓR juni 2023
               </div>
               <div className="mt-2 space-y-4">
                 <div className="flex items-center gap-3">
@@ -191,7 +191,7 @@ export default function OpzegvergoedingPage() {
               <thead>
                 <tr className="bg-rose-50">
                   <th className="text-left p-3 font-semibold text-text-main border-b border-border">Kenmerk</th>
-                  <th className="text-left p-3 font-semibold text-text-main border-b border-border">Oud (v&oacute;&oacute;r juni 2023)</th>
+                  <th className="text-left p-3 font-semibold text-text-main border-b border-border">Oud (vóór juni 2023)</th>
                   <th className="text-left p-3 font-semibold text-text-main border-b border-border">Nieuw (vanaf juni 2023)</th>
                 </tr>
               </thead>
@@ -438,7 +438,7 @@ export default function OpzegvergoedingPage() {
                     <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
                   </svg>
                 ),
-                title: "Contract v&oacute;&oacute;r juni 2023",
+                title: "Contract vóór juni 2023",
                 desc: "Contracten afgesloten v\u00f3\u00f3r 1 juni 2023 vallen onder de oude regels met lage vaste boetes.",
                 color: "cyan",
               },
