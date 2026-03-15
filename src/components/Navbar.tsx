@@ -39,6 +39,7 @@ export function Navbar() {
     { href: "/duurzaamheid", label: "Groene stroom" },
     { href: "/tips", label: "Bespaartips" },
     { href: "/netbeheer", label: "Netbeheerkosten" },
+    { href: "/begrippenlijst", label: "Begrippenlijst" },
   ];
 
   const allLinks = [...mainLinks, ...meerLinks];

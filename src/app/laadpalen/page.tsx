@@ -2,27 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { FAQSchema, BreadcrumbSchema } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Laadpalen 2026: Kosten, Vergelijking & Subsidie | Energiekenner.nl",
-  description:
-    "Alles over laadpalen voor thuis: kosten per kWh vergeleken, top 5 laadpalen, subsidies (SPRILA, SVVE), slim laden met dynamische tarieven en ERE-certificaten.",
-  keywords: [
-    "laadpaal thuis",
-    "laadpaal kosten",
-    "elektrische auto laden",
-    "thuislader EV",
-    "laadpaal vergelijken",
-    "SPRILA subsidie",
-    "slim laden",
-    "ERE certificaten",
-    "laadpaal zonnepanelen",
-    "V2G bidirectioneel laden",
-  ],
-  openGraph: {
-    title: "Laadpalen voor Thuis - Kosten, Vergelijking & Subsidie 2026",
-    description:
-      "Vergelijk laadpalen, bereken je kosten per km en ontdek subsidies. Met ERE-certificaten verdien je tot €400/jaar terug.",
+  title: "Laadpalen 2026: Types, Kosten & Installatie | Energiekenner.nl",
+  description: "Alles over thuis- en openbare laadpalen. Kosten, installatie en steden laadpaalnetwerk.",
+  alternates: {
+    canonical: "https://energiekenner.nl/laadpalen",
   },
 };
 
@@ -70,6 +56,10 @@ export default function LaadpalenPage() {
         ]}
       />
 
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Laadpalen", href: "/laadpalen" },
+      ]} />
       <PageHero
         badge="Elektrisch rijden 2026"
         title="Laadpalen voor thuis"

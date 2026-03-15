@@ -3,7 +3,7 @@ import { fallbackProviders, fallbackTtfPrices } from "@/lib/fallback-data";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { TtfChart } from "@/components/TtfChart";
 import { StatsBar } from "@/components/StatsBar";
-import { FAQSchema } from "@/components/StructuredData";
+import { FAQSchema, BreadcrumbSchema } from "@/components/StructuredData";
 
 // Herlaad data elke 60 seconden (ISR)
 export const revalidate = 60;
@@ -128,6 +128,12 @@ export default async function Home() {
 
   return (
     <>
+      {/* Breadcrumb Schema voor Google */}
+      <BreadcrumbSchema items={[
+        { name: "Home", url: "https://energiekenner.nl" },
+        { name: "Energie Vergelijken", url: "https://energiekenner.nl" },
+      ]} />
+
       {/* Hero */}
       <section className="relative overflow-hidden bg-stone-900 text-white">
         {/* Abstracte gradient blobs - meer organisch dan typische AI */}
@@ -450,6 +456,59 @@ export default async function Home() {
               </div>
             </details>
           ))}
+        </div>
+      </section>
+
+      {/* CTA Banner */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-8 mb-16" aria-label="Direct vergelijken">
+        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-primary to-primary-dark p-8 md:p-12 text-white">
+          <div className="absolute top-0 right-0 w-64 h-64 bg-white/5 rounded-full -translate-y-1/2 translate-x-1/2" />
+          <div className="absolute bottom-0 left-0 w-48 h-48 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/4" />
+          <div className="relative flex flex-col md:flex-row items-center justify-between gap-6">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold">Klaar om te besparen?</h2>
+              <p className="mt-2 text-white/80 max-w-lg">
+                Vergelijk nu alle {providers.length} energieleveranciers en ontdek hoeveel jij kunt besparen op je energierekening.
+              </p>
+            </div>
+            <a
+              href="#vergelijk"
+              className="inline-flex items-center justify-center px-8 py-4 rounded-2xl bg-white text-primary font-bold text-lg hover:bg-stone-100 transition-all shadow-xl hover:-translate-y-0.5 whitespace-nowrap animate-pulse-glow"
+            >
+              Vergelijk nu
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+              </svg>
+            </a>
+          </div>
+
+          {/* Trust strip */}
+          <div className="relative mt-8 pt-6 border-t border-white/20 grid grid-cols-2 md:grid-cols-4 gap-4">
+            <div className="flex items-center gap-2 text-sm text-white/70">
+              <svg className="w-5 h-5 text-emerald-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+              </svg>
+              SSL beveiligd
+            </div>
+            <div className="flex items-center gap-2 text-sm text-white/70">
+              <svg className="w-5 h-5 text-emerald-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Geen registratie nodig
+            </div>
+            <div className="flex items-center gap-2 text-sm text-white/70">
+              <svg className="w-5 h-5 text-emerald-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              Dagelijks bijgewerkt
+            </div>
+            <div className="flex items-center gap-2 text-sm text-white/70">
+              <svg className="w-5 h-5 text-emerald-300 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              100% onafhankelijk
+            </div>
+          </div>
         </div>
       </section>
     </>

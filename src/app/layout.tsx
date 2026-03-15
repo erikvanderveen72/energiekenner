@@ -1,9 +1,10 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
+import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
-import { WebsiteSchema, OrganizationSchema } from "@/components/StructuredData";
+import { WebsiteSchema, OrganizationSchema, ServiceSchema } from "@/components/StructuredData";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -33,6 +34,10 @@ export const metadata: Metadata = {
     "energiecontract vergelijken",
     "dynamische energie",
     "zonnepanelen",
+    "energiekosten besparen",
+    "energiecontract afsluiten",
+    "beste energieleverancier",
+    "energie overstappen 2026",
   ],
   icons: {
     icon: [
@@ -50,6 +55,7 @@ export const metadata: Metadata = {
     type: "website",
     locale: "nl_NL",
     siteName: "Energiekenner.nl",
+    url: "https://energiekenner.nl",
   },
   twitter: {
     card: "summary_large_image",
@@ -58,6 +64,23 @@ export const metadata: Metadata = {
   },
   alternates: {
     canonical: "https://energiekenner.nl",
+    languages: {
+      "nl-NL": "https://energiekenner.nl",
+    },
+  },
+  other: {
+    "geo.region": "NL",
+    "geo.placename": "Nederland",
+    "geo.position": "52.3676;4.9041",
+    "ICBM": "52.3676, 4.9041",
+    "content-language": "nl",
+    "rating": "general",
+    "distribution": "global",
+    "revisit-after": "3 days",
+  },
+  verification: {
+    // Voeg hier je Google Search Console verificatie toe
+    // google: "je-verificatie-code",
   },
 };
 
@@ -67,26 +90,42 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="nl" className={inter.variable}>
+    <html lang="nl" dir="ltr" className={inter.variable}>
       <head>
-        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZM9PLZKZX" />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              gtag('js', new Date());
-              gtag('config', 'G-MZM9PLZKZX');
-            `,
-          }}
-        />
+        {/* Preconnect voor snellere externe resources */}
+        <link rel="preconnect" href="https://www.googletagmanager.com" />
+        <link rel="preconnect" href="https://www.google-analytics.com" />
+        <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+        <link rel="dns-prefetch" href="https://www.google-analytics.com" />
         <WebsiteSchema />
         <OrganizationSchema />
+        <ServiceSchema />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
+        <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold">
+          Direct naar inhoud
+        </a>
         <Navbar />
-        <main className="flex-1">{children}</main>
+        <main id="main-content" className="flex-1">{children}</main>
         <Footer />
+
+        {/* Google Analytics - afterInteractive voor betere performance */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-MZM9PLZKZX"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-MZM9PLZKZX', {
+              page_path: window.location.pathname,
+              anonymize_ip: true,
+              cookie_flags: 'SameSite=None;Secure'
+            });
+          `}
+        </Script>
       </body>
     </html>
   );

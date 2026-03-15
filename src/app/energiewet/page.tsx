@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Energiewet 2026: Jouw Nieuwe Rechten als Consument | Energiekenner",
-  description: "De Energiewet 2026 geeft je meer macht: 5 dagen opzegtermijn, 14 dagen bedenktijd, bescherming bij faillissement. Alles wat je moet weten.",
-  keywords: ["energiewet 2026", "nieuwe energiewet", "opzegtermijn energie", "consumentenrechten energie", "flitsoverstap energie"],
-  openGraph: {
-    title: "Energiewet 2026: Jouw Nieuwe Rechten",
-    description: "Flitsoverstap in 5 dagen, geen gratis tablets meer, en 14 dagen bedenktijd. Alles over de Energiewet 2026.",
+  title: "Energiewet 2026: Wetgeving & Regelingen | Energiekenner.nl",
+  description: "Overzicht van de energiewet 2026, subsidies en regelingen voor duurzame energie in Nederland.",
+  alternates: {
+    canonical: "https://energiekenner.nl/energiewet",
   },
 };
 
@@ -87,6 +86,10 @@ const colorMap: Record<string, { bg: string; text: string; iconBg: string }> = {
 export default function EnergiewetPage() {
   return (
     <>
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Energiewet 2026", href: "/energiewet" },
+      ]} />
       <PageHero badge="Sinds 1 januari 2026" title="Energiewet 2026" highlight="Jouw nieuwe rechten" description="De nieuwe Energiewet geeft je als consument meer macht, bescherming en transparantie. Dit zijn je rechten." accentColor="purple" />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">

@@ -4,15 +4,11 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 const metadata = {
-  title: "Energieverbruik 2026: Apparaten, Seizoen & Kosten | Energiekenner",
-  description: "Alles over energieverbruik in Nederland: Wat kost een wasmachine, koelkast, verwarming per jaar? Vergelijk apparaten en bespar tot €1.000/jaar.",
-  keywords: ["energieverbruik", "kWh", "verbruik apparaten", "jaarlijks verbruik", "energiekosten", "wasmachine verbruik", "koelkast verbruik", "verlichting verbruik"],
-  openGraph: {
-    title: "Energieverbruik: Wat kost wat?",
-    description: "Overzicht van jaarlijks energieverbruik per apparaat en manieren om te besparen.",
-  },
+  title: "Energieverbruik: Apparaten & Kosten 2026 | Energiekenner.nl",
+  description: "Ontdek energieverbruik per apparaat en bespaartips voor gas en stroom in Nederland.",
 };
 
 interface Appliance {
@@ -140,6 +136,10 @@ export default function VerbruikPage() {
   return (
     <>
       {/* Hero Section */}
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Energieverbruik", href: "/verbruik" },
+      ]} />
       <PageHero
         badge="Infografiek"
         title="Energieverbruik"

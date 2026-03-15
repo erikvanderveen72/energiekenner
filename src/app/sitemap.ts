@@ -5,20 +5,22 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const now = new Date();
 
   return [
-    { url: baseUrl, lastModified: now, changeFrequency: "daily", priority: 1 },
-    { url: `${baseUrl}/dynamisch`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: baseUrl, lastModified: now, changeFrequency: "daily", priority: 1.0 },
+    { url: `${baseUrl}/dynamisch`, lastModified: now, changeFrequency: "daily", priority: 0.9 },
     { url: `${baseUrl}/zonnepanelen`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/salderen`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
+    { url: `${baseUrl}/warmtepompen`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${baseUrl}/thuisbatterij`, lastModified: now, changeFrequency: "weekly", priority: 0.85 },
+    { url: `${baseUrl}/calculator`, lastModified: now, changeFrequency: "monthly", priority: 0.85 },
     { url: `${baseUrl}/verbruik`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/thuisbatterij`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
-    { url: `${baseUrl}/warmtepompen`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/slimme-technologie`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/energiewet`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/duurzaamheid`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
-    { url: `${baseUrl}/tips`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/energievergelijkers`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/salderen`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/opzegvergoeding`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/laadpalen`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
-    { url: `${baseUrl}/netbeheer`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
+    { url: `${baseUrl}/duurzaamheid`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
+    { url: `${baseUrl}/tips`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
+    { url: `${baseUrl}/netbeheer`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/begrippenlijst`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
   ];
 }

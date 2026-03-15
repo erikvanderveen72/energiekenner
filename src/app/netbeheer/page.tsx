@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
 import { fallbackGridOperators } from "@/lib/fallback-data";
 import type { GridOperator } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const revalidate = 60;
 
@@ -18,9 +20,12 @@ async function getGridOperators(): Promise<GridOperator[]> {
   }
 }
 
-export const metadata = {
-  title: "Netbeheerkosten 2026 | Energievergelijker",
-  description: "Vergelijk netbeheerkosten van Liander, Enexis, Stedin en andere netbeheerders in 2026.",
+export const metadata: Metadata = {
+  title: "Netbeheerkosten 2026: Componenten & Berekening | Energiekenner.nl",
+  description: "Begrijp netbeheerkosten: wat zijn ze, hoe worden ze berekend en welke leverancier bepaalt dit?",
+  alternates: {
+    canonical: "https://energiekenner.nl/netbeheer",
+  },
 };
 
 export default async function NetbeheerPage() {
@@ -29,6 +34,10 @@ export default async function NetbeheerPage() {
 
   return (
     <>
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Netbeheerkosten", href: "/netbeheer" },
+      ]} />
       <PageHero badge="Tarieven 2026" title="Netbeheerkosten 2026" highlight="Transporttarieven vergeleken" description={`De kosten voor het transport van energie zijn in 2026 fors gestegen door miljardeninvesteringen in netverzwaring. Gemiddeld betaal je €${avg.toFixed(0).replace(".", ",")} per jaar.`} accentColor="cyan" />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">

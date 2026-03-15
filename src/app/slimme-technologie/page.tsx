@@ -1,20 +1,23 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Slimme Technologie: P1-meter, HEMS en Home Assistant | Energiekenner",
-  description: "P1-meter, HEMS en dynamische tarieven: je gids voor slimme energiestuur. Van DSMR data tot Home Assistant automatie.",
-  keywords: ["P1-meter", "DSMR", "HEMS", "Home Assistant", "slimme meter", "smart home energiebeheer", "home energy management system"],
-  openGraph: {
-    title: "Slimme Technologie: Slim Energie Sturen",
-    description: "P1-meter, HEMS en dynamische tarieven: alles wat je moet weten over slimme energiestuur.",
+  title: "Slim Energie Sturen 2026: Smart Grid & HEMS | Energiekenner.nl",
+  description: "Ontdek slimme energietechnologie: HEMS, smart grid en hoe u verbruik optimaal stuurt.",
+  alternates: {
+    canonical: "https://energiekenner.nl/slimme-technologie",
   },
 };
 
 export default function SlimmeTechnologiePage() {
   return (
     <>
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Slim Energie Sturen", href: "/slimme-technologie" },
+      ]} />
       <PageHero badge="Slim Energie Sturen" title="Slimme technologie" highlight="P1-meter, HEMS &amp; meer" description="Van P1-meter tot Home Energy Management System: hoe je met slimme technologie je energieverbruik optimaliseert en bespaart." accentColor="cyan" />
 
       {/* Article 1: P1-meter */}

@@ -2,27 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { FAQSchema, BreadcrumbSchema } from "@/components/StructuredData";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Opzegvergoeding Energie 2026: Wat Kost Voortijdig Opzeggen? | Energiekenner.nl",
-  description:
-    "Wat kost het om je energiecontract voortijdig op te zeggen? De ACM-regels uitgelegd: formule, voorbeeldberekeningen, uitzonderingen en slimme tips om boetes te vermijden.",
-  keywords: [
-    "opzegvergoeding energie",
-    "opzegboete energiecontract",
-    "energiecontract opzeggen",
-    "ACM opzegvergoeding",
-    "opzegvergoeding berekenen",
-    "boete overstappen energie",
-    "opzegvergoeding zonnepanelen",
-    "switchwindow energie",
-    "welkomstpremie terugbetalen",
-    "energiewet 2026 opzeggen",
-  ],
-  openGraph: {
-    title: "Opzegvergoeding Energie - Wat Kost Voortijdig Opzeggen?",
-    description:
-      "De ACM-regels voor opzegvergoedingen simpel uitgelegd. Bereken wat het kost, wanneer je gratis kunt opzeggen, en hoe je slim overstap zonder boete.",
+  title: "Opzegvergoeding Energiecontract 2026 | Energiekenner.nl",
+  description: "Lees hier wat opzegtermijn en -vergoedingen zijn voor energiecontracten in Nederland.",
+  alternates: {
+    canonical: "https://energiekenner.nl/opzegvergoeding",
   },
 };
 
@@ -70,6 +56,10 @@ export default function OpzegvergoedingPage() {
         ]}
       />
 
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Opzegvergoeding", href: "/opzegvergoeding" },
+      ]} />
       <PageHero
         badge="ACM-regels 2026"
         title="Opzegvergoeding energie"

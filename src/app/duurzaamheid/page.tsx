@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Groene Stroom 2026: Duurzaamheidsscores & Greenwashing | Energiekenner",
-  description: "Welke leverancier levert echt groene stroom? Vergelijk duurzaamheidsscores, GvO-herkomst en EU-greenwashing regels in 2026.",
-  keywords: ["groene stroom", "duurzame energie", "greenwashing", "sjoemelstroom", "garanties van oorsprong", "GvO", "stroometiket"],
-  openGraph: {
-    title: "Groene Stroom 2026: Wie is echt duurzaam?",
-    description: "Duurzaamheidsscores, GvO-transparantie en EU-greenwashing regels vergeleken.",
+  title: "Groene Stroom 2026: Duurzame Energie | Energiekenner.nl",
+  description: "Informatie over groene stroom, hernieuwbare energie en duurzaamheid in Nederland.",
+  alternates: {
+    canonical: "https://energiekenner.nl/duurzaamheid",
   },
 };
 
@@ -23,6 +22,10 @@ const providers = [
 export default function DuurzaamheidPage() {
   return (
     <>
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Groene Stroom", href: "/duurzaamheid" },
+      ]} />
       <PageHero badge="Bewust kiezen" title="Groene stroom &amp; duurzaamheid" highlight="Is jouw stroom echt groen?" description="Niet alle groene stroom is even groen. Ontdek het verschil tussen Garanties van Oorsprong, Europese windcertificaten en lokaal opgewekte energie." accentColor="emerald" />
 
       {/* Scores */}

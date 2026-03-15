@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
 import { fallbackProviders } from "@/lib/fallback-data";
 import type { EnergyProvider } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ZonnepanelenKeuzehulp } from "@/components/Keuzehulp";
 
 export const revalidate = 60;
@@ -19,9 +21,12 @@ async function getProviders(): Promise<EnergyProvider[]> {
   }
 }
 
-export const metadata = {
-  title: "Zonnepanelen: Terugleverkosten & Vergoedingen 2026 | Energievergelijker",
-  description: "Vergelijk terugleverkosten en -vergoedingen per leverancier. Salderingsregeling stopt in 2027.",
+export const metadata: Metadata = {
+  title: "Zonnepanelen: Terugleverkosten & Vergoedingen 2026 | Energiekenner.nl",
+  description: "Vergelijk terugleverkosten en terugleververgoedingen van alle energieleveranciers voor zonnepanelen in 2026.",
+  alternates: {
+    canonical: "https://energiekenner.nl/zonnepanelen",
+  },
 };
 
 export default async function ZonnepanelenPage() {
@@ -31,6 +36,10 @@ export default async function ZonnepanelenPage() {
 
   return (
     <>
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Zonnepanelen", href: "/zonnepanelen" },
+      ]} />
       <PageHero
         badge="Laatste jaar volledige saldering"
         title="Zonnepanelen &amp; teruglevering"

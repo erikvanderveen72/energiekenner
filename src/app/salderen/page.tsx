@@ -3,27 +3,13 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { FAQSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { SalderenKeuzehulp } from "@/components/Keuzehulp";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Salderingsregeling 2027: Wat Verandert Er? | Energiekenner.nl",
-  description:
-    "De salderingsregeling stopt per 1 januari 2027. Wat betekent dat voor jouw zonnepanelen? Terugverdientijd, terugleverkosten, thuisbatterij en slimme strategieen - alles uitgelegd.",
-  keywords: [
-    "salderingsregeling",
-    "salderingsregeling 2027",
-    "salderen zonnepanelen",
-    "einde salderingsregeling",
-    "terugleverkosten zonnepanelen",
-    "thuisbatterij zonder salderen",
-    "zonnepanelen rendement 2027",
-    "salderen afgeschaft",
-    "terugleververgoeding",
-    "slimme meter verplicht",
-  ],
-  openGraph: {
-    title: "Salderingsregeling Stopt in 2027 - Wat Nu?",
-    description:
-      "Alles over het einde van de salderingsregeling: impact op je zonnepanelen, terugleverkosten, en hoe je je kunt voorbereiden met een thuisbatterij of dynamisch contract.",
+  title: "Salderingsregeling 2026 2027: Eindstand Energiekenner.nl",
+  description: "Alles over de salderingsregeling in 2026 en 2027. Hoe werkt saldering en wat verandert er?",
+  alternates: {
+    canonical: "https://energiekenner.nl/salderen",
   },
 };
 
@@ -82,6 +68,10 @@ export default function SalderenPage() {
       />
 
       {/* Hero */}
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Salderingsregeling", href: "/salderen" },
+      ]} />
       <PageHero
         badge="Wetgeving 2027"
         title="Salderingsregeling stopt in 2027"

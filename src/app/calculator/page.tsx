@@ -3,20 +3,16 @@ import { Calculator } from "@/components/Calculator";
 import { supabase } from "@/lib/supabase";
 import { fallbackProviders } from "@/lib/fallback-data";
 import type { EnergyProvider } from "@/lib/database.types";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const revalidate = 60;
 
 export const metadata: Metadata = {
-  title: "Energiecalculator 2026 | Bereken je maandbedrag per leverancier",
-  description:
-    "Schuif met je verbruik en zie direct welke energieleverancier het goedkoopst is. Interactieve grafiek met actuele tarieven maart 2026.",
-  keywords: [
-    "energiecalculator",
-    "energie berekenen",
-    "maandbedrag energie",
-    "goedkoopste leverancier",
-    "energieverbruik berekenen",
-  ],
+  title: "Energiecalculator 2026: Kostenbesparing Berekenen | Energiekenner.nl",
+  description: "Bereken uw energiebesparing met onze energiecalculator. Voertuiging voor verschillende situaties.",
+  alternates: {
+    canonical: "https://energiekenner.nl/calculator",
+  },
 };
 
 async function getProviders(): Promise<EnergyProvider[]> {
@@ -37,6 +33,10 @@ export default async function CalculatorPage() {
 
   return (
     <>
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Calculator", href: "/calculator" },
+      ]} />
       <section className="bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4 mt-2">

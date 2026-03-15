@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Energie Besparen in 2026: 10 Slimme Tips + Checklist | Energiekenner",
-  description: "Bespaar tot €500 per jaar met deze bewezen bespaartips. Van cv-ketel optimalisatie tot sluipverbruik elimineren. Inclusief checklist maart 2026.",
-  keywords: ["energie besparen", "bespaartips energie", "energierekening verlagen", "cv ketel instellen", "sluipverbruik", "energiebesparing 2026"],
-  openGraph: {
-    title: "10 Slimme Bespaartips voor 2026",
-    description: "Bespaar tot €500 per jaar op je energierekening. Inclusief checklist voor maart 2026.",
+  title: "Bespaartips Energie: Geld besparen op Gas & Stroom | Energiekenner.nl",
+  description: "Praktische bespaartips om uw gas- en stroomverbruik te reduceren en geld te besparen.",
+  alternates: {
+    canonical: "https://energiekenner.nl/tips",
   },
 };
 
@@ -92,6 +91,10 @@ const categoryColors: Record<string, string> = {
 export default function TipsPage() {
   return (
     <>
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Bespaartips", href: "/tips" },
+      ]} />
       <PageHero badge="Direct toepasbaar" title="Bespaartips energie" highlight="Bespaar honderden euro's per jaar" description="Praktische tips om je energierekening te verlagen. Van quick wins tot slimme investeringen." accentColor="emerald" />
 
       {/* Tips grid */}

@@ -1,14 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Thuisbatterij kopen in 2026 | Prijzen, Rendement & V2G | Energiekenner",
-  description: "Vergelijk thuisbatterijen van 3 tot 30 kWh. Terugverdientijd berekenen, BTW-teruggave en Vehicle-to-Grid (V2G) uitgelegd. Actuele prijzen maart 2026.",
-  keywords: ["thuisbatterij", "thuisbatterij kopen", "thuisbatterij prijs 2026", "V2G", "vehicle to grid", "LFP batterij", "energieopslag"],
-  openGraph: {
-    title: "Thuisbatterij kopen in 2026 | Prijzen & Rendement",
-    description: "Vergelijk thuisbatterijen, bereken je terugverdientijd en ontdek Vehicle-to-Grid.",
+  title: "Thuisbatterij 2026: Types, Kosten & Rendement | Energiekenner.nl",
+  description: "Vergelijk thuisbatterijen: kosten, opslagcapaciteit en financieel rendement voor uw zonnepanelen.",
+  alternates: {
+    canonical: "https://energiekenner.nl/thuisbatterij",
   },
 };
 
@@ -31,6 +30,10 @@ export default function ThuisbatterijPage() {
   return (
     <>
       {/* Hero */}
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Thuisbatterij", href: "/thuisbatterij" },
+      ]} />
       <PageHero
         badge="Actueel - maart 2026"
         title="Thuisbatterij &amp; V2G"

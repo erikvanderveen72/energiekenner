@@ -2,14 +2,13 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { WarmtepompKeuzehulp } from "@/components/Keuzehulp";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Warmtepompen 2026: Types, Kosten, ISDE Subsidie & Installatie | Energiekenner",
-  description: "Alles over warmtepompen in Nederland 2026: lucht-water, grond-water, hybride. Vergelijk kosten (€7.000-€25.000), ISDE subsidie, SCOP, isolatie-eisen en terugverdientijd.",
-  keywords: ["warmtepomp", "lucht-water warmtepomp", "grond-water warmtepomp", "hybride warmtepomp", "ISDE subsidie 2026", "SCOP", "COP", "warmtepomp kosten", "warmtepomp installatie", "vloerverwarming"],
-  openGraph: {
-    title: "Warmtepompen 2026: Alles wat je moet weten",
-    description: "Types, kosten, ISDE subsidie, SCOP/COP waarden en installatiedeisen voor warmtepompen in Nederland.",
+  title: "Warmtepompen 2026: Types, Kosten & ISDE Subsidie | Energiekenner.nl",
+  description: "Ontdek warmtepomp types, kosten, ISDE subsidie en installatiedeisen in Nederland 2026.",
+  alternates: {
+    canonical: "https://energiekenner.nl/warmtepompen",
   },
 };
 
@@ -128,6 +127,10 @@ export default function WarmtepompenPage() {
   return (
     <>
       {/* Hero Section */}
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Warmtepompen", href: "/warmtepompen" },
+      ]} />
       <PageHero
         badge="ISDE Subsidie beschikbaar"
         title="Warmtepompen in 2026"

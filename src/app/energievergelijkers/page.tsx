@@ -1,26 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const metadata: Metadata = {
-  title: "Hoe Werken Energievergelijkers? Eerlijk Uitgelegd | Energiekenner.nl",
-  description:
-    "Hoe verdienen vergelijkingssites als Independer en Gaslicht geld? Welke contractvorm past bij jou? En waar let de ACM op? Wij leggen het eerlijk uit.",
-  keywords: [
-    "energievergelijker",
-    "energie vergelijken",
-    "hoe werkt energievergelijker",
-    "independer energie",
-    "gaslicht.com",
-    "overstappen energie",
-    "vast variabel dynamisch contract",
-    "ACM energie toezicht",
-    "terugleverkosten zonnepanelen",
-  ],
-  openGraph: {
-    title: "Hoe Werken Energievergelijkers? Eerlijk Uitgelegd",
-    description:
-      "Commissies, contractvormen, terugleverkosten en ACM-toezicht: alles wat je moet weten over de markt van energievergelijkers.",
+  title: "Energievergelijkers 2026: Vergelijk Providers | Energiekenner.nl",
+  description: "Vergelijk energieleveranciers online met onze handige energievergelijkers voor stroom en gas.",
+  alternates: {
+    canonical: "https://energiekenner.nl/energievergelijkers",
   },
 };
 
@@ -28,6 +15,10 @@ export default function EnergievergelijkersPage() {
   return (
     <>
       {/* Hero */}
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Energievergelijkers", href: "/energievergelijkers" },
+      ]} />
       <PageHero badge="Consumentengids 2026" title="Hoe werken energievergelijkers?" highlight="Eerlijk uitgelegd" description="Miljoenen Nederlanders gebruiken vergelijkingssites om van energieleverancier te wisselen. Maar hoe verdienen die platforms geld, en kun je ze vertrouwen? Een eerlijke uitleg." accentColor="emerald" />
 
       {/* Inhoudsopgave */}

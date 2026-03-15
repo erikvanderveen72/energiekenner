@@ -1,7 +1,9 @@
+import type { Metadata } from "next";
 import { supabase } from "@/lib/supabase";
 import { fallbackDynamicProviders } from "@/lib/fallback-data";
 import type { DynamicProvider } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
+import { Breadcrumbs } from "@/components/Breadcrumbs";
 
 export const revalidate = 60;
 
@@ -18,9 +20,17 @@ async function getDynamicProviders(): Promise<DynamicProvider[]> {
   }
 }
 
-export const metadata = {
-  title: "Dynamische Energietarieven 2026 | Energievergelijker",
-  description: "Vergelijk dynamische energieleveranciers. Frank Energie, Tibber, Zonneplan en meer.",
+export const metadata: Metadata = {
+  title: "Dynamische Energietarieven Vergelijken 2026 | Frank Energie, Tibber, Zonneplan",
+  description: "Vergelijk alle dynamische energieleveranciers in Nederland op opslagen en vaste kosten. Frank Energie, Tibber, Zonneplan, ANWB Energie en meer. Actuele tarieven maart 2026.",
+  alternates: {
+    canonical: "https://energiekenner.nl/dynamisch",
+  },
+  openGraph: {
+    title: "Dynamische Energietarieven Vergelijken 2026",
+    description: "Betaal de echte marktprijs per uur. Vergelijk opslagen van Frank Energie, Tibber, Zonneplan en meer.",
+    url: "https://energiekenner.nl/dynamisch",
+  },
 };
 
 export default async function DynamischPage() {
@@ -28,6 +38,11 @@ export default async function DynamischPage() {
 
   return (
     <>
+      <Breadcrumbs items={[
+        { name: "Home", href: "/" },
+        { name: "Dynamische tarieven", href: "/dynamisch" },
+      ]} />
+
       {/* Hero */}
       <PageHero
         badge="Real-time marktprijzen"
