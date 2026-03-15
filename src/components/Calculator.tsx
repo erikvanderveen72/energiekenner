@@ -5,20 +5,20 @@ import Link from "next/link";
 
 // Alle leveranciers met tariefdata maart 2026
 const providers = [
-  { name: "Energiedirect", kwh: 0.2595, gas: 1.2954, bonus: 350, green: false, fixed: 7.50 },
-  { name: "Essent", kwh: 0.279, gas: 1.3341, bonus: 300, green: false, fixed: 7.95 },
-  { name: "Vattenfall", kwh: 0.264, gas: 1.3962, bonus: 400, green: true, fixed: 8.25 },
-  { name: "Eneco", kwh: 0.2612, gas: 1.3802, bonus: 350, green: true, fixed: 7.75 },
-  { name: "Greenchoice", kwh: 0.2623, gas: 1.3895, bonus: 350, green: true, fixed: 7.50 },
-  { name: "DELTA Energie", kwh: 0.251, gas: 1.3712, bonus: 300, green: true, fixed: 6.95 },
-  { name: "OXXIO", kwh: 0.2561, gas: 1.3766, bonus: 275, green: false, fixed: 7.25 },
-  { name: "Budget Energie", kwh: 0.2548, gas: 1.38, bonus: 370, green: false, fixed: 7.50 },
-  { name: "UnitedConsumers", kwh: 0.225, gas: 1.166, bonus: 465, green: false, fixed: 6.50 },
-  { name: "Mega", kwh: 0.329, gas: 1.654, bonus: 688, green: false, fixed: 9.95 },
-  { name: "Vandebron", kwh: 0.268, gas: 1.41, bonus: 440, green: true, fixed: 8.00 },
-  { name: "Engie", kwh: 0.272, gas: 1.405, bonus: 435, green: false, fixed: 7.95 },
-  { name: "Coolblue Energie", kwh: 0.265, gas: 1.39, bonus: 300, green: true, fixed: 7.00 },
-  { name: "Pure Energie", kwh: 0.26, gas: 1.385, bonus: 320, green: true, fixed: 7.25 },
+  { name: "Energiedirect", kwh: 0.2595, gas: 1.2954, bonus: 350, green: false, fixed: 7.50, feedInCost: 0, feedInComp: 0.150 },
+  { name: "Essent", kwh: 0.279, gas: 1.3341, bonus: 300, green: false, fixed: 7.95, feedInCost: 0.130, feedInComp: 0.150 },
+  { name: "Vattenfall", kwh: 0.264, gas: 1.3962, bonus: 400, green: true, fixed: 8.25, feedInCost: 0, feedInComp: 0 },
+  { name: "Eneco", kwh: 0.2612, gas: 1.3802, bonus: 350, green: true, fixed: 7.75, feedInCost: 0.182, feedInComp: 0.143 },
+  { name: "Greenchoice", kwh: 0.2623, gas: 1.3895, bonus: 350, green: true, fixed: 7.50, feedInCost: 0, feedInComp: 0 },
+  { name: "DELTA Energie", kwh: 0.251, gas: 1.3712, bonus: 300, green: true, fixed: 6.95, feedInCost: 0, feedInComp: 0.165 },
+  { name: "OXXIO", kwh: 0.2561, gas: 1.3766, bonus: 275, green: false, fixed: 7.25, feedInCost: 0, feedInComp: 0 },
+  { name: "Budget Energie", kwh: 0.2548, gas: 1.38, bonus: 370, green: false, fixed: 7.50, feedInCost: 0.109, feedInComp: 0.010 },
+  { name: "UnitedConsumers", kwh: 0.225, gas: 1.166, bonus: 465, green: false, fixed: 6.50, feedInCost: 0, feedInComp: 0 },
+  { name: "Mega", kwh: 0.329, gas: 1.654, bonus: 688, green: false, fixed: 9.95, feedInCost: 0, feedInComp: 0 },
+  { name: "Vandebron", kwh: 0.268, gas: 1.41, bonus: 440, green: true, fixed: 8.00, feedInCost: 0.160, feedInComp: 0.160 },
+  { name: "Engie", kwh: 0.272, gas: 1.405, bonus: 435, green: false, fixed: 7.95, feedInCost: 0, feedInComp: 0.124 },
+  { name: "Coolblue Energie", kwh: 0.265, gas: 1.39, bonus: 300, green: true, fixed: 7.00, feedInCost: 0.115, feedInComp: 0 },
+  { name: "Pure Energie", kwh: 0.26, gas: 1.385, bonus: 320, green: true, fixed: 7.25, feedInCost: 0.178, feedInComp: 0 },
 ];
 
 // Energiebelasting 2026
@@ -37,7 +37,9 @@ function calculateMonthly(
   provider: typeof providers[0],
   kwhYear: number,
   gasYear: number,
-  includeBonus: boolean
+  includeBonus: boolean,
+  hasSolar: boolean,
+  solarKwh: number
 ) {
   const kwhMonth = kwhYear / 12;
   const gasMonth = gasYear / 12;
@@ -48,7 +50,20 @@ function calculateMonthly(
   const belastingVoordeel = TAX_REDUCTION_MONTHLY;
   const bonusPerMaand = includeBonus ? provider.bonus / 12 : 0;
 
-  return stroomKosten + gasKosten + vast - belastingVoordeel - bonusPerMaand;
+  let solarEffect = 0;
+  if (hasSolar && solarKwh > 0) {
+    const monthlyGenerated = solarKwh / 12;
+    // Saldering tot 2027: je mag opwek verrekenen met verbruik
+    // Netto besparing = opgewekte kWh × leveringstarief (dat betaal je niet)
+    // Maar je betaalt mogelijk terugleverkosten per teruggeleverde kWh
+    const netSaving = monthlyGenerated * (provider.kwh + TAX_KWH);
+    const feedInCosts = monthlyGenerated * provider.feedInCost;
+    const feedInCompensation = monthlyGenerated * provider.feedInComp;
+    // Bij saldering: besparing op verbruik - terugleverkosten + eventuele vergoeding voor overschot
+    solarEffect = netSaving - feedInCosts + feedInCompensation;
+  }
+
+  return stroomKosten + gasKosten + vast - belastingVoordeel - bonusPerMaand - solarEffect;
 }
 
 export function Calculator() {
@@ -56,6 +71,8 @@ export function Calculator() {
   const [gasYear, setGasYear] = useState(1000);
   const [includeBonus, setIncludeBonus] = useState(true);
   const [greenOnly, setGreenOnly] = useState(false);
+  const [hasSolar, setHasSolar] = useState(false);
+  const [solarKwh, setSolarKwh] = useState(3000);
 
   const results = useMemo(() => {
     let filtered = providers;
@@ -64,12 +81,12 @@ export function Calculator() {
     return filtered
       .map((p, idx) => ({
         ...p,
-        monthly: calculateMonthly(p, kwhYear, gasYear, includeBonus),
+        monthly: calculateMonthly(p, kwhYear, gasYear, includeBonus, hasSolar, solarKwh),
         color: COLORS[idx % COLORS.length],
         originalIndex: idx,
       }))
       .sort((a, b) => a.monthly - b.monthly);
-  }, [kwhYear, gasYear, includeBonus, greenOnly]);
+  }, [kwhYear, gasYear, includeBonus, greenOnly, hasSolar, solarKwh]);
 
   const cheapest = results[0]?.monthly ?? 0;
   const mostExpensive = results[results.length - 1]?.monthly ?? 0;
@@ -150,6 +167,55 @@ export function Calculator() {
           </div>
         </div>
 
+        {/* Solar panel section */}
+        <div className="mt-6 pt-6 border-t border-border">
+          <div className="flex items-center gap-4 flex-wrap">
+            <button
+              onClick={() => setHasSolar(!hasSolar)}
+              className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-all ${
+                hasSolar
+                  ? "bg-yellow-50 border-yellow-400 text-yellow-700"
+                  : "bg-white border-border text-text-muted hover:border-yellow-400"
+              }`}
+            >
+              <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+              </svg>
+              Ik heb zonnepanelen
+            </button>
+
+            {hasSolar && (
+              <div className="flex items-center gap-3 flex-1 min-w-[280px]">
+                <label className="text-sm text-text-muted whitespace-nowrap">Opwek per jaar:</label>
+                <input
+                  type="range"
+                  min={500}
+                  max={8000}
+                  step={250}
+                  value={solarKwh}
+                  onChange={(e) => setSolarKwh(Number(e.target.value))}
+                  className="flex-1 h-2 bg-yellow-100 rounded-lg appearance-none cursor-pointer accent-yellow-500"
+                />
+                <div className="flex items-center gap-1">
+                  <input
+                    type="number"
+                    value={solarKwh}
+                    onChange={(e) => setSolarKwh(Math.max(0, Math.min(8000, Number(e.target.value))))}
+                    className="w-20 text-right px-2 py-1 rounded-lg border border-border text-sm font-mono font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300/50"
+                  />
+                  <span className="text-sm text-text-muted">kWh</span>
+                </div>
+              </div>
+            )}
+          </div>
+          {hasSolar && (
+            <p className="text-xs text-text-muted mt-2">
+              De berekening houdt rekening met saldering (tot 2027), terugleverkosten en terugleververgoedingen per leverancier.
+              {solarKwh < 1500 ? " Tip: een gemiddeld systeem van 8 panelen levert ~2.400 kWh/jaar op." : ""}
+            </p>
+          )}
+        </div>
+
         {/* Filters */}
         <div className="flex flex-wrap gap-3 mt-6 pt-6 border-t border-border">
           <button
@@ -206,21 +272,40 @@ export function Calculator() {
       <div className="rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 text-white p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
         <div>
           <p className="text-green-100 text-sm">Verschil goedkoopste vs. duurste leverancier</p>
-          <p className="text-3xl font-extrabold">€ {yearSaving} per jaar</p>
+          <p className="text-3xl font-extrabold">&euro; {yearSaving} per jaar</p>
         </div>
         <div className="text-right">
           <p className="text-green-100 text-sm">Goedkoopst voor jouw verbruik</p>
           <p className="text-2xl font-bold">{results[0]?.name}</p>
-          <p className="text-green-100 text-sm">€ {results[0]?.monthly.toFixed(2)}/mnd</p>
+          <p className="text-green-100 text-sm">&euro; {results[0]?.monthly.toFixed(2)}/mnd</p>
         </div>
       </div>
 
+      {/* Solar info banner */}
+      {hasSolar && (
+        <div className="rounded-xl bg-yellow-50 border border-yellow-200 p-5 mb-8 flex gap-4">
+          <div className="flex-shrink-0 mt-0.5">
+            <svg className="w-6 h-6 text-yellow-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+          </div>
+          <div>
+            <h3 className="font-semibold text-yellow-800">Zonnepanelen actief in berekening</h3>
+            <p className="text-sm text-yellow-700 mt-1">
+              Met {solarKwh.toLocaleString()} kWh opwek is de ranking aangepast. Leveranciers met lage terugleverkosten en hoge vergoedingen scoren beter.
+              Let op: saldering eindigt geleidelijk vanaf 2027. <Link href="/zonnepanelen" className="underline font-medium">Meer over zonnepanelen →</Link>
+            </p>
+          </div>
+        </div>
+      )}
+
       {/* Chart - horizontal bar chart */}
       <div className="rounded-xl border border-border bg-white shadow-sm overflow-hidden">
-        <div className="px-6 py-4 border-b border-border bg-surface-alt">
+        <div className="px-6 py-4 border-b border-border" style={{ backgroundColor: "#f8fafc" }}>
           <h2 className="font-semibold text-text-main">Geschat maandbedrag per leverancier</h2>
           <p className="text-xs text-text-muted mt-0.5">
             {kwhYear.toLocaleString()} kWh stroom + {gasYear.toLocaleString()} m³ gas per jaar
+            {hasSolar ? ` − ${solarKwh.toLocaleString()} kWh zonnepanelen` : ""}
             {includeBonus ? " (incl. welkomstbonus)" : ""}
           </p>
         </div>
@@ -232,7 +317,7 @@ export function Calculator() {
             const saving = ((provider.monthly - cheapest) * 12).toFixed(0);
 
             return (
-              <div key={provider.name} className={`group ${isCheapest ? "" : ""}`}>
+              <div key={provider.name} className="group">
                 <div className="flex items-center gap-3">
                   {/* Rank */}
                   <div className="w-7 flex-shrink-0 text-center">
@@ -257,21 +342,25 @@ export function Calculator() {
                         </svg>
                       )}
                     </div>
+                    {hasSolar && provider.feedInCost > 0 && (
+                      <span className="text-[10px] text-yellow-600">teruglevering: &euro;{provider.feedInCost.toFixed(3)}/kWh</span>
+                    )}
                   </div>
 
                   {/* Bar */}
                   <div className="flex-1 relative">
                     <div className="w-full bg-gray-50 rounded-full h-8 overflow-hidden">
                       <div
-                        className={`h-8 rounded-full transition-all duration-500 ease-out flex items-center px-3 ${
-                          isCheapest
-                            ? "bg-gradient-to-r from-green-400 to-green-500"
-                            : "bg-gradient-to-r from-blue-400 to-blue-500"
-                        }`}
-                        style={{ width: `${barWidth}%` }}
+                        className="h-8 rounded-full transition-all duration-500 ease-out flex items-center px-3"
+                        style={{
+                          width: `${barWidth}%`,
+                          background: isCheapest
+                            ? "linear-gradient(to right, #4ade80, #22c55e)"
+                            : "linear-gradient(to right, #60a5fa, #3b82f6)",
+                        }}
                       >
                         <span className="text-white text-xs font-bold whitespace-nowrap">
-                          € {provider.monthly.toFixed(2)}
+                          &euro; {provider.monthly.toFixed(2)}
                         </span>
                       </div>
                     </div>
@@ -285,7 +374,7 @@ export function Calculator() {
                       </span>
                     ) : (
                       <span className="text-xs text-text-muted">
-                        +€ {saving}/jr
+                        +&euro; {saving}/jr
                       </span>
                     )}
                   </div>
@@ -301,9 +390,10 @@ export function Calculator() {
         <h3 className="font-semibold text-text-main mb-2">Hoe wordt dit berekend?</h3>
         <p className="text-sm text-text-muted">
           Het geschatte maandbedrag is: (stroomverbruik × kWh-tarief) + (gasverbruik × m³-tarief)
-          + energiebelasting + vaste leveringskosten − vermindering energiebelasting (€52,41/mnd)
-          {includeBonus && " − welkomstbonus verdeeld over 12 maanden"}.
-          Alle bedragen zijn inclusief 21% BTW. Netbeheerkosten (gemiddeld ±€62/mnd) zijn voor alle leveranciers gelijk en daarom niet meegenomen.
+          + energiebelasting + vaste leveringskosten − vermindering energiebelasting (&euro;52,41/mnd)
+          {includeBonus && " − welkomstbonus verdeeld over 12 maanden"}
+          {hasSolar && " − besparing door zonnepanelen (saldering) + terugleverkosten − terugleververgoeding"}.
+          Alle bedragen zijn inclusief 21% BTW. Netbeheerkosten (gemiddeld ±&euro;62/mnd) zijn voor alle leveranciers gelijk en daarom niet meegenomen.
         </p>
       </div>
 

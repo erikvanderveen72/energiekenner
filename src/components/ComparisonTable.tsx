@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useMemo } from "react";
+import Link from "next/link";
 import type { EnergyProvider } from "@/lib/database.types";
 
 type SortField = "estimated_monthly" | "kwh_rate" | "gas_rate" | "welcome_bonus";
@@ -203,9 +204,12 @@ export function ComparisonTable({ providers }: Props) {
                     )}
                   </td>
                   <td className="px-4 py-4">
-                    <button className="px-4 py-2 rounded-lg bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm">
-                      Bekijk
-                    </button>
+                    <Link
+                      href="/calculator"
+                      className="inline-flex items-center px-4 py-2 rounded-lg bg-primary text-white text-xs font-semibold hover:bg-primary-dark transition-colors shadow-sm"
+                    >
+                      Bereken
+                    </Link>
                   </td>
                 </tr>
               );
