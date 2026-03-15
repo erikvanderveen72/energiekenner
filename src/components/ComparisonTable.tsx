@@ -118,7 +118,7 @@ export function ComparisonTable({ providers }: Props) {
     return `€ ${val.toFixed(val < 10 ? 4 : 2).replace(".", ",")}`;
   }
 
-  // Ranking badge component — consistent width for alignment
+  // Ranking badge component - consistent width for alignment
   function RankBadge({ rank, isCheapest }: { rank: number; isCheapest: boolean }) {
     return (
       <span
@@ -384,7 +384,7 @@ export function ComparisonTable({ providers }: Props) {
                     {provider.welcome_bonus > 0 ? (
                       <span className="text-warning font-semibold">€ {provider.welcome_bonus}</span>
                     ) : (
-                      <span className="text-text-muted">—</span>
+                      <span className="text-text-muted"> - </span>
                     )}
                   </p>
                 </div>
@@ -475,7 +475,7 @@ export function ComparisonTable({ providers }: Props) {
                         € {provider.welcome_bonus}
                       </span>
                     ) : (
-                      <span className="text-text-muted">—</span>
+                      <span className="text-text-muted"> - </span>
                     )}
                   </td>
                   <td className="text-right px-4 py-4">
@@ -492,7 +492,7 @@ export function ComparisonTable({ providers }: Props) {
                         </svg>
                       </span>
                     ) : (
-                      <span className="text-text-muted">—</span>
+                      <span className="text-text-muted"> - </span>
                     )}
                   </td>
                   <td className="px-4 py-4">

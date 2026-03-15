@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Energiewet 2026: Jouw Nieuwe Rechten als Consument | Energiekenner",
@@ -86,17 +87,7 @@ const colorMap: Record<string, { bg: string; text: string; iconBg: string }> = {
 export default function EnergiewetPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4">
-            Sinds 1 januari 2026
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">Energiewet 2026</h1>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-indigo-100 max-w-2xl">
-            De nieuwe Energiewet geeft je als consument meer macht, bescherming en transparantie. Dit zijn je rechten.
-          </p>
-        </div>
-      </section>
+      <PageHero badge="Sinds 1 januari 2026" title="Energiewet 2026" highlight="Jouw nieuwe rechten" description="De nieuwe Energiewet geeft je als consument meer macht, bescherming en transparantie. Dit zijn je rechten." accentColor="purple" />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <h2 className="text-2xl font-bold text-text-main mb-8">Jouw 6 nieuwe rechten</h2>
@@ -157,7 +148,7 @@ export default function EnergiewetPage() {
           <h2 className="text-2xl font-bold text-text-main mb-4">Energiewet basis: alles op nieuw</h2>
           <div className="prose prose-sm max-w-none text-text-muted space-y-4">
             <p>
-              Op 1 januari 2026 is de Energiewet in werking getreden. Deze vervangt twee oude wetten: de Elektriciteitswet uit 1998 en de Gaswet. Dit is niet zomaar een update — het is een compleet heruitgevonden regelkader voor de energiemarkt van de 21e eeuw.
+              Op 1 januari 2026 is de Energiewet in werking getreden. Deze vervangt twee oude wetten: de Elektriciteitswet uit 1998 en de Gaswet. Dit is niet zomaar een update - het is een compleet heruitgevonden regelkader voor de energiemarkt van de 21e eeuw.
             </p>
             <p>
               De grootste conceptuele verandering is de introductie van de "actieve afnemer" (active consumer). Dit ben jij als je niet alleen energie verbruikt, maar ook produceert (bijvoorbeeld via zonnepanelen), opslaat (batterij), of deelt met anderen. De Energiewet erkent dat consumenten niet langer passief zijn.
@@ -188,7 +179,7 @@ export default function EnergiewetPage() {
               Dit betekent dat je veel sneller kunt reageren op marktveranderingen. Zakt de stroomprijs plots? Dan kun je nu snel switchen naar een goedkoper contract. Geen maandenlange verplichting meer aan een dure deal.
             </p>
             <p>
-              Een belangrijk onderscheid: opzegtermijn is niet hetzelfde als opzegvergoeding. Je mag sneller opzeggen (5 werkdagen), maar als je een vast contract hebt afgesloten, kan de leverancier nog steeds een vergoeding vragen als je voortijdig stopt. Lees je contract goed — modelcontracten moeten dit transparant vermelden.
+              Een belangrijk onderscheid: opzegtermijn is niet hetzelfde als opzegvergoeding. Je mag sneller opzeggen (5 werkdagen), maar als je een vast contract hebt afgesloten, kan de leverancier nog steeds een vergoeding vragen als je voortijdig stopt. Lees je contract goed - modelcontracten moeten dit transparant vermelden.
             </p>
           </div>
           <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
@@ -244,7 +235,7 @@ export default function EnergiewetPage() {
           <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
             <p className="font-semibold text-amber-900 mb-2">Kennertip</p>
             <p className="text-sm text-amber-800">
-              Focus altijd op de totale jaarlijkse kosten, niet op de welkomstbonus. De bonus is icing op de cake — het contract zelf moet goed zijn.
+              Focus altijd op de totale jaarlijkse kosten, niet op de welkomstbonus. De bonus is icing op de cake - het contract zelf moet goed zijn.
             </p>
           </div>
           <p className="text-xs text-text-muted mt-4">Bron: Consumentenbond, ACM richtlijnen 2026</p>
@@ -260,7 +251,7 @@ export default function EnergiewetPage() {
               Een van de zwaarwegendste beschermingen van de Energiewet: als je leverancier failliet gaat, gebeurt het volgende automatisch. Je wordt binnen 20 werkdagen overgezet naar een nieuwe leverancier. Geen onderbreking, geen gedoe.
             </p>
             <p>
-              Let op: gedurende de overstap (de "vensterperiode") kun je zelf niet switchen naar een ander bedrijf. Je zit even vast bij de noodfornuitswijzer. Dit is een bescherming — het zorgt voor stabiliteit en voorkoomt chaos op de markt. Meestal duurt dit niet meer dan 20 dagen.
+              Let op: gedurende de overstap (de "vensterperiode") kun je zelf niet switchen naar een ander bedrijf. Je zit even vast bij de noodfornuitswijzer. Dit is een bescherming - het zorgt voor stabiliteit en voorkoomt chaos op de markt. Meestal duurt dit niet meer dan 20 dagen.
             </p>
             <p>
               Een praktisch detail: je oude contractvoorwaarden gelden vaak nog even door totdat het contract officieel overgezet is. Zorg dat je je meterstand noteert voordat de overgang plaatsvindt. Dit voorkomt latere disputen over verbruik.

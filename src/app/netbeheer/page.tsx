@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import { fallbackGridOperators } from "@/lib/fallback-data";
 import type { GridOperator } from "@/lib/database.types";
+import { PageHero } from "@/components/PageHero";
 
 export const revalidate = 60;
 
@@ -28,14 +29,7 @@ export default async function NetbeheerPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-green-600 to-teal-700 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">Netbeheerkosten 2026</h1>
-          <p className="mt-4 text-lg text-green-100 max-w-2xl">
-            De kosten voor het transport van energie zijn in 2026 fors gestegen door miljardeninvesteringen in netverzwaring. Gemiddeld betaal je €{avg.toFixed(0).replace(".", ",")} per jaar.
-          </p>
-        </div>
-      </section>
+      <PageHero badge="Tarieven 2026" title="Netbeheerkosten 2026" highlight="Transporttarieven vergeleken" description={`De kosten voor het transport van energie zijn in 2026 fors gestegen door miljardeninvesteringen in netverzwaring. Gemiddeld betaal je €${avg.toFixed(0).replace(".", ",")} per jaar.`} accentColor="cyan" />
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         {/* Mobile Card View */}

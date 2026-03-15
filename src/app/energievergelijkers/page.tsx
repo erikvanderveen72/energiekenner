@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Hoe Werken Energievergelijkers? Eerlijk Uitgelegd | Energiekenner.nl",
@@ -27,19 +28,7 @@ export default function EnergievergelijkersPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-emerald-600 to-teal-700 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4">
-            Consumentengids 2026
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">
-            Hoe werken energievergelijkers?
-          </h1>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-emerald-100 max-w-2xl">
-            Miljoenen Nederlanders gebruiken vergelijkingssites om van energieleverancier te wisselen. Maar hoe verdienen die platforms geld, en kun je ze vertrouwen? Een eerlijke uitleg.
-          </p>
-        </div>
-      </section>
+      <PageHero badge="Consumentengids 2026" title="Hoe werken energievergelijkers?" highlight="Eerlijk uitgelegd" description="Miljoenen Nederlanders gebruiken vergelijkingssites om van energieleverancier te wisselen. Maar hoe verdienen die platforms geld, en kun je ze vertrouwen? Een eerlijke uitleg." accentColor="emerald" />
 
       {/* Inhoudsopgave */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
@@ -66,7 +55,7 @@ export default function EnergievergelijkersPage() {
               Vergelijkingssites als Independer, Gaslicht.com, Pricewise en Overstappen.nl zijn gratis voor jou als consument. Maar ze zijn niet liefdadig: voor elke overstap die via hen wordt afgesloten, betaalt de energieleverancier een commissie aan het platform. Dat bedrag varieert per platform en per leverancier.
             </p>
             <p>
-              De resultaten worden doorgaans gesorteerd op de laagste jaarkosten voor jou als klant. De hoogte van de commissie zou daar geen invloed op moeten hebben. Toch is het goed om te weten dat niet elk platform alle leveranciers toont &mdash; sommige vergelijkers werken alleen met partijen waarmee ze een actieve samenwerking hebben. Een &ldquo;vergelijking&rdquo; is dus niet altijd de volledige markt.
+              De resultaten worden doorgaans gesorteerd op de laagste jaarkosten voor jou als klant. De hoogte van de commissie zou daar geen invloed op moeten hebben. Toch is het goed om te weten dat niet elk platform alle leveranciers toont - sommige vergelijkers werken alleen met partijen waarmee ze een actieve samenwerking hebben. Een &ldquo;vergelijking&rdquo; is dus niet altijd de volledige markt.
             </p>
           </div>
 
@@ -248,7 +237,7 @@ export default function EnergievergelijkersPage() {
           <div className="mt-6 rounded-xl bg-teal-50 border border-teal-200 p-6">
             <h3 className="font-semibold text-text-main mb-2">Salderingsregeling: wat verandert er?</h3>
             <p className="text-sm text-text-muted">
-              De salderingsregeling &mdash; waarbij je teruggeleverde stroom 1-op-1 mag wegstrepen tegen afgenomen stroom &mdash; blijft tot 1 januari 2027 ongewijzigd. Daarna wordt de regeling afgeschaft. Je krijgt dan alleen nog een (lagere) terugleververgoeding. Bereid je voor door te investeren in zelfverbruik: een thuisbatterij, warmtepomp of slim laadstation.
+              De salderingsregeling - waarbij je teruggeleverde stroom 1-op-1 mag wegstrepen tegen afgenomen stroom - blijft tot 1 januari 2027 ongewijzigd. Daarna wordt de regeling afgeschaft. Je krijgt dan alleen nog een (lagere) terugleververgoeding. Bereid je voor door te investeren in zelfverbruik: een thuisbatterij, warmtepomp of slim laadstation.
             </p>
           </div>
 
@@ -291,7 +280,7 @@ export default function EnergievergelijkersPage() {
               </div>
               <h3 className="font-semibold text-text-main mb-2">Pas op voor telefonische verkoop</h3>
               <p className="text-sm text-text-muted">
-                Uit ACM-onderzoek blijkt dat een kwart van de huishoudens telefonisch wordt benaderd door energieleveranciers. Bijna de helft voelde zich onder druk gezet. Ga nooit direct in op een telefonisch aanbod &mdash; vergelijk altijd eerst zelf.
+                Uit ACM-onderzoek blijkt dat een kwart van de huishoudens telefonisch wordt benaderd door energieleveranciers. Bijna de helft voelde zich onder druk gezet. Ga nooit direct in op een telefonisch aanbod - vergelijk altijd eerst zelf.
               </p>
             </div>
             <div className="rounded-xl bg-blue-50 border border-blue-200 p-6">

@@ -53,7 +53,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Energie Vergelijken 2026 — Onafhankelijk & Gratis | Energiekenner.nl",
+    title: "Energie Vergelijken 2026 - Onafhankelijk & Gratis | Energiekenner.nl",
     description: "Vergelijk alle energieleveranciers op actuele tarieven. Bespaar tot €450 per jaar op stroom en gas.",
   },
   alternates: {

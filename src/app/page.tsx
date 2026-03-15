@@ -33,7 +33,7 @@ const faqItems = [
   },
   {
     question: "Waar moet ik op letten bij energie vergelijken?",
-    answer: "Let op 5 dingen: (1) de totale jaarkosten, niet alleen de kWh-prijs, (2) het vastrecht (vaste leveringskosten per maand), (3) de contractduur en opzegvergoeding, (4) terugleverkosten als je zonnepanelen hebt, en (5) de welkomstbonus — die klinkt aantrekkelijk maar compenseert niet altijd een duurder tarief.",
+    answer: "Let op 5 dingen: (1) de totale jaarkosten, niet alleen de kWh-prijs, (2) het vastrecht (vaste leveringskosten per maand), (3) de contractduur en opzegvergoeding, (4) terugleverkosten als je zonnepanelen hebt, en (5) de welkomstbonus - die klinkt aantrekkelijk maar compenseert niet altijd een duurder tarief.",
   },
   {
     question: "Hoe lang duurt overstappen naar een andere leverancier?",
@@ -168,7 +168,7 @@ export default async function Home() {
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-sm font-medium mb-8 border border-white/10">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              Tarieven bijgewerkt — maart 2026
+              Tarieven bijgewerkt - maart 2026
             </div>
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] tracking-tight">
               Energie vergelijken
@@ -177,7 +177,7 @@ export default async function Home() {
             </h1>
             <p className="mt-6 text-lg md:text-xl text-stone-300 max-w-2xl leading-relaxed">
               Vergelijk {providers.length} energieleveranciers op actuele tarieven van maart 2026.
-              Stroom en gas, vast of dynamisch — onafhankelijk en gratis.
+              Stroom en gas, vast of dynamisch - onafhankelijk en gratis.
             </p>
             <div className="mt-10 flex flex-col sm:flex-row gap-4">
               <a
@@ -247,7 +247,21 @@ export default async function Home() {
 
       {/* TTF Chart */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
+        <div className="mb-6">
+          <h2 className="text-2xl font-bold text-text-main">TTF Gasprijs Maart 2026</h2>
+          <p className="text-text-muted mt-1">Dagelijkse notering in &euro;/MWh - Extreme volatiliteit door geopolitieke onrust</p>
+        </div>
         <TtfChart prices={ttfPrices} />
+        <div className="mt-4 rounded-xl bg-stone-50 border border-border p-5">
+          <p className="text-sm text-text-muted leading-relaxed">
+            De TTF-gasprijs (Title Transfer Facility) is de Europese referentieprijs voor aardgas.
+            In maart 2026 schommelde de prijs tussen &euro;32 en &euro;68 per MWh door aanhoudende geopolitieke spanningen
+            in het Midden-Oosten en onzekerheid over LNG-leveringen. Deze volatiliteit heeft directe gevolgen
+            voor je energierekening: leveranciers met vaste contracten beschermen je tegen deze pieken,
+            terwijl dynamische contracten de marktprijs per dag doorberekenen. Heb je een variabel contract?
+            Dan worden tarieven doorgaans per kwartaal aangepast op basis van deze noteringen.
+          </p>
+        </div>
       </section>
 
       {/* Comparison Table */}
@@ -281,7 +295,7 @@ export default async function Home() {
                 Dynamische tarieven
               </h3>
               <p className="text-sm text-text-muted mt-1.5 leading-relaxed">
-                Frank Energie, Tibber, Zonneplan — betaal de echte uurprijs.
+                Frank Energie, Tibber, Zonneplan - betaal de echte uurprijs.
               </p>
             </div>
           </Link>
@@ -389,13 +403,13 @@ export default async function Home() {
             </p>
             <p>
               Op Energiekenner.nl vergelijk je alle grote energieleveranciers in Nederland: van Eneco en Vattenfall tot Greenchoice, Vandebron, Frank Energie en Tibber.
-              We tonen actuele tarieven inclusief energiebelasting, btw en netbeheerkosten — zodat je de echte maandkosten ziet.
+              We tonen actuele tarieven inclusief energiebelasting, btw en netbeheerkosten - zodat je de echte maandkosten ziet.
             </p>
 
             <h3 className="text-lg font-semibold text-text-main mt-8">Vast of dynamisch contract?</h3>
             <p>
               Bij het energie vergelijken maak je eerst de keuze tussen een <Link href="/dynamisch" className="text-primary underline hover:text-primary-dark">dynamisch contract</Link> en een vast contract.
-              Met een vast contract leg je de prijs voor 1 of 3 jaar vast — ideaal als je zekerheid wilt.
+              Met een vast contract leg je de prijs voor 1 of 3 jaar vast - ideaal als je zekerheid wilt.
               Met dynamisch betaal je de uurprijs op de EPEX-beurs, wat voordeliger kan zijn als je flexibel bent met verbruik (bijvoorbeeld met een <Link href="/thuisbatterij" className="text-primary underline hover:text-primary-dark">thuisbatterij</Link> of <Link href="/warmtepompen" className="text-primary underline hover:text-primary-dark">warmtepomp</Link>).
             </p>
 
@@ -412,7 +426,7 @@ export default async function Home() {
               2. Vul je verbruik in op onze vergelijker hierboven.
               3. Kies vast of dynamisch op basis van je situatie.
               4. Let op het totaalplaatje: welkomstbonus + jaarkosten + terugleverkosten.
-              5. Stap over — dit duurt sinds 2026 nog maar 5 werkdagen.
+              5. Stap over - dit duurt sinds 2026 nog maar 5 werkdagen.
             </p>
           </div>
         </div>

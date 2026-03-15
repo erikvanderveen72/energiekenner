@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Groene Stroom 2026: Duurzaamheidsscores & Greenwashing | Energiekenner",
@@ -22,17 +23,7 @@ const providers = [
 export default function DuurzaamheidPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-green-600 to-emerald-700 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4">
-            EU Anti-Greenwashing Richtlijn 2026
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">Groene Stroom & Duurzaamheid</h1>
-          <p className="mt-4 text-lg text-green-100 max-w-2xl">
-            Niet alle groene stroom is gelijk. In 2026 maakt de EU een einde aan greenwashing en worden duurzaamheidsclaims streng gehandhaafd.
-          </p>
-        </div>
-      </section>
+      <PageHero badge="Bewust kiezen" title="Groene stroom &amp; duurzaamheid" highlight="Is jouw stroom echt groen?" description="Niet alle groene stroom is even groen. Ontdek het verschil tussen Garanties van Oorsprong, Europese windcertificaten en lokaal opgewekte energie." accentColor="emerald" />
 
       {/* Scores */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">

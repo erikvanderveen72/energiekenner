@@ -15,7 +15,7 @@ export function TtfChart({ prices }: Props) {
         TTF Gasprijs Maart 2026
       </h3>
       <p className="text-sm text-gray-500 mb-6">
-        Dagelijkse notering in €/MWh — Extreme volatiliteit door geopolitieke onrust
+        Dagelijkse notering in €/MWh - Extreme volatiliteit door geopolitieke onrust
       </p>
 
       <div className="overflow-x-auto -mx-2 px-2">

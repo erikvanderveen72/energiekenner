@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Warmtepompen 2026: Types, Kosten, ISDE Subsidie & Installatie | Energiekenner",
@@ -126,20 +127,13 @@ export default function WarmtepompenPage() {
   return (
     <>
       {/* Hero Section */}
-      <section className="bg-gradient-to-br from-rose-500 to-red-600 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
-            </svg>
-            Verduurzaming 2026
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">Warmtepompen: Alles wat je moet weten</h1>
-          <p className="mt-4 text-lg text-rose-100 max-w-2xl">
-            Warmtepompen zijn dé sleutel tot gasvrij verwarmen. Ontdek types, kosten, ISDE-subsidie en wat je voor instalatie nodig hebt.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        badge="ISDE Subsidie beschikbaar"
+        title="Warmtepompen in 2026"
+        highlight="Types, kosten &amp; subsidie"
+        description="Alles over warmtepompen: lucht-water, grond-water, hybride. Vergelijk kosten, ISDE subsidie, SCOP-waarden en installatie-eisen."
+        accentColor="rose"
+      />
 
       {/* Types Vergelijking - Cards + Desktop Table */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">

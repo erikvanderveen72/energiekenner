@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import { fallbackDynamicProviders } from "@/lib/fallback-data";
 import type { DynamicProvider } from "@/lib/database.types";
+import { PageHero } from "@/components/PageHero";
 
 export const revalidate = 60;
 
@@ -28,18 +29,13 @@ export default async function DynamischPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-purple-600 to-indigo-700 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-sm font-medium mb-4">
-            <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-            Real-time marktprijzen
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">Dynamische energietarieven</h1>
-          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-purple-100 max-w-2xl">
-            Betaal de echte marktprijs per uur voor stroom en per dag voor gas. Ideaal als je flexibel bent met verbruik.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        badge="Real-time marktprijzen"
+        title="Dynamische energietarieven"
+        highlight="Betaal de echte marktprijs"
+        description="Betaal de echte marktprijs per uur voor stroom en per dag voor gas. Ideaal als je flexibel bent met verbruik."
+        accentColor="purple"
+      />
 
       {/* Warning */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
@@ -50,7 +46,7 @@ export default async function DynamischPage() {
           <div>
             <h3 className="font-semibold text-amber-800">Let op: marktrisico</h3>
             <p className="text-sm text-amber-700 mt-1">
-              Op 9 maart 2026 steeg de gasprijs naar €1,50/m³ voor dynamische klanten — hoger dan veel vaste contracten. Dynamisch is niet altijd goedkoper.
+              Op 9 maart 2026 steeg de gasprijs naar €1,50/m³ voor dynamische klanten - hoger dan veel vaste contracten. Dynamisch is niet altijd goedkoper.
             </p>
           </div>
         </div>

@@ -1,6 +1,7 @@
 import { supabase } from "@/lib/supabase";
 import { fallbackProviders } from "@/lib/fallback-data";
 import type { EnergyProvider } from "@/lib/database.types";
+import { PageHero } from "@/components/PageHero";
 
 export const revalidate = 60;
 
@@ -29,20 +30,13 @@ export default async function ZonnepanelenPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-yellow-500 to-orange-600 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-sm font-medium mb-4">
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
-            </svg>
-            Laatste jaar volledige saldering
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">Zonnepanelen & teruglevering</h1>
-          <p className="mt-4 text-lg text-yellow-100 max-w-2xl">
-            2026 is het laatste jaar waarin de salderingsregeling volledig van kracht is. Vanaf 2027 wordt deze definitief afgeschaft.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        badge="Laatste jaar volledige saldering"
+        title="Zonnepanelen &amp; teruglevering"
+        highlight="Vergelijk terugleverkosten 2026"
+        description="2026 is het laatste jaar waarin de salderingsregeling volledig van kracht is. Vanaf 2027 wordt deze definitief afgeschaft."
+        accentColor="amber"
+      />
 
       {/* Terugleverkosten */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
@@ -166,7 +160,7 @@ export default async function ZonnepanelenPage() {
             </svg>
             <span className="text-sm font-semibold text-orange-600 uppercase tracking-wide">Saldering</span>
           </div>
-          <h3 className="text-2xl font-bold text-text-main mb-4">Salderen in 2026 — het laatste volle jaar</h3>
+          <h3 className="text-2xl font-bold text-text-main mb-4">Salderen in 2026 - het laatste volle jaar</h3>
           <div className="prose prose-sm max-w-none text-text-main space-y-4">
             <p>
               2026 is een cruciaal jaar voor zonnepaneleneigenaren. De salderingsregeling, die sinds jaren gebruikers toestaat hun afname en teruglevering op jaarbasis te verrekenen, stopt definitief per 1 januari 2027. Dit betekent dat 2026 uw laatste volledige jaar is om volledig van deze gunstige regeling te profiteren.
@@ -277,7 +271,7 @@ export default async function ZonnepanelenPage() {
             </svg>
             <span className="text-sm font-semibold text-orange-600 uppercase tracking-wide">Waarschuwing</span>
           </div>
-          <h3 className="text-2xl font-bold text-text-main mb-4">Netto-negatieve teruglevering — wat het is en hoe je het voorkomi</h3>
+          <h3 className="text-2xl font-bold text-text-main mb-4">Netto-negatieve teruglevering - wat het is en hoe je het voorkomi</h3>
           <div className="prose prose-sm max-w-none text-text-main space-y-4">
             <p>
               In maart 2025 berichtte RTL Nieuws over een verontrustende trend: bij liefst elf leveranciers kan het voorkomen dat zonnepaneleneigenaren geld kwijtraken door teruglevering. Dit gebeurt als de kosten hoger zijn dan de vergoeding. Deze situatie staat bekend als netto-negatieve teruglevering.
@@ -329,7 +323,7 @@ export default async function ZonnepanelenPage() {
             </svg>
             <span className="text-sm font-semibold text-orange-600 uppercase tracking-wide">Strategie</span>
           </div>
-          <h3 className="text-2xl font-bold text-text-main mb-4">Sturen op opwek — de toekomst van zonnepanelen</h3>
+          <h3 className="text-2xl font-bold text-text-main mb-4">Sturen op opwek - de toekomst van zonnepanelen</h3>
           <div className="prose prose-sm max-w-none text-text-main space-y-4">
             <p>
               Wat in 2026 nog een luxe is, wordt na 2027 noodzakelijk: het slim sturen van uw energieverbruik naar momenten van maximale zonneopwek. Dit heet "sturen op opwek" en het kan uw zonnepanelen veel waardevol maken.

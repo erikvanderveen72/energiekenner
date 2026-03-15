@@ -40,7 +40,7 @@ export default async function CalculatorPage() {
       <section className="bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4">
-            Interactief — actuele tarieven maart 2026
+            Interactief - actuele tarieven maart 2026
           </div>
           <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">Energiecalculator</h1>
           <p className="mt-4 text-lg text-purple-100 max-w-2xl">

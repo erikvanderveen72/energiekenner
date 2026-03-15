@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Thuisbatterij kopen in 2026 | Prijzen, Rendement & V2G | Energiekenner",
@@ -30,17 +31,13 @@ export default function ThuisbatterijPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-orange-500 via-amber-600 to-yellow-600 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4">
-            Actueel — maart 2026
-          </div>
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">Thuisbatterij & V2G</h1>
-          <p className="mt-4 text-lg text-orange-100 max-w-2xl">
-            De residentiële batterijmarkt is volwassen. Met dalende LFP-prijzen en stijgende terugleverkosten is een thuisbatterij in 2026 een slimme investering met 5-10 jaar pure winst na break-even.
-          </p>
-        </div>
-      </section>
+      <PageHero
+        badge="Actueel - maart 2026"
+        title="Thuisbatterij &amp; V2G"
+        highlight="Slim opslaan, slim verdienen"
+        description="De residentiële batterijmarkt is volwassen. Met dalende LFP-prijzen en stijgende terugleverkosten is een thuisbatterij in 2026 een slimme investering met 5-10 jaar pure winst na break-even."
+        accentColor="amber"
+      />
 
       {/* Battery comparison */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
@@ -143,7 +140,7 @@ export default function ThuisbatterijPage() {
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li><strong>Eigen verbruik optimaliseren:</strong> Zonnepanelen laten opladen als het zonnig is, 's avonds gebruiken (5-20 cent/kWh besparing)</li>
               <li><strong>Day-ahead & dynamische steering:</strong> Laad voordelig in als prijzen laag zijn, verkoop terug als prijzen stijgen (5-15% arbitrage)</li>
-              <li><strong>Onbalansmarkt/flexservices:</strong> Bied je batterijcapaciteit aan netbeheerders (ANWB, Jedlix) — 100-500 euro/jaar</li>
+              <li><strong>Onbalansmarkt/flexservices:</strong> Bied je batterijcapaciteit aan netbeheerders (ANWB, Jedlix) - 100-500 euro/jaar</li>
             </ul>
             <p className="mb-4">
               Volgens <strong>ANWB</strong> is een basisregel: <em>€750 per kWh</em> (exclusief installatie). Een 5 kWh batterij kost dus minstens €3.750 + installatie (€500-1.500).
@@ -172,11 +169,11 @@ export default function ThuisbatterijPage() {
           <h2 className="text-2xl font-bold text-text-main mb-4">BTW terugvragen: Niet automatisch, wel mogelijk</h2>
           <div className="prose prose-sm max-w-none text-text-muted mb-6">
             <p className="mb-4">
-              De <strong>Belastingdienst</strong> stelt duidelijk: ja, je kunt 21% BTW terugvragen op je thuisbatterij — <em>maar niet automatisch</em>. Je moet zelf actief aanvragen en aan voorwaarden voldoen.
+              De <strong>Belastingdienst</strong> stelt duidelijk: ja, je kunt 21% BTW terugvragen op je thuisbatterij - <em>maar niet automatisch</em>. Je moet zelf actief aanvragen en aan voorwaarden voldoen.
             </p>
             <p className="mb-4">
               <strong>Kritieke uitzondering: KOR (Kleine Ondernemersregeling)</strong><br/>
-              Ondernemers met jaarlijkse inkomsten onder €50.000 vallen onder de KOR. Als jij onder KOR valt, heb je <strong>geen recht op BTW-teruggave</strong> — het systeem is niet voor jou bedoeld.
+              Ondernemers met jaarlijkse inkomsten onder €50.000 vallen onder de KOR. Als jij onder KOR valt, heb je <strong>geen recht op BTW-teruggave</strong> - het systeem is niet voor jou bedoeld.
             </p>
             <p className="mb-4">
               <strong>Wie kan wel teruggave krijgen?</strong> <br/>
@@ -224,7 +221,7 @@ export default function ThuisbatterijPage() {
               <li><strong>Isolatie:</strong> Niet in aansluitende kamers of onder houten vloeren</li>
             </ul>
             <p className="mb-4">
-              Thuisbatterijen (5-15 kWh) bevinden zich meestal ver onder de 333 kg-grens en hebben een ander risicoprofiel dan grote industriële opslagen. Toch kunnen incidenten voorkomen — moderne LFP-batterijen hebben interne beveiligingsmechanismen.
+              Thuisbatterijen (5-15 kWh) bevinden zich meestal ver onder de 333 kg-grens en hebben een ander risicoprofiel dan grote industriële opslagen. Toch kunnen incidenten voorkomen - moderne LFP-batterijen hebben interne beveiligingsmechanismen.
             </p>
           </div>
 
@@ -257,7 +254,7 @@ export default function ThuisbatterijPage() {
             </p>
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li><strong>Thermale stabiliteit:</strong> LFP is inherent stabieler, NMC is gevoeliger voor hitte</li>
-              <li><strong>Energiedichtheid:</strong> NMC wint hier (~250 Wh/kg vs ~160 Wh/kg) — relevant voor EV's, niet huisbatterijen</li>
+              <li><strong>Energiedichtheid:</strong> NMC wint hier (~250 Wh/kg vs ~160 Wh/kg) - relevant voor EV's, niet huisbatterijen</li>
               <li><strong>Cycluslevensduur:</strong> LFP: 6.000-10.000 cycli; NMC: 2.000-4.000 cycli</li>
               <li><strong>Kosten:</strong> LFP is goedkoper en wordt steeds voordeliger</li>
               <li><strong>Temperatuurbereik:</strong> LFP verdraagt koud beter, NMC moet warmgehouden worden</li>
@@ -287,7 +284,7 @@ export default function ThuisbatterijPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
         <h2 className="text-2xl font-bold text-text-main mb-2">Vehicle-to-Grid (V2G): Je auto als energiebuffer</h2>
         <p className="text-text-muted mb-6">
-          Met een bidirectionele laadpaal (ca. €6.000) wordt je EV een volwaardige thuisbatterij — 5 tot 10 keer groter dan een standaard stationaire batterij.
+          Met een bidirectionele laadpaal (ca. €6.000) wordt je EV een volwaardige thuisbatterij - 5 tot 10 keer groter dan een standaard stationaire batterij.
         </p>
         <div className="grid sm:grid-cols-2 gap-4 mb-8">
           {v2gCars.map((car) => (
@@ -392,7 +389,7 @@ export default function ThuisbatterijPage() {
             <ul className="list-disc pl-6 mb-4 space-y-2">
               <li><strong>Tibber:</strong> Integreert batterij-info, laadvermogen, prijs EN vertrekmoment. Volledig geautomatiseerd.</li>
               <li><strong>ANWB:</strong> Laat je energiecontract kiezen in app voor optimale timing (dagmarkt).</li>
-              <li><strong>Jedlix:</strong> Sprijnt op flexibiliteit — optimalisatie voor dynamische tarieven met real-time feedback.</li>
+              <li><strong>Jedlix:</strong> Sprijnt op flexibiliteit - optimalisatie voor dynamische tarieven met real-time feedback.</li>
             </ul>
             <p className="mb-4">
               <strong>Eerste regel van slim laden:</strong> Stel je vertrekmoment in. Alles anders is optimalisatie.

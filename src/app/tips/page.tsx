@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { PageHero } from "@/components/PageHero";
 
 export const metadata: Metadata = {
   title: "Energie Besparen in 2026: 10 Slimme Tips + Checklist | Energiekenner",
@@ -71,13 +72,13 @@ const tips = [
 ];
 
 const checklist = [
-  { item: "Slimme meter check — is je analoge meter al vervangen? Vanaf 2026 is een digitale meter verplicht.", done: false },
-  { item: "Contractvrijheid — controleer je einddatum. Met de 5-daagse opzegtermijn kun je direct overstappen.", done: false },
-  { item: "P1-dongle kopen — ca. €30 voor live inzicht in je verbruik via je smartphone.", done: false },
-  { item: "CV-ketel op 50°C zetten — direct €100 per jaar besparen.", done: false },
-  { item: "Sluipverbruik meten — check oude apparaten in schuur, garage en bijkeuken.", done: false },
-  { item: "Groningen subsidie checken — woon je in de regio? Check SNN.nl voor deadlines.", done: false },
-  { item: "Leverancier vergelijken — is je huidige contract nog de beste deal?", done: false },
+  { item: "Slimme meter check - is je analoge meter al vervangen? Vanaf 2026 is een digitale meter verplicht.", done: false },
+  { item: "Contractvrijheid - controleer je einddatum. Met de 5-daagse opzegtermijn kun je direct overstappen.", done: false },
+  { item: "P1-dongle kopen - ca. €30 voor live inzicht in je verbruik via je smartphone.", done: false },
+  { item: "CV-ketel op 50°C zetten - direct €100 per jaar besparen.", done: false },
+  { item: "Sluipverbruik meten - check oude apparaten in schuur, garage en bijkeuken.", done: false },
+  { item: "Groningen subsidie checken - woon je in de regio? Check SNN.nl voor deadlines.", done: false },
+  { item: "Leverancier vergelijken - is je huidige contract nog de beste deal?", done: false },
 ];
 
 const categoryColors: Record<string, string> = {
@@ -91,14 +92,7 @@ const categoryColors: Record<string, string> = {
 export default function TipsPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-teal-500 to-emerald-600 text-white py-12 sm:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">Bespaartips 2026</h1>
-          <p className="mt-4 text-lg text-teal-100 max-w-2xl">
-            Van quick wins tot slimme technologie. Bespaar honderden euro&apos;s op je energierekening met bewezen methodes.
-          </p>
-        </div>
-      </section>
+      <PageHero badge="Direct toepasbaar" title="Bespaartips energie" highlight="Bespaar honderden euro's per jaar" description="Praktische tips om je energierekening te verlagen. Van quick wins tot slimme investeringen." accentColor="emerald" />
 
       {/* Tips grid */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
