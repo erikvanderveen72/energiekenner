@@ -349,7 +349,7 @@ export function ComparisonTable({ providers }: Props) {
           {hasSolar && (
             <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
               <div>
-                <label htmlFor="solar-input" className="block text-sm text-text-muted mb-1">Jaarlijkse opwek</label>
+                <label htmlFor="solar-input" className="block text-sm text-text-muted mb-1">Opbrengst zonnepanelen</label>
                 <div className="flex items-center gap-2">
                   <input
                     id="solar-input"
