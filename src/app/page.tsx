@@ -140,31 +140,6 @@ export default async function Home() {
         <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\'60\' height=\'60\' viewBox=\'0 0 60 60\' xmlns=\'http://www.w3.org/2000/svg\'%3E%3Cg fill=\'none\' fill-rule=\'evenodd\'%3E%3Cg fill=\'%23ffffff\' fill-opacity=\'1\'%3E%3Cpath d=\'M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")' }} />
 
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 md:py-28">
-          {/* Hero illustration - hidden on mobile */}
-          <div className="hidden lg:block absolute right-8 top-1/2 -translate-y-1/2 w-[340px] h-[340px] opacity-20">
-            <svg viewBox="0 0 340 340" fill="none" xmlns="http://www.w3.org/2000/svg">
-              {/* House */}
-              <rect x="100" y="160" width="140" height="120" rx="8" fill="white" fillOpacity="0.15" />
-              <path d="M80 170L170 100L260 170" stroke="white" strokeWidth="3" strokeLinecap="round" />
-              {/* Solar panels on roof */}
-              <rect x="120" y="120" width="30" height="20" rx="2" fill="#38bdf8" fillOpacity="0.6" />
-              <rect x="155" y="112" width="30" height="20" rx="2" fill="#38bdf8" fillOpacity="0.6" />
-              <rect x="190" y="120" width="30" height="20" rx="2" fill="#38bdf8" fillOpacity="0.6" />
-              {/* Window */}
-              <rect x="130" y="200" width="35" height="35" rx="4" fill="#fbbf24" fillOpacity="0.3" />
-              <rect x="180" y="200" width="35" height="35" rx="4" fill="#fbbf24" fillOpacity="0.3" />
-              {/* Door */}
-              <rect x="155" y="245" width="30" height="35" rx="4" fill="white" fillOpacity="0.1" />
-              {/* Lightning bolt - energy */}
-              <path d="M290 60L275 110H295L270 160" stroke="#fbbf24" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round" />
-              {/* Wind turbine */}
-              <line x1="50" y1="280" x2="50" y2="140" stroke="white" strokeWidth="2" />
-              <path d="M50 140L30 180M50 140L70 180M50 140L50 100" stroke="white" strokeWidth="2" strokeLinecap="round" />
-              {/* Circular arrows - energy flow */}
-              <circle cx="170" cy="170" r="130" stroke="white" strokeWidth="0.5" strokeDasharray="8 6" />
-              <circle cx="170" cy="170" r="155" stroke="#34d399" strokeWidth="0.5" strokeDasharray="4 8" />
-            </svg>
-          </div>
           <div className="max-w-3xl">
             <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 backdrop-blur-md text-sm font-medium mb-8 border border-white/10">
               <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
