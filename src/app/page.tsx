@@ -227,9 +227,22 @@ export default async function Home() {
         <StatsBar stats={stats} />
       </section>
 
-      {/* Market alert */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <div className="rounded-xl bg-red-50 border border-red-200 p-5 flex gap-4">
+      {/* Comparison Table */}
+      <section id="vergelijk" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <div className="mb-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-text-main">
+            Energie vergelijken: alle leveranciers op een rij
+          </h2>
+          <p className="text-text-muted mt-2">
+            Alle tarieven inclusief energiebelasting en btw. Pas hieronder je verbruik aan voor een persoonlijke schatting.
+          </p>
+        </div>
+        <ComparisonTable providers={providers} />
+      </section>
+
+      {/* Market alert + TTF Chart */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <div className="rounded-xl bg-red-50 border border-red-200 p-5 flex gap-4 mb-8">
           <div className="flex-shrink-0 mt-0.5">
             <svg className="w-6 h-6 text-red-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
               <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
@@ -238,18 +251,14 @@ export default async function Home() {
           <div>
             <h3 className="font-semibold text-red-800">Marktupdate: Hoge volatiliteit</h3>
             <p className="text-sm text-red-700 mt-1">
-              Door het conflict in het Midden-Oosten schommelde de TTF-gasprijs in maart tussen €32 en €68 per MWh.
+              Door het conflict in het Midden-Oosten schommelde de TTF-gasprijs in maart tussen &euro;32 en &euro;68 per MWh.
               Vaste contracten bieden nu extra zekerheid tegenover deze marktschommelingen.
             </p>
           </div>
         </div>
-      </section>
-
-      {/* TTF Chart */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <div className="mb-6">
           <h2 className="text-2xl font-bold text-text-main">TTF Gasprijs Maart 2026</h2>
-          <p className="text-text-muted mt-1">Dagelijkse notering in &euro;/MWh - Extreme volatiliteit door geopolitieke onrust</p>
+          <p className="text-text-muted mt-1">Dagelijkse notering in &euro;/MWh</p>
         </div>
         <TtfChart prices={ttfPrices} />
         <div className="mt-4 rounded-xl bg-stone-50 border border-border p-5">
@@ -262,19 +271,6 @@ export default async function Home() {
             Dan worden tarieven doorgaans per kwartaal aangepast op basis van deze noteringen.
           </p>
         </div>
-      </section>
-
-      {/* Comparison Table */}
-      <section id="vergelijk" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-        <div className="mb-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-text-main">
-            Energie vergelijken: alle leveranciers op een rij
-          </h2>
-          <p className="text-text-muted mt-2">
-            Alle tarieven inclusief energiebelasting en btw. Pas hieronder je verbruik aan voor een persoonlijke schatting.
-          </p>
-        </div>
-        <ComparisonTable providers={providers} />
       </section>
 
       {/* Info sections */}
