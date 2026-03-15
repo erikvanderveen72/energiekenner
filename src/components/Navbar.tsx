@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
 export function Navbar() {
@@ -49,10 +48,9 @@ export function Navbar() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 flex-shrink-0 mr-8">
-            <Image src="/favicon.svg" alt="Energiekenner logo" width={32} height={32} className="rounded-lg" />
-            <span className="font-bold text-lg text-text-main whitespace-nowrap">
-              Energie<span className="text-primary">kenner</span><span className="text-primary text-sm font-medium">.nl</span>
+          <Link href="/" className="flex items-center flex-shrink-0 mr-8">
+            <span className="font-bold text-xl text-text-main whitespace-nowrap">
+              Energie<span className="text-primary">kenner</span><span className="text-primary text-base font-semibold">.nl</span>
             </span>
           </Link>
 

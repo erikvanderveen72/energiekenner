@@ -437,26 +437,28 @@ export default async function Home() {
       </section>
 
       {/* FAQ Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 mb-8">
+      <section id="faq" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20 mb-8">
         <FAQSchema items={faqItems} />
-        <h2 className="text-2xl md:text-3xl font-bold text-text-main mb-8">
-          Veelgestelde vragen over energie vergelijken
-        </h2>
-        <div className="space-y-4 max-w-4xl">
-          {faqItems.map((item) => (
-            <details key={item.question} className="group rounded-xl border border-border overflow-hidden">
-              <summary className="flex items-center justify-between p-5 cursor-pointer hover:bg-surface-alt transition-colors">
-                <h3 className="font-semibold text-text-main text-sm md:text-base pr-4">{item.question}</h3>
-                <svg className="w-5 h-5 text-text-muted flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
-                </svg>
-              </summary>
-              <div className="px-5 pb-5">
-                <p className="text-sm text-text-muted leading-relaxed">{item.answer}</p>
-              </div>
-            </details>
-          ))}
-        </div>
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl md:text-3xl font-bold text-text-main mb-6">
+            Veelgestelde vragen over energie vergelijken
+          </h2>
+          <div className="space-y-4">
+            {faqItems.map((item, idx) => (
+              <details key={item.question} className={`group rounded-lg border border-border overflow-hidden ${idx % 2 === 1 ? "bg-stone-50/60" : ""}`}>
+                <summary className="flex items-center justify-between cursor-pointer p-4 hover:bg-stone-50 transition-colors">
+                  <h3 className="font-semibold text-text-main text-sm md:text-base pr-4">{item.question}</h3>
+                  <svg className="w-5 h-5 text-text-muted flex-shrink-0 group-open:rotate-180 transition-transform" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </summary>
+                <div className="px-4 pb-4">
+                  <p className="text-sm text-text-muted leading-relaxed">{item.answer}</p>
+                </div>
+              </details>
+            ))}
+          </div>
+        </article>
       </section>
 
       {/* CTA Banner */}

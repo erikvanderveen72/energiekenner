@@ -9,11 +9,8 @@ export function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
           {/* Brand */}
           <div className="md:col-span-2">
-            <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-rose-500 flex items-center justify-center text-white text-sm font-bold" aria-hidden="true">
-                Ek
-              </div>
-              <span className="font-bold text-lg">Energiekenner<span className="text-primary text-sm font-medium">.nl</span></span>
+            <div className="flex items-center mb-4">
+              <span className="font-bold text-xl">Energiekenner<span className="text-primary text-base font-semibold">.nl</span></span>
             </div>
             <p className="text-gray-400 text-sm max-w-md">
               Onafhankelijk energietarieven vergelijken in heel Nederland. Alle data is gebaseerd op actuele marktprijzen.
