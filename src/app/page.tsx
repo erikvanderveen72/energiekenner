@@ -256,6 +256,8 @@ export default async function Home() {
 
       {/* Info sections */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <h2 className="text-2xl md:text-3xl font-bold text-text-main mb-2">Alles over energie in Nederland</h2>
+        <p className="text-text-muted mb-8">Van tarieven vergelijken tot zonnepanelen, thuisbatterijen en laadpalen — alles wat je moet weten.</p>
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
           <Link
             href="/dynamisch"
@@ -272,7 +274,7 @@ export default async function Home() {
                 Dynamische tarieven
               </h3>
               <p className="text-sm text-text-muted mt-1.5 leading-relaxed">
-                Frank Energie, Tibber, Zonneplan - betaal de echte uurprijs.
+                Frank Energie, Tibber, Zonneplan — betaal de echte uurprijs.
               </p>
             </div>
           </Link>
@@ -334,6 +336,86 @@ export default async function Home() {
               </h3>
               <p className="text-sm text-text-muted mt-1.5 leading-relaxed">
                 ~€750/jaar. Vergelijk Liander, Enexis, Stedin.
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            href="/thuisbatterij"
+            className="group relative rounded-2xl border border-border bg-white p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-24 h-24 bg-sky-100/50 rounded-full -translate-x-4 -translate-y-8 group-hover:bg-sky-200/50 transition-colors" />
+            <div className="relative">
+              <div className="w-11 h-11 rounded-xl bg-sky-100 flex items-center justify-center mb-4 group-hover:bg-sky-200 transition-colors">
+                <svg className="w-5 h-5 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-text-main group-hover:text-sky-700 transition-colors">
+                Thuisbatterij
+              </h3>
+              <p className="text-sm text-text-muted mt-1.5 leading-relaxed">
+                Sla zonnestroom op en verdien terug met dynamische tarieven.
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            href="/laadpalen"
+            className="group relative rounded-2xl border border-border bg-white p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-24 h-24 bg-teal-100/50 rounded-full -translate-x-4 -translate-y-8 group-hover:bg-teal-200/50 transition-colors" />
+            <div className="relative">
+              <div className="w-11 h-11 rounded-xl bg-teal-100 flex items-center justify-center mb-4 group-hover:bg-teal-200 transition-colors">
+                <svg className="w-5 h-5 text-teal-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-text-main group-hover:text-teal-700 transition-colors">
+                Laadpalen
+              </h3>
+              <p className="text-sm text-text-muted mt-1.5 leading-relaxed">
+                Thuis laden, slim laden en kosten per kWh vergeleken.
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            href="/salderen"
+            className="group relative rounded-2xl border border-border bg-white p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-24 h-24 bg-orange-100/50 rounded-full -translate-x-4 -translate-y-8 group-hover:bg-orange-200/50 transition-colors" />
+            <div className="relative">
+              <div className="w-11 h-11 rounded-xl bg-orange-100 flex items-center justify-center mb-4 group-hover:bg-orange-200 transition-colors">
+                <svg className="w-5 h-5 text-orange-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-text-main group-hover:text-orange-700 transition-colors">
+                Salderingsregeling
+              </h3>
+              <p className="text-sm text-text-muted mt-1.5 leading-relaxed">
+                Salderen stopt in 2027 — wat betekent dit voor jou?
+              </p>
+            </div>
+          </Link>
+
+          <Link
+            href="/calculator"
+            className="group relative rounded-2xl border border-border bg-white p-6 hover:shadow-lg hover:-translate-y-1 transition-all duration-200 overflow-hidden"
+          >
+            <div className="absolute top-0 right-0 w-24 h-24 bg-indigo-100/50 rounded-full -translate-x-4 -translate-y-8 group-hover:bg-indigo-200/50 transition-colors" />
+            <div className="relative">
+              <div className="w-11 h-11 rounded-xl bg-indigo-100 flex items-center justify-center mb-4 group-hover:bg-indigo-200 transition-colors">
+                <svg className="w-5 h-5 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 7h6m0 10v-3m-3 3h.01M9 17h.01M9 14h.01M12 14h.01M15 11h.01M12 11h.01M9 11h.01M7 21h10a2 2 0 002-2V5a2 2 0 00-2-2H7a2 2 0 00-2 2v14a2 2 0 002 2z" />
+                </svg>
+              </div>
+              <h3 className="font-bold text-text-main group-hover:text-indigo-700 transition-colors">
+                Energiecalculator
+              </h3>
+              <p className="text-sm text-text-muted mt-1.5 leading-relaxed">
+                Bereken je exacte maandkosten op basis van je verbruik.
               </p>
             </div>
           </Link>
@@ -429,9 +511,21 @@ export default async function Home() {
             <h3 className="font-semibold text-text-main group-hover:text-amber-600 transition-colors">Bespaartips</h3>
             <p className="text-xs text-text-muted mt-1">Quick wins, subsidies en concrete besparingen met bedragen.</p>
           </Link>
-          <Link href="/energievergelijkers" className="group rounded-xl border border-border p-5 hover:border-emerald-300 hover:shadow-md transition-all sm:col-span-2 lg:col-span-4">
+          <Link href="/opzegvergoeding" className="group rounded-xl border border-border p-5 hover:border-red-300 hover:shadow-md transition-all">
+            <h3 className="font-semibold text-text-main group-hover:text-red-600 transition-colors">Opzegvergoeding</h3>
+            <p className="text-xs text-text-muted mt-1">Wat kost voortijdig opzeggen? Bereken de vergoeding bij vaste contracten.</p>
+          </Link>
+          <Link href="/verbruik" className="group rounded-xl border border-border p-5 hover:border-violet-300 hover:shadow-md transition-all">
+            <h3 className="font-semibold text-text-main group-hover:text-violet-600 transition-colors">Gemiddeld Verbruik</h3>
+            <p className="text-xs text-text-muted mt-1">Hoeveel stroom en gas verbruikt jouw huishouden gemiddeld?</p>
+          </Link>
+          <Link href="/begrippenlijst" className="group rounded-xl border border-border p-5 hover:border-stone-400 hover:shadow-md transition-all">
+            <h3 className="font-semibold text-text-main group-hover:text-stone-600 transition-colors">Begrippenlijst</h3>
+            <p className="text-xs text-text-muted mt-1">75+ energietermen uitgelegd: van kWh tot terugleverkosten.</p>
+          </Link>
+          <Link href="/energievergelijkers" className="group rounded-xl border border-border p-5 hover:border-emerald-300 hover:shadow-md transition-all">
             <h3 className="font-semibold text-text-main group-hover:text-emerald-600 transition-colors">Hoe werken energievergelijkers?</h3>
-            <p className="text-xs text-text-muted mt-1">Commissies, contractvormen, terugleverkosten en ACM-toezicht: een eerlijke uitleg over de markt van energievergelijkers.</p>
+            <p className="text-xs text-text-muted mt-1">Commissies, contractvormen en ACM-toezicht eerlijk uitgelegd.</p>
           </Link>
         </div>
       </section>
