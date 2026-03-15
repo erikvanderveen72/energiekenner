@@ -2,24 +2,11 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
+import type { EnergyProvider } from "@/lib/database.types";
 
-// Alle leveranciers met tariefdata maart 2026
-const providers = [
-  { name: "Energiedirect", kwh: 0.2595, gas: 1.2954, bonus: 350, green: false, fixed: 7.50, feedInCost: 0, feedInComp: 0.150 },
-  { name: "Essent", kwh: 0.279, gas: 1.3341, bonus: 300, green: false, fixed: 7.95, feedInCost: 0.130, feedInComp: 0.150 },
-  { name: "Vattenfall", kwh: 0.264, gas: 1.3962, bonus: 400, green: true, fixed: 8.25, feedInCost: 0, feedInComp: 0 },
-  { name: "Eneco", kwh: 0.2612, gas: 1.3802, bonus: 350, green: true, fixed: 7.75, feedInCost: 0.182, feedInComp: 0.143 },
-  { name: "Greenchoice", kwh: 0.2623, gas: 1.3895, bonus: 350, green: true, fixed: 7.50, feedInCost: 0, feedInComp: 0 },
-  { name: "DELTA Energie", kwh: 0.251, gas: 1.3712, bonus: 300, green: true, fixed: 6.95, feedInCost: 0, feedInComp: 0.165 },
-  { name: "OXXIO", kwh: 0.2561, gas: 1.3766, bonus: 275, green: false, fixed: 7.25, feedInCost: 0, feedInComp: 0 },
-  { name: "Budget Energie", kwh: 0.2548, gas: 1.38, bonus: 370, green: false, fixed: 7.50, feedInCost: 0.109, feedInComp: 0.010 },
-  { name: "UnitedConsumers", kwh: 0.225, gas: 1.166, bonus: 465, green: false, fixed: 6.50, feedInCost: 0, feedInComp: 0 },
-  { name: "Mega", kwh: 0.329, gas: 1.654, bonus: 688, green: false, fixed: 9.95, feedInCost: 0, feedInComp: 0 },
-  { name: "Vandebron", kwh: 0.268, gas: 1.41, bonus: 440, green: true, fixed: 8.00, feedInCost: 0.160, feedInComp: 0.160 },
-  { name: "Engie", kwh: 0.272, gas: 1.405, bonus: 435, green: false, fixed: 7.95, feedInCost: 0, feedInComp: 0.124 },
-  { name: "Coolblue Energie", kwh: 0.265, gas: 1.39, bonus: 300, green: true, fixed: 7.00, feedInCost: 0.115, feedInComp: 0 },
-  { name: "Pure Energie", kwh: 0.26, gas: 1.385, bonus: 320, green: true, fixed: 7.25, feedInCost: 0.178, feedInComp: 0 },
-];
+interface CalculatorProps {
+  providers: EnergyProvider[];
+}
 
 // Energiebelasting 2026
 const TAX_KWH = 0.1108;
@@ -33,8 +20,32 @@ const COLORS = [
   "#0D9488", "#CA8A04", "#9333EA", "#E11D48",
 ];
 
+interface CalcProvider {
+  name: string;
+  kwh: number;
+  gas: number;
+  bonus: number;
+  green: boolean;
+  fixed: number;
+  feedInCost: number;
+  feedInComp: number;
+}
+
+function mapProviders(providers: EnergyProvider[]): CalcProvider[] {
+  return providers.map((p) => ({
+    name: p.name,
+    kwh: Number(p.kwh_rate),
+    gas: Number(p.gas_rate),
+    bonus: p.welcome_bonus,
+    green: p.green_energy,
+    fixed: 7.50, // gemiddelde vaste leveringskosten
+    feedInCost: Number(p.feed_in_cost_kwh ?? 0),
+    feedInComp: Number(p.feed_in_compensation ?? 0),
+  }));
+}
+
 function calculateMonthly(
-  provider: typeof providers[0],
+  provider: CalcProvider,
   kwhYear: number,
   gasYear: number,
   includeBonus: boolean,
@@ -53,20 +64,17 @@ function calculateMonthly(
   let solarEffect = 0;
   if (hasSolar && solarKwh > 0) {
     const monthlyGenerated = solarKwh / 12;
-    // Saldering tot 2027: je mag opwek verrekenen met verbruik
-    // Netto besparing = opgewekte kWh × leveringstarief (dat betaal je niet)
-    // Maar je betaalt mogelijk terugleverkosten per teruggeleverde kWh
     const netSaving = monthlyGenerated * (provider.kwh + TAX_KWH);
     const feedInCosts = monthlyGenerated * provider.feedInCost;
     const feedInCompensation = monthlyGenerated * provider.feedInComp;
-    // Bij saldering: besparing op verbruik - terugleverkosten + eventuele vergoeding voor overschot
     solarEffect = netSaving - feedInCosts + feedInCompensation;
   }
 
   return stroomKosten + gasKosten + vast - belastingVoordeel - bonusPerMaand - solarEffect;
 }
 
-export function Calculator() {
+export function Calculator({ providers: rawProviders }: CalculatorProps) {
+  const providers = useMemo(() => mapProviders(rawProviders), [rawProviders]);
   const [kwhYear, setKwhYear] = useState(2400);
   const [gasYear, setGasYear] = useState(1000);
   const [includeBonus, setIncludeBonus] = useState(true);

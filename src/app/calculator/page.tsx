@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import { Calculator } from "@/components/Calculator";
+import { supabase } from "@/lib/supabase";
+import { fallbackProviders } from "@/lib/fallback-data";
+import type { EnergyProvider } from "@/lib/database.types";
+
+export const revalidate = 60;
 
 export const metadata: Metadata = {
   title: "Energiecalculator 2026 | Bereken je maandbedrag per leverancier",
@@ -14,7 +19,22 @@ export const metadata: Metadata = {
   ],
 };
 
-export default function CalculatorPage() {
+async function getProviders(): Promise<EnergyProvider[]> {
+  try {
+    const { data, error } = await supabase
+      .from("energy_providers")
+      .select("*")
+      .order("estimated_monthly", { ascending: true });
+    if (error || !data) return fallbackProviders;
+    return data;
+  } catch {
+    return fallbackProviders;
+  }
+}
+
+export default async function CalculatorPage() {
+  const providers = await getProviders();
+
   return (
     <>
       <section className="bg-gradient-to-br from-violet-600 via-purple-600 to-indigo-700 text-white py-16">
@@ -30,7 +50,7 @@ export default function CalculatorPage() {
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <Calculator />
+        <Calculator providers={providers} />
       </section>
     </>
   );

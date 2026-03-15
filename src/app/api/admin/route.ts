@@ -21,6 +21,16 @@ function checkAuth(request: NextRequest): boolean {
 
 // GET: Haal alle providers op
 export async function GET(request: NextRequest) {
+  // Debug: check welke env vars beschikbaar zijn
+  if (request.nextUrl.searchParams.get("debug") === "env") {
+    return NextResponse.json({
+      hasAdminPassword: !!process.env.ADMIN_PASSWORD,
+      hasServiceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
+      hasSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
+      adminPasswordLength: (process.env.ADMIN_PASSWORD || "").length,
+    });
+  }
+
   if (!checkAuth(request)) {
     return NextResponse.json({ error: "Ongeautoriseerd" }, { status: 401 });
   }
