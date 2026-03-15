@@ -2,6 +2,8 @@ import { supabase } from "@/lib/supabase";
 import { fallbackProviders } from "@/lib/fallback-data";
 import type { EnergyProvider } from "@/lib/database.types";
 
+export const revalidate = 60;
+
 async function getProviders(): Promise<EnergyProvider[]> {
   try {
     const { data, error } = await supabase

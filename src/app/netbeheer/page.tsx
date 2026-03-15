@@ -2,6 +2,8 @@ import { supabase } from "@/lib/supabase";
 import { fallbackGridOperators } from "@/lib/fallback-data";
 import type { GridOperator } from "@/lib/database.types";
 
+export const revalidate = 60;
+
 async function getGridOperators(): Promise<GridOperator[]> {
   try {
     const { data, error } = await supabase

@@ -3,6 +3,9 @@ import { fallbackProviders, fallbackTtfPrices } from "@/lib/fallback-data";
 import { ComparisonTable } from "@/components/ComparisonTable";
 import { TtfChart } from "@/components/TtfChart";
 import { StatsBar } from "@/components/StatsBar";
+
+// Herlaad data elke 60 seconden (ISR)
+export const revalidate = 60;
 import type { EnergyProvider, TtfPrice } from "@/lib/database.types";
 import Link from "next/link";
 

@@ -2,6 +2,8 @@ import { supabase } from "@/lib/supabase";
 import { fallbackDynamicProviders } from "@/lib/fallback-data";
 import type { DynamicProvider } from "@/lib/database.types";
 
+export const revalidate = 60;
+
 async function getDynamicProviders(): Promise<DynamicProvider[]> {
   try {
     const { data, error } = await supabase
