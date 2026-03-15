@@ -82,7 +82,7 @@ export default async function NetbeheerPage() {
             </thead>
             <tbody>
               {operators.map((op, idx) => (
-                <tr key={op.id} className={`border-t border-border hover:bg-green-50 transition-colors ${idx === 0 ? "bg-green-50/50" : ""}`}>
+                <tr key={op.id} className={`border-t border-border hover:bg-green-50 transition-colors ${idx === 0 ? "bg-green-50/50" : ""} ${idx % 2 === 1 && idx !== 0 ? "bg-stone-50/60" : ""}`}>
                   <td className="px-4 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-xs font-bold text-green-600 border border-green-200">

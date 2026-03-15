@@ -107,8 +107,8 @@ export default async function DynamischPage() {
               </tr>
             </thead>
             <tbody>
-              {providers.map((p) => (
-                <tr key={p.id} className="border-t border-border hover:bg-primary-light/30 transition-colors">
+              {providers.map((p, idx) => (
+                <tr key={p.id} className={`border-t border-border hover:bg-primary-light/30 transition-colors ${idx % 2 === 1 ? "bg-stone-50/60" : ""}`}>
                   <td className="px-4 py-4">
                     <div className="flex items-center gap-3">
                       <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-600 border border-purple-200">

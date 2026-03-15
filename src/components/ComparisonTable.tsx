@@ -30,6 +30,27 @@ const providerUrls: Record<string, string> = {
   "Vrijopnaam": "https://www.vrijopnaam.nl",
 };
 
+// Brand colors per leverancier (achtergrond + tekst)
+const providerColors: Record<string, { bg: string; text: string }> = {
+  "Energiedirect": { bg: "bg-orange-100", text: "text-orange-700" },
+  "Essent": { bg: "bg-red-100", text: "text-red-700" },
+  "Vattenfall": { bg: "bg-yellow-100", text: "text-yellow-700" },
+  "Eneco": { bg: "bg-green-100", text: "text-green-700" },
+  "Greenchoice": { bg: "bg-emerald-100", text: "text-emerald-700" },
+  "DELTA Energie": { bg: "bg-blue-100", text: "text-blue-700" },
+  "OXXIO": { bg: "bg-purple-100", text: "text-purple-700" },
+  "Budget Energie": { bg: "bg-lime-100", text: "text-lime-700" },
+  "UnitedConsumers": { bg: "bg-sky-100", text: "text-sky-700" },
+  "Mega": { bg: "bg-pink-100", text: "text-pink-700" },
+  "Vandebron": { bg: "bg-teal-100", text: "text-teal-700" },
+  "Engie": { bg: "bg-cyan-100", text: "text-cyan-700" },
+  "Coolblue Energie": { bg: "bg-blue-100", text: "text-blue-600" },
+  "Pure Energie": { bg: "bg-green-100", text: "text-green-600" },
+  "Vrijopnaam": { bg: "bg-indigo-100", text: "text-indigo-700" },
+};
+
+const getProviderColor = (name: string) => providerColors[name] || { bg: "bg-stone-100", text: "text-stone-600" };
+
 // Vergelijkingssites
 const comparisonSites = [
   { name: "Gaslicht.com", url: "https://www.gaslicht.com/energievergelijken" },
@@ -341,7 +362,7 @@ export function ComparisonTable({ providers }: Props) {
               {/* Top row: rank + provider name + badge */}
               <div className="flex items-center gap-3">
                 <RankBadge rank={idx + 1} isCheapest={isCheapest} />
-                <div className="w-10 h-10 rounded-lg bg-surface-alt flex items-center justify-center text-xs font-bold text-primary border border-border flex-shrink-0">
+                <div className={`w-10 h-10 rounded-lg ${getProviderColor(provider.name).bg} flex items-center justify-center text-xs font-bold ${getProviderColor(provider.name).text} border border-border/50 flex-shrink-0`}>
                   {provider.name.substring(0, 2).toUpperCase()}
                 </div>
                 <div className="flex-1 min-w-0">

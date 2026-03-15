@@ -69,8 +69,8 @@ export default function ThuisbatterijPage() {
               </tr>
             </thead>
             <tbody>
-              {batteries.map((b) => (
-                <tr key={b.capacity} className="border-t border-border hover:bg-amber-50 transition-colors">
+              {batteries.map((b, idx) => (
+                <tr key={b.capacity} className={`border-t border-border hover:bg-amber-50 transition-colors ${idx % 2 === 1 ? "bg-stone-50/60" : ""}`}>
                   <td className="px-4 py-4">
                     <span className="inline-flex items-center px-3 py-1 rounded-full bg-amber-100 text-amber-700 text-sm font-semibold">{b.capacity}</span>
                   </td>

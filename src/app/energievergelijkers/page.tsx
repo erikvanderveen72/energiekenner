@@ -75,7 +75,7 @@ export default function EnergievergelijkersPage() {
                   <td className="p-3 text-text-muted">Gemiddeld &euro;59 per overstap</td>
                   <td className="p-3 text-text-muted">Experts controleren adviezen</td>
                 </tr>
-                <tr className="border-b border-border bg-surface-alt/30">
+                <tr className="border-b border-border bg-stone-50/60">
                   <td className="p-3 font-medium text-text-main">Overstappen.nl</td>
                   <td className="p-3 text-text-muted">Ca. 2% van contractwaarde</td>
                   <td className="p-3 text-text-muted">Sorteert strikt op laagste prijs</td>
@@ -85,7 +85,7 @@ export default function EnergievergelijkersPage() {
                   <td className="p-3 text-text-muted">Commissie per overstap</td>
                   <td className="p-3 text-text-muted">Pionier sinds 2003</td>
                 </tr>
-                <tr className="border-b border-border bg-surface-alt/30">
+                <tr className="border-b border-border bg-stone-50/60">
                   <td className="p-3 font-medium text-text-main">Pricewise</td>
                   <td className="p-3 text-text-muted">Commissie per overstap</td>
                   <td className="p-3 text-text-muted">Breed aanbod (energie + verzekering)</td>
@@ -97,7 +97,7 @@ export default function EnergievergelijkersPage() {
           <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
             <p className="font-semibold text-amber-900 mb-2">Kennertip</p>
             <p className="text-sm text-amber-800">
-              Op Energiekenner.nl ontvangen we geen provisie van leveranciers. We tonen alle tarieven transparant, ook van partijen waarmee we g&eacute;&eacute;n samenwerking hebben. Zo weet je zeker dat je de volledige markt ziet.
+              Op Energiekenner.nl ontvangen we geen provisie van leveranciers en hebben we met geen enkele leverancier een samenwerking. We tonen alle tarieven volledig transparant en onafhankelijk. Zo weet je zeker dat je de volledige markt ziet.
             </p>
           </div>
         </article>
@@ -207,7 +207,7 @@ export default function EnergievergelijkersPage() {
                 <tr className="bg-emerald-50">
                   <th className="text-left p-3 font-semibold text-text-main border-b border-border">Leverancier</th>
                   <th className="text-left p-3 font-semibold text-text-main border-b border-border">Tot 1.000 kWh/jaar</th>
-                  <th className="text-left p-3 font-semibold text-text-main border-b border-border">1.000 &ndash; 2.000 kWh/jaar</th>
+                  <th className="text-left p-3 font-semibold text-text-main border-b border-border">1.000 - 2.000 kWh/jaar</th>
                   <th className="text-left p-3 font-semibold text-text-main border-b border-border">5.000+ kWh/jaar</th>
                 </tr>
               </thead>
@@ -218,7 +218,7 @@ export default function EnergievergelijkersPage() {
                   <td className="p-3 text-text-muted">&euro;12,50/mnd</td>
                   <td className="p-3 text-text-muted">&euro;46/mnd</td>
                 </tr>
-                <tr className="border-b border-border bg-surface-alt/30">
+                <tr className="border-b border-border bg-stone-50/60">
                   <td className="p-3 font-medium text-text-main">Budget Energie</td>
                   <td className="p-3 text-text-muted">&euro;3/mnd</td>
                   <td className="p-3 text-text-muted">&euro;10/mnd</td>
@@ -334,7 +334,7 @@ export default function EnergievergelijkersPage() {
                   <td className="p-3 text-text-muted">1.381 m&sup3;</td>
                   <td className="p-3 text-text-muted">24,3%</td>
                 </tr>
-                <tr className="border-b border-border bg-surface-alt/30">
+                <tr className="border-b border-border bg-stone-50/60">
                   <td className="p-3 font-medium text-text-main">2022</td>
                   <td className="p-3 text-text-muted">1.273 m&sup3;</td>
                   <td className="p-3 text-text-muted">29,0%</td>

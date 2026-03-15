@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
+import { WarmtepompKeuzehulp } from "@/components/Keuzehulp";
 
 export const metadata: Metadata = {
   title: "Warmtepompen 2026: Types, Kosten, ISDE Subsidie & Installatie | Energiekenner",
@@ -204,8 +205,8 @@ export default function WarmtepompenPage() {
                 </tr>
               </thead>
               <tbody>
-                {heatPumpTypes.map((pump) => (
-                  <tr key={pump.name} className="border-t border-border hover:bg-rose-50 transition-colors">
+                {heatPumpTypes.map((pump, idx) => (
+                  <tr key={pump.name} className={`border-t border-border hover:bg-rose-50 transition-colors ${idx % 2 === 1 ? "bg-stone-50/60" : ""}`}>
                     <td className="px-4 py-4 font-semibold text-text-main whitespace-nowrap">
                       <div className="flex items-center gap-2">
                         <span className="text-xl">{pump.icon}</span>
@@ -282,8 +283,8 @@ export default function WarmtepompenPage() {
               </tr>
             </thead>
             <tbody>
-              {heatPumpComparison.map((item) => (
-                <tr key={item.type} className="border-t border-border hover:bg-rose-50 transition-colors">
+              {heatPumpComparison.map((item, idx) => (
+                <tr key={item.type} className={`border-t border-border hover:bg-rose-50 transition-colors ${idx % 2 === 1 ? "bg-stone-50/60" : ""}`}>
                   <td className="px-4 py-4 font-semibold text-text-main">{item.type}</td>
                   <td className="px-4 py-4 text-text-main">{item.installation}</td>
                   <td className="px-4 py-4 text-text-main max-w-xs text-sm">{item.requirements}</td>
@@ -739,6 +740,11 @@ export default function WarmtepompenPage() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* Keuzehulp */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <WarmtepompKeuzehulp />
       </section>
 
       {/* CTA Section */}

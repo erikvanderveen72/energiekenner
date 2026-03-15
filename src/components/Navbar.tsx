@@ -27,6 +27,8 @@ export function Navbar() {
   ];
 
   const meerLinks = [
+    { href: "/verbruik", label: "Energieverbruik" },
+    { href: "/salderen", label: "Salderingsregeling 2027" },
     { href: "/warmtepompen", label: "Warmtepompen" },
     { href: "/thuisbatterij", label: "Thuisbatterij & V2G" },
     { href: "/slimme-technologie", label: "Slim Energie Sturen" },

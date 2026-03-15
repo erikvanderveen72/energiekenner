@@ -2,6 +2,7 @@ import { supabase } from "@/lib/supabase";
 import { fallbackProviders } from "@/lib/fallback-data";
 import type { EnergyProvider } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
+import { ZonnepanelenKeuzehulp } from "@/components/Keuzehulp";
 
 export const revalidate = 60;
 
@@ -74,8 +75,8 @@ export default async function ZonnepanelenPage() {
             <tbody>
               {withFeedInCost
                 .sort((a, b) => (a.feed_in_cost_kwh ?? 0) - (b.feed_in_cost_kwh ?? 0))
-                .map((p) => (
-                  <tr key={p.id} className="border-t border-border hover:bg-yellow-50 transition-colors">
+                .map((p, idx) => (
+                  <tr key={p.id} className={`border-t border-border hover:bg-yellow-50 transition-colors ${idx % 2 === 1 ? "bg-stone-50/60" : ""}`}>
                     <td className="px-4 py-4 font-semibold">{p.name}</td>
                     <td className="text-right px-4 py-4 font-mono">€ {p.feed_in_cost_kwh?.toFixed(3).replace(".", ",")}</td>
                     <td className="text-right px-4 py-4 font-mono font-semibold">
@@ -119,8 +120,8 @@ export default async function ZonnepanelenPage() {
             <tbody>
               {withFeedInComp
                 .sort((a, b) => (b.feed_in_compensation ?? 0) - (a.feed_in_compensation ?? 0))
-                .map((p) => (
-                  <tr key={p.id} className="border-t border-border hover:bg-yellow-50 transition-colors">
+                .map((p, idx) => (
+                  <tr key={p.id} className={`border-t border-border hover:bg-yellow-50 transition-colors ${idx % 2 === 1 ? "bg-stone-50/60" : ""}`}>
                     <td className="px-4 py-4 font-semibold">{p.name}</td>
                     <td className="text-right px-4 py-4">
                       <span className={`font-mono font-semibold ${(p.feed_in_compensation ?? 0) > 0.10 ? "text-green-600" : "text-red-500"}`}>
@@ -365,6 +366,11 @@ export default async function ZonnepanelenPage() {
             <p>Bron: Interne analyse op basis van toekomstige salderingsregels (2027+)</p>
           </div>
         </article>
+      </section>
+
+      {/* Keuzehulp */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <ZonnepanelenKeuzehulp />
       </section>
 
       {/* CTA Section */}

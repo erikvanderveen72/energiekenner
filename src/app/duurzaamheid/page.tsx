@@ -147,8 +147,8 @@ export default function DuurzaamheidPage() {
 
             <h3 className="font-semibold text-text-main text-lg mt-5">Het kwaliteitsvraagstuk: NL-opwek versus vergroende stroom</h3>
             <p>
-              Sommige producten bieden "100% Nederlands geproduceerde stroom" – dit betekent dat de stroom echt in Nederland wordt opgewekt. Andere producten zijn "vergroend" met buitenlandse certificaten, vaak van waterkracht uit Noorwegen of wind uit andere Europese landen.
-              Dit hoeft niet slecht te zijn – buitenlandse hernieuwbare energie is nog steeds schoon – maar het draagt veel minder bij aan de Nederlandse energietransitie.
+              Sommige producten bieden "100% Nederlands geproduceerde stroom" - dit betekent dat de stroom echt in Nederland wordt opgewekt. Andere producten zijn "vergroend" met buitenlandse certificaten, vaak van waterkracht uit Noorwegen of wind uit andere Europese landen.
+              Dit hoeft niet slecht te zijn - buitenlandse hernieuwbare energie is nog steeds schoon - maar het draagt veel minder bij aan de Nederlandse energietransitie.
             </p>
 
             <h3 className="font-semibold text-text-main text-lg mt-5">Wat vonden onderzoekers?</h3>
@@ -166,10 +166,10 @@ export default function DuurzaamheidPage() {
 
           <div className="text-xs text-text-muted space-y-1">
             <p><strong>Bronnen:</strong></p>
-            <p>• verticer.eu – Garanties van Oorsprong systeem</p>
-            <p>• acm.nl – Toezicht stroometiket en certificaten</p>
-            <p>• hier.nu – Onafhankelijke stroometiket-checker</p>
-            <p>• consumentenbond.nl – Energieleverancier vergelijking</p>
+            <p>• verticer.eu - Garanties van Oorsprong systeem</p>
+            <p>• acm.nl - Toezicht stroometiket en certificaten</p>
+            <p>• hier.nu - Onafhankelijke stroometiket-checker</p>
+            <p>• consumentenbond.nl - Energieleverancier vergelijking</p>
           </div>
         </div>
       </section>
@@ -182,7 +182,7 @@ export default function DuurzaamheidPage() {
           <div className="space-y-4 mb-6 text-text-main">
             <p>
               In maart 2026 trad één van de strengste Europese regelgeving tegen greenwashing in werking:
-              <strong> Directive (EU) 2024/825 – Empowering Consumers for Green Transition.</strong> Dit is geen vrijblijvende richtlijn, maar een juridisch bindend decreet dat alle EU-lidstaten moeten implementeren.
+              <strong> Directive (EU) 2024/825 - Empowering Consumers for Green Transition.</strong> Dit is geen vrijblijvende richtlijn, maar een juridisch bindend decreet dat alle EU-lidstaten moeten implementeren.
             </p>
 
             <h3 className="font-semibold text-text-main text-lg mt-5">Wat verbiedt deze richtlijn?</h3>
@@ -193,7 +193,7 @@ export default function DuurzaamheidPage() {
 
             <h3 className="font-semibold text-text-main text-lg mt-5">Duurzaamheidslabels en certificeringsvereisten</h3>
             <p>
-              Duurzaamheidslabels – zoals je ze op veel producten en diensten ziet – mogen alleen gebruikt worden als ze:
+              Duurzaamheidslabels - zoals je ze op veel producten en diensten ziet - mogen alleen gebruikt worden als ze:
             </p>
             <ul className="list-disc list-inside text-sm space-y-1 ml-2">
               <li>Gebaseerd zijn op een erkend <strong>certificeringssysteem</strong> (bijvoorbeeld voor energie: ACM stroometiket, onafhankelijke duurzaamheidschema's), OF</li>
@@ -217,14 +217,14 @@ export default function DuurzaamheidPage() {
             <h4 className="font-bold text-green-900 mb-2">💡 Kennertip voor energiekenners</h4>
             <p className="text-sm text-green-900">
               Dit is een gouden moment voor sites als energiekenner.nl om zich te positioneren als "<strong>greenwashing-proof</strong>" informatieplatform.
-              Jullie kunnen leveranciers aanmoedigen om expliciet in termen van het stroometiket, GvO's en certificering te communiceren – niet in vage groene taal.
+              Jullie kunnen leveranciers aanmoedigen om expliciet in termen van het stroometiket, GvO's en certificering te communiceren - niet in vage groene taal.
               Dit geeft jullie een competitief voordeel tegenover vergelijksites die nog steeds sloppige claims doorlaten.
             </p>
           </div>
 
           <div className="text-xs text-text-muted space-y-1">
             <p><strong>Bron:</strong></p>
-            <p>• eur-lex.europa.eu – Directive (EU) 2024/825 volledige tekst</p>
+            <p>• eur-lex.europa.eu - Directive (EU) 2024/825 volledige tekst</p>
           </div>
         </div>
       </section>
@@ -236,7 +236,7 @@ export default function DuurzaamheidPage() {
 
           <div className="space-y-4 mb-6 text-text-main">
             <p>
-              Sinds <strong>1 januari 2026</strong> is "energiedelen" – het direct doorverkopen van je overschot zonnestroom aan buren – in Nederland <strong>wettelijk mogelijk.</strong>
+              Sinds <strong>1 januari 2026</strong> is "energiedelen" - het direct doorverkopen van je overschot zonnestroom aan buren - in Nederland <strong>wettelijk mogelijk.</strong>
               Dit lijkt een spelbreaker voor de energietransitie, maar de werkelijkheid is ingewikkelder dan de marketingtaal doet vermoeden.
             </p>
 
@@ -249,7 +249,7 @@ export default function DuurzaamheidPage() {
               <li><strong>Energiegemeenschappen:</strong> Groepen burgers of lokale organisaties die collectief in duurzame energie investeren en delen</li>
             </ul>
             <p className="mt-3">
-              Onder bepaalde voorwaarden mogen actieve afnemers hun stroom <strong>zonder licentie doorverkopen</strong> aan buurtgenoten – mits aan strikte regels wordt voldaan.
+              Onder bepaalde voorwaarden mogen actieve afnemers hun stroom <strong>zonder licentie doorverkopen</strong> aan buurtgenoten - mits aan strikte regels wordt voldaan.
             </p>
 
             <h3 className="font-semibold text-text-main text-lg mt-5">TNO bevestigt: Energiegemeenschappen zijn nu legaal</h3>
@@ -284,17 +284,17 @@ export default function DuurzaamheidPage() {
             <h4 className="font-bold text-amber-900 mb-2">💡 Kennertip</h4>
             <p className="text-sm text-amber-900">
               Communiceer <strong>eerlijk en nuanced:</strong> "Energiedelen kan nu wettig, maar wordt nog praktisch uitgewerkt."
-              Verwacht geen volledige peer-to-peer platforms morgen – er zijn nog veel organisatorische en technische hurdles.
+              Verwacht geen volledige peer-to-peer platforms morgen - er zijn nog veel organisatorische en technische hurdles.
               Interessante partners: TNO, VNG, locale netbeheerders en energiebedrijven die aan de praktische kant werken.
             </p>
           </div>
 
           <div className="text-xs text-text-muted space-y-1">
             <p><strong>Bronnen:</strong></p>
-            <p>• eigenhuis.nl – Energiedelen en rechtskader</p>
-            <p>• wetten.overheid.nl – Energiewet en actieve afnemers</p>
-            <p>• tno.nl – Analyse energiegemeenschappen</p>
-            <p>• vng.nl – Waarschuwing implementatie energiedelen</p>
+            <p>• eigenhuis.nl - Energiedelen en rechtskader</p>
+            <p>• wetten.overheid.nl - Energiewet en actieve afnemers</p>
+            <p>• tno.nl - Analyse energiegemeenschappen</p>
+            <p>• vng.nl - Waarschuwing implementatie energiedelen</p>
           </div>
         </div>
       </section>

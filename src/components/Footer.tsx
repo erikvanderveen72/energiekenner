@@ -29,8 +29,10 @@ export function Footer() {
               <li><Link href="/" className="text-gray-300 hover:text-white transition-colors">Vaste contracten</Link></li>
               <li><Link href="/dynamisch" className="text-gray-300 hover:text-white transition-colors">Dynamische tarieven</Link></li>
               <li><Link href="/zonnepanelen" className="text-gray-300 hover:text-white transition-colors">Zonnepanelen</Link></li>
+              <li><Link href="/verbruik" className="text-gray-300 hover:text-white transition-colors">Energieverbruik</Link></li>
               <li><Link href="/warmtepompen" className="text-gray-300 hover:text-white transition-colors">Warmtepompen</Link></li>
               <li><Link href="/slimme-technologie" className="text-gray-300 hover:text-white transition-colors">Slim Sturen</Link></li>
+              <li><Link href="/salderen" className="text-gray-300 hover:text-white transition-colors">Salderingsregeling 2027</Link></li>
               <li><Link href="/energievergelijkers" className="text-gray-300 hover:text-white transition-colors">Hoe werken vergelijkers?</Link></li>
               <li><Link href="/netbeheer" className="text-gray-300 hover:text-white transition-colors">Netbeheerkosten</Link></li>
             </ul>
