@@ -13,7 +13,7 @@ export function Footer() {
                   <path strokeLinecap="round" strokeLinejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
                 </svg>
               </div>
-              <span className="font-bold text-lg">Energievergelijker</span>
+              <span className="font-bold text-lg">Energiekenner<span className="text-primary text-sm font-medium">.nl</span></span>
             </div>
             <p className="text-gray-400 text-sm max-w-md">
               Onafhankelijk energietarieven vergelijken. Alle data is gebaseerd op actuele marktprijzen van maart 2026.

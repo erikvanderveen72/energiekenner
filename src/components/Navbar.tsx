@@ -26,7 +26,7 @@ export function Navbar() {
           <Link href="/" className="flex items-center gap-2">
             <Image src="/favicon.svg" alt="Energiekenner logo" width={32} height={32} className="rounded-lg" />
             <span className="font-bold text-lg text-text-main">
-              Energie<span className="text-primary">kenner</span>
+              Energie<span className="text-primary">kenner</span><span className="text-primary text-sm font-medium">.nl</span>
             </span>
           </Link>
 
