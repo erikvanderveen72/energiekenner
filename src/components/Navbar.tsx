@@ -34,6 +34,7 @@ export function Navbar() {
     { href: "/slimme-technologie", label: "Slim Energie Sturen" },
     { href: "/energiewet", label: "Energiewet 2026" },
     { href: "/opzegvergoeding", label: "Opzegvergoeding" },
+    { href: "/laadpalen", label: "Laadpalen & EV" },
     { href: "/energievergelijkers", label: "Hoe werken vergelijkers?" },
     { href: "/duurzaamheid", label: "Groene stroom" },
     { href: "/tips", label: "Bespaartips" },
