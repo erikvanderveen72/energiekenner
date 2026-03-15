@@ -23,13 +23,13 @@ export function Navbar() {
     { href: "/", label: "Vergelijker" },
     { href: "/dynamisch", label: "Dynamisch" },
     { href: "/zonnepanelen", label: "Zonnepanelen" },
+    { href: "/warmtepompen", label: "Warmtepompen" },
     { href: "/calculator", label: "Calculator" },
   ];
 
   const meerLinks = [
     { href: "/verbruik", label: "Energieverbruik" },
     { href: "/salderen", label: "Salderingsregeling 2027" },
-    { href: "/warmtepompen", label: "Warmtepompen" },
     { href: "/thuisbatterij", label: "Thuisbatterij & V2G" },
     { href: "/slimme-technologie", label: "Slim Energie Sturen" },
     { href: "/energiewet", label: "Energiewet 2026" },
