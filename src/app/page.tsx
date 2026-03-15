@@ -171,7 +171,7 @@ export default async function Home() {
             Vergelijk vaste contracten
           </h2>
           <p className="text-text-muted mt-2">
-            Alle tarieven inclusief belastingen. Geschat maandbedrag op basis van gemiddeld verbruik (2.400 kWh / 1.000 m³).
+            Alle tarieven inclusief belastingen. Pas hieronder je verbruik aan voor een persoonlijke schatting.
           </p>
         </div>
         <ComparisonTable providers={providers} />
