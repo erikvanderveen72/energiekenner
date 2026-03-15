@@ -193,25 +193,27 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
             </button>
 
             {hasSolar && (
-              <div className="flex items-center gap-3 flex-1 min-w-[280px]">
-                <label className="text-sm text-text-muted whitespace-nowrap">Opwek per jaar:</label>
-                <input
-                  type="range"
-                  min={500}
-                  max={8000}
-                  step={250}
-                  value={solarKwh}
-                  onChange={(e) => setSolarKwh(Number(e.target.value))}
-                  className="flex-1 h-2 bg-yellow-100 rounded-lg appearance-none cursor-pointer accent-yellow-500"
-                />
-                <div className="flex items-center gap-1">
+              <div className="w-full sm:w-auto sm:flex-1 mt-3 sm:mt-0">
+                <label className="text-sm text-text-muted block sm:inline mb-1 sm:mb-0 sm:mr-2">Opwek per jaar:</label>
+                <div className="flex items-center gap-2">
                   <input
-                    type="number"
+                    type="range"
+                    min={500}
+                    max={8000}
+                    step={250}
                     value={solarKwh}
-                    onChange={(e) => setSolarKwh(Math.max(0, Math.min(8000, Number(e.target.value))))}
-                    className="w-20 text-right px-2 py-1 rounded-lg border border-border text-sm font-mono font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300/50"
+                    onChange={(e) => setSolarKwh(Number(e.target.value))}
+                    className="flex-1 h-2 bg-yellow-100 rounded-lg appearance-none cursor-pointer accent-yellow-500"
                   />
-                  <span className="text-sm text-text-muted">kWh</span>
+                  <div className="flex items-center gap-1 flex-shrink-0">
+                    <input
+                      type="number"
+                      value={solarKwh}
+                      onChange={(e) => setSolarKwh(Math.max(0, Math.min(8000, Number(e.target.value))))}
+                      className="w-16 sm:w-20 text-right px-2 py-1 rounded-lg border border-border text-sm font-mono font-semibold focus:outline-none focus:ring-2 focus:ring-yellow-300/50"
+                    />
+                    <span className="text-xs sm:text-sm text-text-muted">kWh</span>
+                  </div>
                 </div>
               </div>
             )}
@@ -224,37 +226,10 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
           )}
         </div>
 
-        {/* Filters */}
-        <div className="flex flex-wrap gap-3 mt-6 pt-6 border-t border-border">
-          <button
-            onClick={() => setIncludeBonus(!includeBonus)}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-all ${
-              includeBonus
-                ? "bg-amber-50 border-amber-300 text-amber-700"
-                : "bg-white border-border text-text-muted hover:border-amber-300"
-            }`}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
-            </svg>
-            Welkomstbonus meegerekend
-          </button>
-          <button
-            onClick={() => setGreenOnly(!greenOnly)}
-            className={`inline-flex items-center gap-2 px-4 py-2 rounded-lg text-sm font-medium border transition-all ${
-              greenOnly
-                ? "bg-green-50 border-green-300 text-green-700"
-                : "bg-white border-border text-text-muted hover:border-green-300"
-            }`}
-          >
-            <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
-            </svg>
-            Alleen groene stroom
-          </button>
-
+        {/* Filters + Quick presets */}
+        <div className="mt-6 pt-6 border-t border-border space-y-3">
           {/* Quick presets */}
-          <div className="flex gap-2 ml-auto">
+          <div className="flex gap-2 overflow-x-auto pb-1">
             {[
               { label: "Appartement", kwh: 1500, gas: 500 },
               { label: "Tussenwoning", kwh: 2400, gas: 1000 },
@@ -263,7 +238,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
               <button
                 key={preset.label}
                 onClick={() => { setKwhYear(preset.kwh); setGasYear(preset.gas); }}
-                className={`px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
+                className={`flex-shrink-0 px-3 py-1.5 rounded-lg text-xs font-medium border transition-all ${
                   kwhYear === preset.kwh && gasYear === preset.gas
                     ? "bg-primary text-white border-primary"
                     : "bg-white border-border text-text-muted hover:border-primary hover:text-primary"
@@ -273,19 +248,47 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
               </button>
             ))}
           </div>
+          <div className="flex flex-wrap gap-2">
+            <button
+              onClick={() => setIncludeBonus(!includeBonus)}
+              className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all ${
+                includeBonus
+                  ? "bg-amber-50 border-amber-300 text-amber-700"
+                  : "bg-white border-border text-text-muted hover:border-amber-300"
+              }`}
+            >
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7" />
+              </svg>
+              Welkomstbonus
+            </button>
+            <button
+              onClick={() => setGreenOnly(!greenOnly)}
+              className={`inline-flex items-center gap-2 px-3 py-2 rounded-lg text-xs sm:text-sm font-medium border transition-all ${
+                greenOnly
+                  ? "bg-green-50 border-green-300 text-green-700"
+                  : "bg-white border-border text-text-muted hover:border-green-300"
+              }`}
+            >
+              <svg className="w-4 h-4 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+              Groene stroom
+            </button>
+          </div>
         </div>
       </div>
 
       {/* Savings banner */}
-      <div className="rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 text-white p-5 mb-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+      <div className="rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 text-white p-4 sm:p-5 mb-8 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
         <div>
-          <p className="text-green-100 text-sm">Verschil goedkoopste vs. duurste leverancier</p>
-          <p className="text-3xl font-extrabold">&euro; {yearSaving} per jaar</p>
+          <p className="text-green-100 text-xs sm:text-sm">Verschil goedkoopste vs. duurste</p>
+          <p className="text-2xl sm:text-3xl font-extrabold">&euro; {yearSaving} per jaar</p>
         </div>
-        <div className="text-right">
-          <p className="text-green-100 text-sm">Goedkoopst voor jouw verbruik</p>
-          <p className="text-2xl font-bold">{results[0]?.name}</p>
-          <p className="text-green-100 text-sm">&euro; {results[0]?.monthly.toFixed(2)}/mnd</p>
+        <div className="sm:text-right">
+          <p className="text-green-100 text-xs sm:text-sm">Goedkoopst voor jouw verbruik</p>
+          <p className="text-xl sm:text-2xl font-bold">{results[0]?.name}</p>
+          <p className="text-green-100 text-xs sm:text-sm">&euro; {results[0]?.monthly.toFixed(2)}/mnd</p>
         </div>
       </div>
 
@@ -318,7 +321,69 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
           </p>
         </div>
 
-        <div className="p-6 space-y-3">
+        {/* Mobile card view */}
+        <div className="p-4 space-y-3 md:hidden">
+          {results.map((provider, idx) => {
+            const barWidth = maxBar > 0 ? Math.max((provider.monthly / maxBar) * 100, 10) : 10;
+            const isCheapest = idx === 0;
+            const saving = ((provider.monthly - cheapest) * 12).toFixed(0);
+
+            return (
+              <div
+                key={provider.name}
+                className={`rounded-lg border p-3 ${isCheapest ? "border-green-300 bg-green-50/50" : "border-border"}`}
+              >
+                <div className="flex items-center justify-between mb-2">
+                  <div className="flex items-center gap-2">
+                    <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full text-xs font-bold ${
+                      isCheapest ? "bg-green-500 text-white" : "text-text-muted"
+                    }`}>
+                      {idx + 1}
+                    </span>
+                    <span className={`text-sm font-semibold ${isCheapest ? "text-green-600" : "text-text-main"}`}>
+                      {provider.name}
+                    </span>
+                    {provider.green && (
+                      <svg className="w-3.5 h-3.5 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2.5}>
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                      </svg>
+                    )}
+                  </div>
+                  <div className="text-right">
+                    <span className={`text-base font-bold ${isCheapest ? "text-green-600" : "text-text-main"}`}>
+                      &euro; {provider.monthly.toFixed(2)}
+                    </span>
+                    <span className="text-xs text-text-muted">/mnd</span>
+                  </div>
+                </div>
+                <div className="w-full bg-gray-100 rounded-full h-2.5 overflow-hidden">
+                  <div
+                    className="h-2.5 rounded-full transition-all duration-500"
+                    style={{
+                      width: `${barWidth}%`,
+                      background: isCheapest
+                        ? "linear-gradient(to right, #4ade80, #22c55e)"
+                        : "linear-gradient(to right, #60a5fa, #3b82f6)",
+                    }}
+                  />
+                </div>
+                <div className="flex justify-between items-center mt-1.5">
+                  {hasSolar && provider.feedInCost > 0 ? (
+                    <span className="text-[10px] text-yellow-600">teruglevering: &euro;{provider.feedInCost.toFixed(3)}/kWh</span>
+                  ) : <span />}
+                  {isCheapest ? (
+                    <span className="text-[10px] font-bold text-green-600">Goedkoopst</span>
+                  ) : (
+                    <span className="text-[10px] text-text-muted">+&euro; {saving}/jr</span>
+                  )}
+                </div>
+              </div>
+            );
+          })}
+        </div>
+
+        {/* Desktop bar chart */}
+        <div className="p-6 space-y-3 hidden md:block">
           {results.map((provider, idx) => {
             const barWidth = maxBar > 0 ? Math.max((provider.monthly / maxBar) * 100, 5) : 5;
             const isCheapest = idx === 0;
@@ -406,14 +471,14 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
       </div>
 
       {/* CTA */}
-      <div className="mt-8 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 p-8 text-white text-center">
-        <h2 className="text-2xl font-bold">Klaar om over te stappen?</h2>
-        <p className="mt-2 text-violet-100">Met de nieuwe Energiewet switch je in 5 werkdagen.</p>
-        <div className="flex justify-center gap-3 mt-4">
-          <Link href="/#vergelijk" className="inline-flex items-center px-6 py-3 bg-white text-violet-600 rounded-lg font-semibold hover:bg-violet-50 transition-colors">
+      <div className="mt-8 rounded-xl bg-gradient-to-r from-violet-500 to-purple-500 p-6 sm:p-8 text-white text-center">
+        <h2 className="text-xl sm:text-2xl font-bold">Klaar om over te stappen?</h2>
+        <p className="mt-2 text-violet-100 text-sm sm:text-base">Met de nieuwe Energiewet switch je in 5 werkdagen.</p>
+        <div className="flex flex-col sm:flex-row justify-center gap-3 mt-4">
+          <Link href="/#vergelijk" className="inline-flex items-center justify-center px-5 py-3 bg-white text-violet-600 rounded-lg font-semibold hover:bg-violet-50 transition-colors text-sm sm:text-base">
             Vergelijk contracten
           </Link>
-          <Link href="/energiewet" className="inline-flex items-center px-6 py-3 bg-white/15 text-white rounded-lg font-semibold border border-white/20 hover:bg-white/25 transition-colors">
+          <Link href="/energiewet" className="inline-flex items-center justify-center px-5 py-3 bg-white/15 text-white rounded-lg font-semibold border border-white/20 hover:bg-white/25 transition-colors text-sm sm:text-base">
             Je rechten in 2026
           </Link>
         </div>

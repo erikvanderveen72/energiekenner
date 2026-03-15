@@ -31,8 +31,13 @@ export const metadata: Metadata = {
     "zonnepanelen",
   ],
   icons: {
-    icon: "/favicon.svg",
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", sizes: "48x48" },
+    ],
+    apple: "/apple-touch-icon.png",
   },
+  manifest: "/site.webmanifest",
   metadataBase: new URL("https://energiekenner.nl"),
   openGraph: {
     title: "Energiekenner.nl | Vergelijk & Bespaar op Energie",
@@ -60,6 +65,17 @@ export default function RootLayout({
   return (
     <html lang="nl" className={inter.variable}>
       <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-MZM9PLZKZX" />
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              gtag('js', new Date());
+              gtag('config', 'G-MZM9PLZKZX');
+            `,
+          }}
+        />
         <WebsiteSchema />
         <OrganizationSchema />
       </head>
