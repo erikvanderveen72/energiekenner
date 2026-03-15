@@ -1,9 +1,12 @@
 import type { Metadata } from "next";
+import { Suspense } from "react";
 import { Inter } from "next/font/google";
 import Script from "next/script";
 import "./globals.css";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
+import { CookieConsent } from "@/components/CookieConsent";
+import { AnalyticsTracker } from "@/components/AnalyticsTracker";
 import { WebsiteSchema, OrganizationSchema, ServiceSchema } from "@/components/StructuredData";
 
 const inter = Inter({
@@ -106,10 +109,31 @@ export default function RootLayout({
           Direct naar inhoud
         </a>
         <Navbar />
+        <Suspense fallback={null}>
+          <AnalyticsTracker />
+        </Suspense>
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
+        <CookieConsent />
 
-        {/* Google Analytics - afterInteractive voor betere performance */}
+        {/* Google Consent Mode v2 - moet VOOR gtag laden */}
+        <Script id="consent-mode" strategy="beforeInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('consent', 'default', {
+              'analytics_storage': 'denied',
+              'ad_storage': 'denied',
+              'ad_user_data': 'denied',
+              'ad_personalization': 'denied',
+              'functionality_storage': 'granted',
+              'security_storage': 'granted',
+              'wait_for_update': 500
+            });
+          `}
+        </Script>
+
+        {/* Google Analytics 4 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-MZM9PLZKZX"
           strategy="afterInteractive"
@@ -120,9 +144,7 @@ export default function RootLayout({
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
             gtag('config', 'G-MZM9PLZKZX', {
-              page_path: window.location.pathname,
-              anonymize_ip: true,
-              cookie_flags: 'SameSite=None;Secure'
+              anonymize_ip: true
             });
           `}
         </Script>

@@ -97,7 +97,7 @@ const faqItems = [
 function ScoreBadge({ score }: { score: number }) {
   const color = score >= 9 ? "bg-green-500" : score >= 8 ? "bg-emerald-500" : score >= 7 ? "bg-amber-500" : "bg-red-500";
   return (
-    <span className={`inline-flex items-center justify-center w-12 h-12 rounded-xl ${color} text-white text-lg font-bold`}>
+    <span className={`inline-flex items-center justify-center w-14 h-14 rounded-xl ${color} text-white text-lg font-bold`}>
       {score}
     </span>
   );
