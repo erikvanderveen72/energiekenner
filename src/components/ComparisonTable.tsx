@@ -333,7 +333,9 @@ export function ComparisonTable({ providers }: Props) {
               className={`rounded-xl border p-4 ${
                 isCheapest
                   ? "border-accent bg-accent-light/30 shadow-sm"
-                  : "border-border bg-white"
+                  : idx % 2 === 1
+                    ? "border-border bg-stone-50/60"
+                    : "border-border bg-white"
               }`}
             >
               {/* Top row: rank + provider name + badge */}
