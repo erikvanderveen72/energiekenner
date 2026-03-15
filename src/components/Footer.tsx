@@ -8,7 +8,7 @@ export function Footer() {
           {/* Brand */}
           <div className="md:col-span-2">
             <div className="flex items-center gap-2 mb-4">
-              <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white text-sm font-bold">
+              <div className="w-8 h-8 rounded-lg bg-rose-500 flex items-center justify-center text-white text-sm font-bold">
                 Ek
               </div>
               <span className="font-bold text-lg">Energiekenner<span className="text-primary text-sm font-medium">.nl</span></span>

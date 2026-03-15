@@ -98,6 +98,7 @@ export default function SalderenPage() {
             <li><a href="#wat-is-salderen" className="hover:underline">Wat is salderen en hoe werkt het?</a></li>
             <li><a href="#waarom-afgeschaft" className="hover:underline">Waarom wordt de regeling afgeschaft?</a></li>
             <li><a href="#impact" className="hover:underline">Wat verandert er voor jou na 2027?</a></li>
+            <li><a href="#rekenen" className="hover:underline">Concreet: bedragen voor en na 2027</a></li>
             <li><a href="#terugleverkosten" className="hover:underline">Terugleverkosten: de verborgen kosten</a></li>
             <li><a href="#slimme-meter" className="hover:underline">Slimme meter wordt verplicht</a></li>
             <li><a href="#voorbereiden" className="hover:underline">Zo bereid je je voor</a></li>
@@ -306,10 +307,298 @@ export default function SalderenPage() {
         </article>
       </section>
 
-      {/* 4. Terugleverkosten */}
+      {/* Visuele voor/na 2027 vergelijking */}
+      <section id="rekenen" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl font-bold text-text-main mb-2">Concreet: wat veranderen de bedragen?</h2>
+          <p className="text-text-muted text-sm mb-8">
+            Hieronder zie je voor drie veelvoorkomende huishoudtypes precies wat er verandert in euro&apos;s. Gebaseerd op gemiddelde tarieven maart 2026.
+          </p>
+
+          {/* Grote visuele voor/na vergelijking */}
+          <div className="grid md:grid-cols-2 gap-0 md:gap-0 rounded-2xl overflow-hidden border-2 border-amber-200 mb-10">
+            {/* VOOR */}
+            <div className="bg-gradient-to-br from-emerald-50 to-emerald-100/50 p-6 sm:p-8 relative">
+              <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-emerald-500 text-white text-xs font-bold">
+                TOT 2027
+              </div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-emerald-500 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-emerald-900">Met saldering</h3>
+                  <p className="text-xs text-emerald-700">Elke teruggeleverde kWh = volle waarde</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="rounded-xl bg-white/70 p-4">
+                  <p className="text-xs text-emerald-700 font-medium mb-1">Waarde per teruggeleverde kWh</p>
+                  <p className="text-3xl font-extrabold text-emerald-700">&euro; 0,27</p>
+                  <p className="text-xs text-text-muted mt-1">Inclusief energiebelasting + btw</p>
+                </div>
+                <div className="rounded-xl bg-white/70 p-4">
+                  <p className="text-xs text-emerald-700 font-medium mb-1">Jaarlijkse besparing (gem. systeem)</p>
+                  <p className="text-3xl font-extrabold text-emerald-700">&euro; 810</p>
+                  <p className="text-xs text-text-muted mt-1">Bij 3.000 kWh opwek, 30% eigen verbruik</p>
+                </div>
+                <div className="rounded-xl bg-white/70 p-4">
+                  <p className="text-xs text-emerald-700 font-medium mb-1">Terugverdientijd 10 panelen</p>
+                  <p className="text-3xl font-extrabold text-emerald-700">5 - 6 jaar</p>
+                </div>
+              </div>
+            </div>
+
+            {/* NA */}
+            <div className="bg-gradient-to-br from-amber-50 to-orange-100/50 p-6 sm:p-8 relative border-t-2 md:border-t-0 md:border-l-2 border-amber-200">
+              <div className="absolute top-4 right-4 px-3 py-1 rounded-full bg-amber-600 text-white text-xs font-bold">
+                VANAF 2027
+              </div>
+              <div className="flex items-center gap-3 mb-6">
+                <div className="w-12 h-12 rounded-xl bg-amber-600 flex items-center justify-center">
+                  <svg className="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                  </svg>
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-amber-900">Zonder saldering</h3>
+                  <p className="text-xs text-amber-700">Teruglevering = terugleververgoeding</p>
+                </div>
+              </div>
+
+              <div className="space-y-4">
+                <div className="rounded-xl bg-white/70 p-4">
+                  <p className="text-xs text-amber-700 font-medium mb-1">Waarde per teruggeleverde kWh</p>
+                  <div className="flex items-end gap-2">
+                    <p className="text-3xl font-extrabold text-amber-700">&euro; 0,07</p>
+                    <p className="text-sm font-bold text-red-500 mb-1">&minus;74%</p>
+                  </div>
+                  <p className="text-xs text-text-muted mt-1">Alleen kaal tarief, geen belasting</p>
+                </div>
+                <div className="rounded-xl bg-white/70 p-4">
+                  <p className="text-xs text-amber-700 font-medium mb-1">Jaarlijkse besparing (gem. systeem)</p>
+                  <div className="flex items-end gap-2">
+                    <p className="text-3xl font-extrabold text-amber-700">&euro; 375</p>
+                    <p className="text-sm font-bold text-red-500 mb-1">&minus;54%</p>
+                  </div>
+                  <p className="text-xs text-text-muted mt-1">Bij 3.000 kWh opwek, 30% eigen verbruik</p>
+                </div>
+                <div className="rounded-xl bg-white/70 p-4">
+                  <p className="text-xs text-amber-700 font-medium mb-1">Terugverdientijd 10 panelen</p>
+                  <div className="flex items-end gap-2">
+                    <p className="text-3xl font-extrabold text-amber-700">9 - 11 jaar</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* Drie huishoudprofielen */}
+          <h3 className="font-bold text-text-main mb-6">Drie huishoudprofielen vergeleken</h3>
+          <div className="grid md:grid-cols-3 gap-6 mb-8">
+            {/* Profiel 1 */}
+            <div className="rounded-xl border border-border bg-white overflow-hidden">
+              <div className="bg-sky-50 p-4 border-b border-border">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🏠</span>
+                  <div>
+                    <h4 className="font-bold text-text-main">Klein huishouden</h4>
+                    <p className="text-xs text-text-muted">Appartement, 2 personen, 6 panelen</p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Jaaropwek</span>
+                  <span className="font-semibold text-text-main">1.800 kWh</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Eigen verbruik</span>
+                  <span className="font-semibold text-text-main">35% (630 kWh)</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Teruglevering</span>
+                  <span className="font-semibold text-text-main">1.170 kWh</span>
+                </div>
+                <div className="h-px bg-border my-2" />
+                <div className="rounded-lg bg-emerald-50 p-3">
+                  <p className="text-xs text-emerald-700 font-medium">Besparing tot 2027</p>
+                  <p className="text-xl font-extrabold text-emerald-700">&euro; 486 <span className="text-xs font-normal">/jaar</span></p>
+                  <div className="w-full h-2 rounded-full bg-emerald-200 mt-2">
+                    <div className="h-2 rounded-full bg-emerald-500" style={{ width: "100%" }} />
+                  </div>
+                </div>
+                <div className="rounded-lg bg-amber-50 p-3">
+                  <p className="text-xs text-amber-700 font-medium">Besparing vanaf 2027</p>
+                  <p className="text-xl font-extrabold text-amber-700">&euro; 252 <span className="text-xs font-normal">/jaar</span></p>
+                  <div className="w-full h-2 rounded-full bg-amber-200 mt-2">
+                    <div className="h-2 rounded-full bg-amber-500" style={{ width: "52%" }} />
+                  </div>
+                  <p className="text-xs text-red-600 font-medium mt-1">&minus;&euro; 234 per jaar minder</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Profiel 2 */}
+            <div className="rounded-xl border-2 border-amber-300 bg-white overflow-hidden relative">
+              <div className="absolute -top-px -right-px px-2 py-0.5 rounded-bl-lg bg-amber-500 text-white text-xs font-bold">
+                Meest voorkomend
+              </div>
+              <div className="bg-amber-50 p-4 border-b border-border">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🏡</span>
+                  <div>
+                    <h4 className="font-bold text-text-main">Gemiddeld gezin</h4>
+                    <p className="text-xs text-text-muted">Tussenwoning, 4 personen, 10 panelen</p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Jaaropwek</span>
+                  <span className="font-semibold text-text-main">3.600 kWh</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Eigen verbruik</span>
+                  <span className="font-semibold text-text-main">30% (1.080 kWh)</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Teruglevering</span>
+                  <span className="font-semibold text-text-main">2.520 kWh</span>
+                </div>
+                <div className="h-px bg-border my-2" />
+                <div className="rounded-lg bg-emerald-50 p-3">
+                  <p className="text-xs text-emerald-700 font-medium">Besparing tot 2027</p>
+                  <p className="text-xl font-extrabold text-emerald-700">&euro; 972 <span className="text-xs font-normal">/jaar</span></p>
+                  <div className="w-full h-2 rounded-full bg-emerald-200 mt-2">
+                    <div className="h-2 rounded-full bg-emerald-500" style={{ width: "100%" }} />
+                  </div>
+                </div>
+                <div className="rounded-lg bg-amber-50 p-3">
+                  <p className="text-xs text-amber-700 font-medium">Besparing vanaf 2027</p>
+                  <p className="text-xl font-extrabold text-amber-700">&euro; 468 <span className="text-xs font-normal">/jaar</span></p>
+                  <div className="w-full h-2 rounded-full bg-amber-200 mt-2">
+                    <div className="h-2 rounded-full bg-amber-500" style={{ width: "48%" }} />
+                  </div>
+                  <p className="text-xs text-red-600 font-medium mt-1">&minus;&euro; 504 per jaar minder</p>
+                </div>
+              </div>
+            </div>
+
+            {/* Profiel 3 */}
+            <div className="rounded-xl border border-border bg-white overflow-hidden">
+              <div className="bg-purple-50 p-4 border-b border-border">
+                <div className="flex items-center gap-3">
+                  <span className="text-2xl">🏘️</span>
+                  <div>
+                    <h4 className="font-bold text-text-main">Groot verbruik + EV</h4>
+                    <p className="text-xs text-text-muted">Vrijstaand, 5 pers, 16 panelen, EV</p>
+                  </div>
+                </div>
+              </div>
+              <div className="p-4 space-y-3">
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Jaaropwek</span>
+                  <span className="font-semibold text-text-main">5.760 kWh</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Eigen verbruik</span>
+                  <span className="font-semibold text-text-main">25% (1.440 kWh)</span>
+                </div>
+                <div className="flex justify-between text-sm">
+                  <span className="text-text-muted">Teruglevering</span>
+                  <span className="font-semibold text-text-main">4.320 kWh</span>
+                </div>
+                <div className="h-px bg-border my-2" />
+                <div className="rounded-lg bg-emerald-50 p-3">
+                  <p className="text-xs text-emerald-700 font-medium">Besparing tot 2027</p>
+                  <p className="text-xl font-extrabold text-emerald-700">&euro; 1.555 <span className="text-xs font-normal">/jaar</span></p>
+                  <div className="w-full h-2 rounded-full bg-emerald-200 mt-2">
+                    <div className="h-2 rounded-full bg-emerald-500" style={{ width: "100%" }} />
+                  </div>
+                </div>
+                <div className="rounded-lg bg-amber-50 p-3">
+                  <p className="text-xs text-amber-700 font-medium">Besparing vanaf 2027</p>
+                  <p className="text-xl font-extrabold text-amber-700">&euro; 691 <span className="text-xs font-normal">/jaar</span></p>
+                  <div className="w-full h-2 rounded-full bg-amber-200 mt-2">
+                    <div className="h-2 rounded-full bg-amber-500" style={{ width: "44%" }} />
+                  </div>
+                  <p className="text-xs text-red-600 font-medium mt-1">&minus;&euro; 864 per jaar minder</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* De sleutel: eigen verbruik verhogen */}
+          <div className="rounded-2xl bg-gradient-to-r from-emerald-50 to-amber-50 border border-emerald-200 p-6 sm:p-8">
+            <h3 className="font-bold text-text-main mb-4 text-lg">De sleutel: verhoog je eigen verbruik</h3>
+            <p className="text-sm text-text-muted mb-6">
+              Het verschil in waarde is enorm. Zelf verbruikte stroom is na 2027 bijna 4x zoveel waard als teruggeleverde stroom. Hieronder zie je het effect van eigen verbruik verhogen.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm border-collapse">
+                <thead>
+                  <tr className="bg-white/80">
+                    <th className="text-left p-3 font-semibold text-text-main border-b border-emerald-200">Eigen verbruik</th>
+                    <th className="text-left p-3 font-semibold text-text-main border-b border-emerald-200">Hoe?</th>
+                    <th className="text-right p-3 font-semibold text-text-main border-b border-emerald-200">Besparing/jaar *</th>
+                    <th className="text-right p-3 font-semibold text-text-main border-b border-emerald-200">vs. saldering</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {[
+                    { pct: "30%", hoe: "Geen aanpassing", saving: "€ 468", vs: "−52%", bar: 48, color: "bg-red-400" },
+                    { pct: "45%", hoe: "Verbruik verschuiven (gratis)", saving: "€ 630", vs: "−35%", bar: 65, color: "bg-amber-400" },
+                    { pct: "65%", hoe: "Thuisbatterij (5 kWh)", saving: "€ 810", vs: "−17%", bar: 83, color: "bg-emerald-400" },
+                    { pct: "80%", hoe: "Thuisbatterij (10 kWh) + slim sturen", saving: "€ 936", vs: "−4%", bar: 96, color: "bg-emerald-500" },
+                  ].map((row, idx) => (
+                    <tr key={row.pct} className={`border-b border-emerald-100 ${idx % 2 === 1 ? "bg-white/40" : ""}`}>
+                      <td className="p-3">
+                        <span className="font-bold text-text-main">{row.pct}</span>
+                      </td>
+                      <td className="p-3 text-text-muted">{row.hoe}</td>
+                      <td className="p-3 text-right">
+                        <span className="font-bold text-text-main">{row.saving}</span>
+                        <div className="w-full h-1.5 rounded-full bg-stone-200 mt-1">
+                          <div className={`h-1.5 rounded-full ${row.color}`} style={{ width: `${row.bar}%` }} />
+                        </div>
+                      </td>
+                      <td className="p-3 text-right">
+                        <span className={`text-xs font-bold px-2 py-0.5 rounded-full ${
+                          row.bar > 90 ? "bg-emerald-100 text-emerald-700" :
+                          row.bar > 70 ? "bg-amber-100 text-amber-700" :
+                          "bg-red-100 text-red-700"
+                        }`}>
+                          {row.vs}
+                        </span>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-text-muted mt-3">
+              * Gebaseerd op gemiddeld gezin met 10 panelen (3.600 kWh opwek), tarief &euro; 0,27/kWh, terugleververgoeding &euro; 0,07/kWh.
+            </p>
+          </div>
+
+          <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
+            <p className="font-semibold text-amber-900 mb-2">Kennertip</p>
+            <p className="text-sm text-amber-800">
+              Met een thuisbatterij van 10 kWh en slim verbruik kun je na 2027 vrijwel dezelfde besparing realiseren als nu met saldering. De investering verdien je in 6-8 jaar terug, daarna is het pure winst.
+            </p>
+          </div>
+        </article>
+      </section>
+
+      {/* 5. Terugleverkosten */}
       <section id="terugleverkosten" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <article className="rounded-xl border border-border p-8 bg-white">
-          <h2 className="text-2xl font-bold text-text-main mb-4">4. Terugleverkosten: de verborgen kosten</h2>
+          <h2 className="text-2xl font-bold text-text-main mb-4">5. Terugleverkosten: de verborgen kosten</h2>
           <div className="prose prose-sm max-w-none text-text-muted space-y-4">
             <p>
               Sinds 2024 rekenen vrijwel alle grote energieleveranciers terugleverkosten. Dit zijn maandelijkse bedragen die je betaalt voor het terugleveren van zonnestroom. Leveranciers voeren aan dat zij hoge kosten maken voor het verwerken van zonnestroom, waaronder onbalanskosten op de groothandelsmarkt.
@@ -374,7 +663,7 @@ export default function SalderenPage() {
       {/* 5. Slimme meter */}
       <section id="slimme-meter" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <article className="rounded-xl border border-border p-8 bg-white">
-          <h2 className="text-2xl font-bold text-text-main mb-4">5. Slimme meter wordt verplicht</h2>
+          <h2 className="text-2xl font-bold text-text-main mb-4">6. Slimme meter wordt verplicht</h2>
           <div className="prose prose-sm max-w-none text-text-muted space-y-4">
             <p>
               De afschaffing van de salderingsregeling is technisch onmogelijk zonder een meter die afname en teruglevering apart registreert. De oude Ferrarismeter, die simpelweg terugdraait bij teruglevering, verdwijnt definitief.
@@ -405,7 +694,7 @@ export default function SalderenPage() {
       {/* 6. Voorbereiden */}
       <section id="voorbereiden" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <article className="rounded-xl border border-border p-8 bg-white">
-          <h2 className="text-2xl font-bold text-text-main mb-4">6. Zo bereid je je voor op het einde van salderen</h2>
+          <h2 className="text-2xl font-bold text-text-main mb-4">7. Zo bereid je je voor op het einde van salderen</h2>
           <div className="prose prose-sm max-w-none text-text-muted space-y-4">
             <p>
               Na 2027 draait alles om zelfverbruik: elke kWh die je zelf opwekt en direct gebruikt, is circa vijf keer zoveel waard als een kWh die je teruglevert. Er zijn meerdere manieren om je zelfverbruik te verhogen.
@@ -524,7 +813,7 @@ export default function SalderenPage() {
       {/* 7. Contract */}
       <section id="contract" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <article className="rounded-xl border border-border p-8 bg-white">
-          <h2 className="text-2xl font-bold text-text-main mb-4">7. Dynamisch of vast contract na 2027?</h2>
+          <h2 className="text-2xl font-bold text-text-main mb-4">8. Dynamisch of vast contract na 2027?</h2>
           <div className="prose prose-sm max-w-none text-text-muted space-y-4">
             <p>
               De keuze van je energiecontract wordt na 2027 een strategische beslissing. Bij een vast of variabel contract vervalt het saldeervoordeel volledig. Bij een dynamisch contract ontvang je de actuele uurprijs voor je teruggeleverde stroom.
