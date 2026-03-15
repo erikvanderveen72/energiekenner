@@ -18,34 +18,36 @@ export function TtfChart({ prices }: Props) {
         Dagelijkse notering in €/MWh — Extreme volatiliteit door geopolitieke onrust
       </p>
 
-      <div className="flex items-end gap-3" style={{ height: "220px" }}>
-        {prices.map((price) => {
-          const heightPct = Math.max((price.price_eur_mwh / max) * 100, 8);
-          const isMax = price.price_eur_mwh === max;
-          return (
-            <div key={price.id} className="flex-1 flex flex-col items-center justify-end h-full">
-              <span
-                className={`text-xs font-mono mb-1 ${
-                  isMax ? "text-red-600 font-bold text-sm" : "text-gray-600"
-                }`}
-              >
-                €{price.price_eur_mwh}
-              </span>
-              <div
-                className="w-full rounded-t-lg transition-all duration-500"
-                style={{
-                  height: `${heightPct}%`,
-                  backgroundColor: isMax ? "#EF4444" : "#3B82F6",
-                  minHeight: "16px",
-                }}
-                title={price.event_description ?? ""}
-              />
-              <span className="text-xs text-gray-500 mt-2 font-medium">
-                {new Date(price.date).getDate()}/3
-              </span>
-            </div>
-          );
-        })}
+      <div className="overflow-x-auto -mx-2 px-2">
+        <div className="flex items-end gap-1 sm:gap-2 md:gap-3" style={{ height: "220px", minWidth: prices.length > 15 ? `${prices.length * 28}px` : "auto" }}>
+          {prices.map((price) => {
+            const heightPct = Math.max((price.price_eur_mwh / max) * 100, 8);
+            const isMax = price.price_eur_mwh === max;
+            return (
+              <div key={price.id} className="flex-1 flex flex-col items-center justify-end h-full min-w-[20px]">
+                <span
+                  className={`text-[10px] sm:text-xs font-mono mb-1 ${
+                    isMax ? "text-red-600 font-bold sm:text-sm" : "text-gray-600"
+                  }`}
+                >
+                  €{price.price_eur_mwh}
+                </span>
+                <div
+                  className="w-full rounded-t-lg transition-all duration-500"
+                  style={{
+                    height: `${heightPct}%`,
+                    backgroundColor: isMax ? "#EF4444" : "#3B82F6",
+                    minHeight: "16px",
+                  }}
+                  title={price.event_description ?? ""}
+                />
+                <span className="text-[10px] sm:text-xs text-gray-500 mt-1 sm:mt-2 font-medium">
+                  {new Date(price.date).getDate()}/3
+                </span>
+              </div>
+            );
+          })}
+        </div>
       </div>
 
       <div className="mt-5 flex items-center gap-4 text-xs text-gray-500">

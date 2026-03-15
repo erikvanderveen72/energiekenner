@@ -28,17 +28,54 @@ export default async function NetbeheerPage() {
 
   return (
     <>
-      <section className="bg-gradient-to-br from-green-600 to-teal-700 text-white py-16">
+      <section className="bg-gradient-to-br from-green-600 to-teal-700 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-4xl font-extrabold">Netbeheerkosten 2026</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">Netbeheerkosten 2026</h1>
           <p className="mt-4 text-lg text-green-100 max-w-2xl">
-            De kosten voor het transport van energie zijn in 2026 fors gestegen door miljardeninvesteringen in netverzwaring. Gemiddeld betaal je €{avg.toFixed(0)} per jaar.
+            De kosten voor het transport van energie zijn in 2026 fors gestegen door miljardeninvesteringen in netverzwaring. Gemiddeld betaal je €{avg.toFixed(0).replace(".", ",")} per jaar.
           </p>
         </div>
       </section>
 
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <div className="overflow-x-auto rounded-xl border border-border shadow-sm">
+        {/* Mobile Card View */}
+        <div className="md:hidden space-y-3">
+          {operators.map((op, idx) => (
+            <div key={op.id} className={`rounded-xl border p-4 ${idx === 0 ? "border-green-300 bg-green-50/50" : "border-border bg-white"}`}>
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-lg bg-green-100 flex items-center justify-center text-xs font-bold text-green-600 border border-green-200">
+                  {op.name.substring(0, 2).toUpperCase()}
+                </div>
+                <div className="flex items-center gap-2 flex-wrap">
+                  <span className="font-semibold text-text-main">{op.name}</span>
+                  {idx === 0 && (
+                    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-xs font-medium bg-green-600 text-white">
+                      Goedkoopst
+                    </span>
+                  )}
+                </div>
+              </div>
+              <div className="flex items-baseline gap-1 mb-3">
+                <span className="text-2xl font-bold text-text-main">€ {op.total_yearly.toFixed(0).replace(".", ",")}</span>
+                <span className="text-sm text-text-muted">/jaar</span>
+                <span className="text-sm text-text-muted ml-2">(€ {(op.total_yearly / 12).toFixed(0).replace(".", ",")}/mnd)</span>
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs text-text-muted">Elektriciteit/jaar</p>
+                  <p className="text-sm font-mono font-medium">€ {op.electricity_cost_yearly.toFixed(2).replace(".", ",")}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-text-muted">Gas/jaar</p>
+                  <p className="text-sm font-mono font-medium">€ {op.gas_cost_yearly.toFixed(2).replace(".", ",")}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Table View */}
+        <div className="hidden md:block overflow-x-auto rounded-xl border border-border shadow-sm">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-surface-alt">
@@ -67,10 +104,10 @@ export default async function NetbeheerPage() {
                       </div>
                     </div>
                   </td>
-                  <td className="text-right px-4 py-4 font-mono">€ {op.electricity_cost_yearly.toFixed(2)}</td>
-                  <td className="text-right px-4 py-4 font-mono">€ {op.gas_cost_yearly.toFixed(2)}</td>
-                  <td className="text-right px-4 py-4 font-mono font-semibold text-text-main">€ {op.total_yearly.toFixed(2)}</td>
-                  <td className="text-right px-4 py-4 font-mono text-text-muted">€ {(op.total_yearly / 12).toFixed(2)}</td>
+                  <td className="text-right px-4 py-4 font-mono">€ {op.electricity_cost_yearly.toFixed(2).replace(".", ",")}</td>
+                  <td className="text-right px-4 py-4 font-mono">€ {op.gas_cost_yearly.toFixed(2).replace(".", ",")}</td>
+                  <td className="text-right px-4 py-4 font-mono font-semibold text-text-main">€ {op.total_yearly.toFixed(2).replace(".", ",")}</td>
+                  <td className="text-right px-4 py-4 font-mono text-text-muted">€ {(op.total_yearly / 12).toFixed(2).replace(".", ",")}</td>
                 </tr>
               ))}
             </tbody>

@@ -2,9 +2,11 @@ export function WebsiteSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Energiekenner",
+    name: "Energiekenner.nl",
+    alternateName: ["Energiekenner", "Energie Vergelijken"],
     url: "https://energiekenner.nl",
-    description: "Vergelijk alle energieleveranciers in Nederland. Actuele tarieven, dynamische contracten en bespaartips voor 2026.",
+    description: "Energie vergelijken? Vergelijk alle energieleveranciers in Nederland op actuele tarieven. Stroom, gas, vast & dynamisch. Onafhankelijk en gratis.",
+    inLanguage: "nl",
     potentialAction: {
       "@type": "SearchAction",
       target: "https://energiekenner.nl/?q={search_term_string}",
@@ -24,14 +26,19 @@ export function OrganizationSchema() {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Energiekenner",
+    name: "Energiekenner.nl",
     url: "https://energiekenner.nl",
     logo: "https://energiekenner.nl/logo.png",
+    description: "Onafhankelijk energie vergelijken in Nederland. Actuele tarieven, kennisbank en bespaartips.",
     sameAs: [],
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
       availableLanguage: "Dutch",
+    },
+    areaServed: {
+      "@type": "Country",
+      name: "Netherlands",
     },
   };
 

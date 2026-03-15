@@ -27,6 +27,7 @@ const providerUrls: Record<string, string> = {
   "Engie": "https://www.engie.nl",
   "Coolblue Energie": "https://www.coolblue.nl/energie",
   "Pure Energie": "https://www.pureenergie.nl",
+  "Vrijopnaam": "https://www.vrijopnaam.nl",
 };
 
 // Vergelijkingssites
@@ -114,7 +115,7 @@ export function ComparisonTable({ providers }: Props) {
 
   function formatEuro(val: number | null) {
     if (val === null || val === undefined) return "—";
-    return `€ ${val.toFixed(val < 10 ? 4 : 2)}`;
+    return `€ ${val.toFixed(val < 10 ? 4 : 2).replace(".", ",")}`;
   }
 
   // Ranking badge component — consistent width for alignment

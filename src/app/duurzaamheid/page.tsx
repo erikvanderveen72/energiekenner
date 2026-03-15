@@ -12,22 +12,22 @@ export const metadata: Metadata = {
 };
 
 const providers = [
-  { name: "Vrijopnaam", score: "10.0", source: "100% NL Zon", strategy: "Eigen zonneparken", color: "bg-green-600" },
-  { name: "Greenchoice", score: "9.8", source: "NL Wind & Zon", strategy: "Bosprojecten (CCQI gecertificeerd)", color: "bg-green-500" },
-  { name: "Vandebron", score: "9.8", source: "100% NL Wind/Zon", strategy: "Lokale bronnen, geen sjoemelstroom", color: "bg-green-500" },
-  { name: "Eneco", score: "8.5", source: "Grote focus op NL Wind", strategy: "Investering in waterstof en warmte", color: "bg-green-400" },
-  { name: "Zonneplan", score: "6.5", source: "Marktgemiddelde", strategy: "Eerlijk grijs/groen stroometiket", color: "bg-yellow-500" },
+  { name: "Pure Energie", score: "10.0", source: "100% NL Wind & Zon", strategy: "9x groenste leverancier, eigen opwek >400M kWh", color: "bg-green-600" },
+  { name: "Vrijopnaam", score: "10.0", source: "100% NL Zon", strategy: "Eigen zonneparken in Nederland", color: "bg-green-600" },
+  { name: "Greenchoice", score: "9.5", source: "NL Wind & Zon", strategy: "Investeert in NL duurzame projecten", color: "bg-green-500" },
+  { name: "Vandebron", score: "9.5", source: "100% NL Wind/Zon", strategy: "Lokale bronnen, directe inkoop bij producenten", color: "bg-green-500" },
+  { name: "Eneco", score: "8.0", source: "Grote focus op NL Wind", strategy: "Investering in windparken en warmtenetten", color: "bg-green-400" },
 ];
 
 export default function DuurzaamheidPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-green-600 to-emerald-700 text-white py-16">
+      <section className="bg-gradient-to-br from-green-600 to-emerald-700 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4">
             EU Anti-Greenwashing Richtlijn 2026
           </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold">Groene Stroom & Duurzaamheid</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">Groene Stroom & Duurzaamheid</h1>
           <p className="mt-4 text-lg text-green-100 max-w-2xl">
             Niet alle groene stroom is gelijk. In 2026 maakt de EU een einde aan greenwashing en worden duurzaamheidsclaims streng gehandhaafd.
           </p>
@@ -37,7 +37,24 @@ export default function DuurzaamheidPage() {
       {/* Scores */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
         <h2 className="text-2xl font-bold text-text-main mb-2">Duurzaamheidsscores 2026</h2>
-        <p className="text-text-muted mb-6">Op basis van WISE/Consumentenbond onderzoek. Score van 1-10.</p>
+        <p className="text-text-muted mb-4">
+          Op basis van de{" "}
+          <a href="https://natuurenmilieu.nl/publicatie/stroomranking-hoe-duurzaam-is-jouw-stroom/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary-dark">
+            Stroomranking van Natuur &amp; Milieu
+          </a>
+          ,{" "}
+          <a href="https://www.consumentenbond.nl/energie-vergelijken/de-groenste-energieleverancier" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary-dark">
+            Consumentenbond
+          </a>
+          {" "}en{" "}
+          <a href="https://www.greenpeace.org/nl/acties/groene-stroom-ranglijst/" target="_blank" rel="noopener noreferrer" className="text-primary underline hover:text-primary-dark">
+            Greenpeace Groene Stroom Ranglijst
+          </a>
+          . Score van 1-10.
+        </p>
+        <div className="rounded-lg bg-amber-50 border border-amber-200 px-4 py-3 mb-6 text-sm text-amber-800">
+          <strong>Let op:</strong> Het gezamenlijke WISE/Consumentenbond/Natuur &amp; Milieu onderzoek is voor het laatst uitgevoerd in 2021. De scores hieronder zijn een indicatie op basis van de meest recente beschikbare bronnen.
+        </div>
         <div className="space-y-3">
           {providers.map((p) => (
             <div key={p.name} className="rounded-xl border border-border p-5 hover:shadow-md transition-shadow">
@@ -111,6 +128,182 @@ export default function DuurzaamheidPage() {
             </div>
             <h3 className="font-semibold text-text-main text-sm">Verbod compensatieclaims</h3>
             <p className="text-xs text-text-muted mt-1">&quot;CO2-neutraal via compensatie&quot; mag niet meer zonder bewijs van werkelijke reductie.</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Article 1: De GvO-check */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <div className="rounded-xl border-2 border-green-200 bg-white p-8">
+          <h2 className="text-2xl font-bold text-text-main mb-4">De GvO-check: Hoe groen is jouw stroom echt?</h2>
+
+          <div className="space-y-4 mb-6 text-text-main">
+            <p>
+              De Garantie van Oorsprong (GvO) is een digitaal certificaat dat leveranciers gebruiken om aan te tonen dat hun stroom uit hernieuwbare bronnen komt.
+              <strong> Eén GvO vertegenwoordigt één megawattuur (MWh) hernieuwbare energie.</strong> Dit systeem klinkt simpel, maar er schuilt een cruciaal verschil tussen stroom die echt in Nederland wordt opgewekt en stroom die "vergroend" wordt met goedkope buitenlandse certificaten.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">Het stroometiket als transparantiewapon</h3>
+            <p>
+              Alle leveranciers moeten op hun rekening een <strong>stroometiket</strong> tonen. Dit label toont je exact waar jouw stroom vandaan komt: welk percentage wind, zon, kolen, gas en kernenergie. Het stroometiket moet ook de milieuimpact aangeven. Maar hier zit 'm de kat in het nauw: het stroometiket verbergt ook waar de GvO's vandaan komen.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">ACM controleert met GvO en CvO</h3>
+            <p>
+              De Autoriteit Consument &amp; Markt (ACM) voert toezicht uit op de stroometiketgegevens door de GvO's (groene certificaten) en CvO's (grijze/fossiele certificaten) van leveranciers te verifiëren.
+              Als een leverancier beweert 100% groen te zijn, moet dit gedekt zijn door voldoende GvO's. Het probleem: <strong>veel GvO's komen van buiten Nederland</strong>, wat betekent dat er geen werkelijke investeringen in Nederlandse duurzame energie plaatsvinden.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">Het kwaliteitsvraagstuk: NL-opwek versus vergroende stroom</h3>
+            <p>
+              Sommige producten bieden "100% Nederlands geproduceerde stroom" – dit betekent dat de stroom echt in Nederland wordt opgewekt. Andere producten zijn "vergroend" met buitenlandse certificaten, vaak van waterkracht uit Noorwegen of wind uit andere Europese landen.
+              Dit hoeft niet slecht te zijn – buitenlandse hernieuwbare energie is nog steeds schoon – maar het draagt veel minder bij aan de Nederlandse energietransitie.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">Wat vonden onderzoekers?</h3>
+            <p>
+              Het onafhankelijke energieportaal <strong>Hier.nu</strong> (eerder Groene Stroom Checker van Consumentenbond) onderzocht leveranciers en vond duidelijke verschillen: producten met "100% NL-opwek" behalen beduidend betere scores dan producten die goedkoop internationale certificaten gebruiken.
+            </p>
+          </div>
+
+          <div className="rounded-lg bg-amber-50 border-l-4 border-amber-500 p-5 mb-6">
+            <h4 className="font-bold text-amber-900 mb-2">💡 Kennertip</h4>
+            <p className="text-sm text-amber-900">
+              Voor <strong>maximale Nederlandse impact</strong>: kies leveranciers die "100% NL-opwek" adverteren. Verifieer dit via het stroometiket op je rekening en controleer bij onafhankelijke checkers zoals Hier.nu of Consumentenbond. Vragen die je kunt stellen: "Hoeveel van deze GvO's komen uit Nederland?" en "Waar wordt de rest vandaan gehaald?"
+            </p>
+          </div>
+
+          <div className="text-xs text-text-muted space-y-1">
+            <p><strong>Bronnen:</strong></p>
+            <p>• verticer.eu – Garanties van Oorsprong systeem</p>
+            <p>• acm.nl – Toezicht stroometiket en certificaten</p>
+            <p>• hier.nu – Onafhankelijke stroometiket-checker</p>
+            <p>• consumentenbond.nl – Energieleverancier vergelijking</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Article 2: EU-regels tegen greenwashing */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <div className="rounded-xl border-2 border-emerald-200 bg-white p-8">
+          <h2 className="text-2xl font-bold text-text-main mb-4">EU-regels tegen greenwashing: Directive 2024/825</h2>
+
+          <div className="space-y-4 mb-6 text-text-main">
+            <p>
+              In maart 2026 trad één van de strengste Europese regelgeving tegen greenwashing in werking:
+              <strong> Directive (EU) 2024/825 – Empowering Consumers for Green Transition.</strong> Dit is geen vrijblijvende richtlijn, maar een juridisch bindend decreet dat alle EU-lidstaten moeten implementeren.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">Wat verbiedt deze richtlijn?</h3>
+            <p>
+              De richtlijn verbiedt <strong>generieke milieubeweringen zonder bewijs.</strong> Termen als "eco-vriendelijk", "groen", "klimaatvriendelijk" of "milieuvriendelijk" mogen voortaan niet meer gebruikt worden tenzij er een solide onderbouwing is.
+              Dit is een enorme slag voor bedrijven die vage groene beloften doen zonder daadwerkelijke acties.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">Duurzaamheidslabels en certificeringsvereisten</h3>
+            <p>
+              Duurzaamheidslabels – zoals je ze op veel producten en diensten ziet – mogen alleen gebruikt worden als ze:
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+              <li>Gebaseerd zijn op een erkend <strong>certificeringssysteem</strong> (bijvoorbeeld voor energie: ACM stroometiket, onafhankelijke duurzaamheidschema's), OF</li>
+              <li>Goedgekeurd zijn door een <strong>overheidsinstantie</strong> (niet zomaar een marketing afdeling)</li>
+            </ul>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">Timeline voor implementatie</h3>
+            <p>
+              <strong>27 maart 2026:</strong> Alle EU-lidstaten moeten deze richtlijn in hun nationale wet opnemen.<br />
+              <strong>27 september 2026:</strong> De richtlijn wordt volledig van toepassing. Bedrijven die vage claims blijven doen, riskeren juridische vervolgingen en boetes.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">Waarom is dit historisch?</h3>
+            <p>
+              Dit is de eerste keer dat de EU <strong>generieke duurzaamheidsclaims</strong> expliciet verbiedt en consumentenorganisaties wettelijke middelen geeft om tegen misleiding op te treden.
+              Voor de energiesector betekent dit: geen "100% groen" zonder stroometiket, geen "CO2-neutraal" zonder verificatie, geen "duurzaam" zonder certificering.
+            </p>
+          </div>
+
+          <div className="rounded-lg bg-green-50 border-l-4 border-green-500 p-5 mb-6">
+            <h4 className="font-bold text-green-900 mb-2">💡 Kennertip voor energiekenners</h4>
+            <p className="text-sm text-green-900">
+              Dit is een gouden moment voor sites als energiekenner.nl om zich te positioneren als "<strong>greenwashing-proof</strong>" informatieplatform.
+              Jullie kunnen leveranciers aanmoedigen om expliciet in termen van het stroometiket, GvO's en certificering te communiceren – niet in vage groene taal.
+              Dit geeft jullie een competitief voordeel tegenover vergelijksites die nog steeds sloppige claims doorlaten.
+            </p>
+          </div>
+
+          <div className="text-xs text-text-muted space-y-1">
+            <p><strong>Bron:</strong></p>
+            <p>• eur-lex.europa.eu – Directive (EU) 2024/825 volledige tekst</p>
+          </div>
+        </div>
+      </section>
+
+      {/* Article 3: Energiedelen en energiegemeenschappen */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <div className="rounded-xl border-2 border-teal-200 bg-white p-8">
+          <h2 className="text-2xl font-bold text-text-main mb-4">Energiedelen en energiegemeenschappen: Wat mag nu echt?</h2>
+
+          <div className="space-y-4 mb-6 text-text-main">
+            <p>
+              Sinds <strong>1 januari 2026</strong> is "energiedelen" – het direct doorverkopen van je overschot zonnestroom aan buren – in Nederland <strong>wettelijk mogelijk.</strong>
+              Dit lijkt een spelbreaker voor de energietransitie, maar de werkelijkheid is ingewikkelder dan de marketingtaal doet vermoeden.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">VEH: Vrienden van de Aarde en het Energiewet</h3>
+            <p>
+              De Energiewet definieerde voor het eerst twee nieuwe rollen:
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+              <li><strong>Actieve afnemers:</strong> Huishoudens en bedrijven die hun eigen energie opwekken en het overschot verkopen</li>
+              <li><strong>Energiegemeenschappen:</strong> Groepen burgers of lokale organisaties die collectief in duurzame energie investeren en delen</li>
+            </ul>
+            <p className="mt-3">
+              Onder bepaalde voorwaarden mogen actieve afnemers hun stroom <strong>zonder licentie doorverkopen</strong> aan buurtgenoten – mits aan strikte regels wordt voldaan.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">TNO bevestigt: Energiegemeenschappen zijn nu legaal</h3>
+            <p>
+              Onderzoeksinstituut TNO analyseerde het juridische kader en concludeerde dat buurtinitiatieven met zonnepanelen nu <strong>als energiegemeenschap kunnen worden erkend.</strong>
+              Dit opent mogelijkheden voor coöperatieve energieprojecten die voorheen in een juridische grijze zone opereerden.
+            </p>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">Waarschuwing van VNG: Het is niet zo simpel</h3>
+            <p>
+              De Vereniging van Nederlandse Gemeenten (VNG) waarschuwt echter voor valse verwachtingen. In hun analyse stelden zij vast dat <strong>"energiedelen" niet volledig in de wet staat verankerd</strong> en dat het verschilt van het EU Clean Energy Package-concept van peer-to-peer energiehandel.
+            </p>
+            <p className="mt-3">
+              Het probleem: terwijl de wet bepaalt <em>dat</em> je mag delen, is niet alles uitgewerkt over <em>hoe</em> dit praktisch moet werken:
+            </p>
+            <ul className="list-disc list-inside text-sm space-y-1 ml-2">
+              <li>Hoe meet je precies wie hoeveel verbruikt?</li>
+              <li>Wie verwerkt die data?</li>
+              <li>Wat zijn de contractverhoudingen?</li>
+              <li>Wie is aansprakelijk bij storingen?</li>
+              <li>Hoe regelen we belastingen en netbeheerder tarieven?</li>
+            </ul>
+
+            <h3 className="font-semibold text-text-main text-lg mt-5">De praktijk: Het kader bestaat, maar de uitvoering groeit nog</h3>
+            <p>
+              Energiedelen is dus wettelijk mogelijk, maar veel initiatieven werken nog met experimentele contracten en handmatige systemen.
+              Netbeheerders, belastingautoriteiten en energiebedrijven werken aan standaardisering, maar deze zijn nog niet allemaal klaar.
+            </p>
+          </div>
+
+          <div className="rounded-lg bg-amber-50 border-l-4 border-amber-500 p-5 mb-6">
+            <h4 className="font-bold text-amber-900 mb-2">💡 Kennertip</h4>
+            <p className="text-sm text-amber-900">
+              Communiceer <strong>eerlijk en nuanced:</strong> "Energiedelen kan nu wettig, maar wordt nog praktisch uitgewerkt."
+              Verwacht geen volledige peer-to-peer platforms morgen – er zijn nog veel organisatorische en technische hurdles.
+              Interessante partners: TNO, VNG, locale netbeheerders en energiebedrijven die aan de praktische kant werken.
+            </p>
+          </div>
+
+          <div className="text-xs text-text-muted space-y-1">
+            <p><strong>Bronnen:</strong></p>
+            <p>• eigenhuis.nl – Energiedelen en rechtskader</p>
+            <p>• wetten.overheid.nl – Energiewet en actieve afnemers</p>
+            <p>• tno.nl – Analyse energiegemeenschappen</p>
+            <p>• vng.nl – Waarschuwing implementatie energiedelen</p>
           </div>
         </div>
       </section>

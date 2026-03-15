@@ -28,14 +28,14 @@ export default async function DynamischPage() {
   return (
     <>
       {/* Hero */}
-      <section className="bg-gradient-to-br from-purple-600 to-indigo-700 text-white py-16">
+      <section className="bg-gradient-to-br from-purple-600 to-indigo-700 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 text-sm font-medium mb-4">
             <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
             Real-time marktprijzen
           </div>
-          <h1 className="text-3xl md:text-4xl font-extrabold">Dynamische energietarieven</h1>
-          <p className="mt-4 text-lg text-purple-100 max-w-2xl">
+          <h1 className="text-2xl sm:text-3xl md:text-4xl font-extrabold leading-tight">Dynamische energietarieven</h1>
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-purple-100 max-w-2xl">
             Betaal de echte marktprijs per uur voor stroom en per dag voor gas. Ideaal als je flexibel bent met verbruik.
           </p>
         </div>
@@ -58,7 +58,47 @@ export default async function DynamischPage() {
 
       {/* Table */}
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
-        <div className="overflow-x-auto rounded-xl border border-border shadow-sm">
+        {/* Mobile Card View */}
+        <div className="md:hidden space-y-3">
+          {providers.map((p) => (
+            <div key={p.id} className="rounded-xl border border-border bg-white p-4">
+              <div className="flex items-center gap-3 mb-3">
+                <div className="w-10 h-10 rounded-lg bg-purple-100 flex items-center justify-center text-xs font-bold text-purple-600 border border-purple-200">
+                  {p.name.substring(0, 2).toUpperCase()}
+                </div>
+                <span className="font-semibold text-text-main">{p.name}</span>
+                {p.green_energy && (
+                  <span className="inline-flex items-center justify-center w-5 h-5 rounded-full bg-green-100">
+                    <svg className="w-3 h-3 text-green-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+                    </svg>
+                  </span>
+                )}
+              </div>
+              <div className="grid grid-cols-2 gap-3">
+                <div>
+                  <p className="text-xs text-text-muted">Vast stroom/mnd</p>
+                  <p className="text-sm font-mono font-medium">€ {p.fixed_cost_electricity.toFixed(2).replace(".", ",")}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-text-muted">Vast gas/mnd</p>
+                  <p className="text-sm font-mono font-medium">€ {p.fixed_cost_gas.toFixed(2).replace(".", ",")}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-text-muted">Opslag stroom/kWh</p>
+                  <p className="text-sm font-mono font-medium">€ {p.purchase_fee_electricity.toFixed(4).replace(".", ",")}</p>
+                </div>
+                <div>
+                  <p className="text-xs text-text-muted">Opslag gas/m³</p>
+                  <p className="text-sm font-mono font-medium">€ {p.purchase_fee_gas.toFixed(4).replace(".", ",")}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+
+        {/* Desktop Table View */}
+        <div className="hidden md:block overflow-x-auto rounded-xl border border-border shadow-sm">
           <table className="w-full text-sm">
             <thead>
               <tr className="bg-surface-alt">
@@ -81,10 +121,10 @@ export default async function DynamischPage() {
                       <span className="font-semibold text-text-main">{p.name}</span>
                     </div>
                   </td>
-                  <td className="text-right px-4 py-4 font-mono">€ {p.fixed_cost_electricity.toFixed(2)}</td>
-                  <td className="text-right px-4 py-4 font-mono">€ {p.fixed_cost_gas.toFixed(2)}</td>
-                  <td className="text-right px-4 py-4 font-mono">€ {p.purchase_fee_electricity.toFixed(4)}</td>
-                  <td className="text-right px-4 py-4 font-mono">€ {p.purchase_fee_gas.toFixed(4)}</td>
+                  <td className="text-right px-4 py-4 font-mono">€ {p.fixed_cost_electricity.toFixed(2).replace(".", ",")}</td>
+                  <td className="text-right px-4 py-4 font-mono">€ {p.fixed_cost_gas.toFixed(2).replace(".", ",")}</td>
+                  <td className="text-right px-4 py-4 font-mono">€ {p.purchase_fee_electricity.toFixed(4).replace(".", ",")}</td>
+                  <td className="text-right px-4 py-4 font-mono">€ {p.purchase_fee_gas.toFixed(4).replace(".", ",")}</td>
                   <td className="text-center px-4 py-4">
                     {p.green_energy ? (
                       <span className="inline-flex items-center justify-center w-7 h-7 rounded-full bg-green-100">

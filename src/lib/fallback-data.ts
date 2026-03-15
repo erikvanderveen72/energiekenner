@@ -19,6 +19,7 @@ export const fallbackProviders: EnergyProvider[] = [
   { id: '12', name: 'UnitedConsumers', logo_url: null, kwh_rate: 0.2890, gas_rate: 1.4100, welcome_bonus: 60, welcome_bonus_3yr: 120, contract_type: 'vast_1jaar', green_energy: false, estimated_monthly: 183.50, feed_in_cost_kwh: null, feed_in_compensation: null, updated_at: '2026-03-15' },
   { id: '13', name: 'Budget Energie', logo_url: null, kwh_rate: 0.2900, gas_rate: 1.4050, welcome_bonus: 370, welcome_bonus_3yr: 570, contract_type: 'vast_1jaar', green_energy: false, estimated_monthly: 185.00, feed_in_cost_kwh: 0.109, feed_in_compensation: 0.010, updated_at: '2026-03-15' },
   { id: '14', name: 'Mega', logo_url: null, kwh_rate: 0.3180, gas_rate: 1.6540, welcome_bonus: 688, welcome_bonus_3yr: 592, contract_type: 'vast_1jaar', green_energy: false, estimated_monthly: 195.00, feed_in_cost_kwh: null, feed_in_compensation: null, updated_at: '2026-03-15' },
+  { id: '15', name: 'Vrijopnaam', logo_url: null, kwh_rate: 0.2442, gas_rate: 1.2486, welcome_bonus: 0, welcome_bonus_3yr: 0, contract_type: 'vast_1jaar', green_energy: false, estimated_monthly: 168.00, feed_in_cost_kwh: null, feed_in_compensation: null, updated_at: '2026-03-15' },
 ];
 
 export const fallbackDynamicProviders: DynamicProvider[] = [

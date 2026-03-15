@@ -13,20 +13,24 @@ const inter = Inter({
 
 export const metadata: Metadata = {
   title: {
-    default: "Energiekenner.nl | Vergelijk Energieleveranciers 2026",
+    default: "Energie Vergelijken 2026 | Bespaar tot €450 | Energiekenner.nl",
     template: "%s | Energiekenner.nl",
   },
   description:
-    "Vergelijk alle energieleveranciers in Nederland. Actuele tarieven maart 2026 voor stroom en gas. Vaste, variabele en dynamische contracten.",
+    "Energie vergelijken? Vergelijk alle energieleveranciers in Nederland op actuele tarieven (maart 2026). Stroom, gas, vast & dynamisch. Onafhankelijk en gratis.",
   keywords: [
-    "energievergelijker",
     "energie vergelijken",
+    "energievergelijker",
+    "energie vergelijken 2026",
     "stroom vergelijken",
     "gas vergelijken",
-    "energietarieven 2026",
+    "energieleveranciers vergelijken",
     "goedkoopste energie",
+    "energietarieven 2026",
+    "stroom en gas vergelijken",
     "energiekenner",
-    "thuisbatterij",
+    "overstappen energie",
+    "energiecontract vergelijken",
     "dynamische energie",
     "zonnepanelen",
   ],
@@ -40,17 +44,17 @@ export const metadata: Metadata = {
   manifest: "/site.webmanifest",
   metadataBase: new URL("https://energiekenner.nl"),
   openGraph: {
-    title: "Energiekenner.nl | Vergelijk & Bespaar op Energie",
+    title: "Energie Vergelijken 2026 | Bespaar tot €450 | Energiekenner.nl",
     description:
-      "Vergelijk alle energieleveranciers en bespaar tot €450 op je energierekening.",
+      "Energie vergelijken was nog nooit zo makkelijk. Vergelijk alle energieleveranciers op actuele tarieven en bespaar tot €450 per jaar.",
     type: "website",
     locale: "nl_NL",
-    siteName: "Energiekenner",
+    siteName: "Energiekenner.nl",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Energiekenner.nl | Vergelijk Energieleveranciers 2026",
-    description: "Bespaar tot €450 op je energierekening. Vergelijk alle leveranciers.",
+    title: "Energie Vergelijken 2026 — Onafhankelijk & Gratis | Energiekenner.nl",
+    description: "Vergelijk alle energieleveranciers op actuele tarieven. Bespaar tot €450 per jaar op stroom en gas.",
   },
   alternates: {
     canonical: "https://energiekenner.nl",

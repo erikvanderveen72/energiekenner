@@ -9,9 +9,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/dynamisch`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/zonnepanelen`, lastModified: now, changeFrequency: "weekly", priority: 0.9 },
     { url: `${baseUrl}/thuisbatterij`, lastModified: now, changeFrequency: "weekly", priority: 0.8 },
+    { url: `${baseUrl}/warmtepompen`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/slimme-technologie`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/energiewet`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/duurzaamheid`, lastModified: now, changeFrequency: "weekly", priority: 0.7 },
     { url: `${baseUrl}/tips`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
+    { url: `${baseUrl}/energievergelijkers`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/netbeheer`, lastModified: now, changeFrequency: "monthly", priority: 0.6 },
   ];
 }

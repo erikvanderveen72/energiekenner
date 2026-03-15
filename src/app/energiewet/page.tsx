@@ -86,13 +86,13 @@ const colorMap: Record<string, { bg: string; text: string; iconBg: string }> = {
 export default function EnergiewetPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white py-16">
+      <section className="bg-gradient-to-br from-indigo-600 to-purple-700 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/15 backdrop-blur-sm text-sm font-medium mb-4">
             Sinds 1 januari 2026
           </div>
-          <h1 className="text-3xl md:text-5xl font-extrabold">Energiewet 2026</h1>
-          <p className="mt-4 text-lg text-indigo-100 max-w-2xl">
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">Energiewet 2026</h1>
+          <p className="mt-3 sm:mt-4 text-base sm:text-lg text-indigo-100 max-w-2xl">
             De nieuwe Energiewet geeft je als consument meer macht, bescherming en transparantie. Dit zijn je rechten.
           </p>
         </div>
@@ -149,6 +149,131 @@ export default function EnergiewetPage() {
             </p>
           </div>
         </div>
+      </section>
+
+      {/* Knowledge Base Article 1: Energiewet basis */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl font-bold text-text-main mb-4">Energiewet basis: alles op nieuw</h2>
+          <div className="prose prose-sm max-w-none text-text-muted space-y-4">
+            <p>
+              Op 1 januari 2026 is de Energiewet in werking getreden. Deze vervangt twee oude wetten: de Elektriciteitswet uit 1998 en de Gaswet. Dit is niet zomaar een update — het is een compleet heruitgevonden regelkader voor de energiemarkt van de 21e eeuw.
+            </p>
+            <p>
+              De grootste conceptuele verandering is de introductie van de "actieve afnemer" (active consumer). Dit ben jij als je niet alleen energie verbruikt, maar ook produceert (bijvoorbeeld via zonnepanelen), opslaat (batterij), of deelt met anderen. De Energiewet erkent dat consumenten niet langer passief zijn.
+            </p>
+            <p>
+              Een belangrijk detail voor zonnepaneel-eigenaren: je mag nu onder bepaalde voorwaarden zelf stroom verkopen zonder leveringsvergunning. Dit geldt voor kleine verbindingen (tot een bepaalde capaciteit). De Energiewet stelt veel soepeler regels dan haar voorgangers.
+            </p>
+          </div>
+          <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
+            <p className="font-semibold text-amber-900 mb-2">Kennertip</p>
+            <p className="text-sm text-amber-800">
+              Denk aan de Energiewet als je "grondwet" voor slim energiebeheer. Ze geeft jou meer speelruimte dan ooit. Bijzonder nuttig als je zonnepanelen hebt of van plan bent die aan te schaffen.
+            </p>
+          </div>
+          <p className="text-xs text-text-muted mt-4">Bron: Energiewet 2026, Kamer van Koophandel</p>
+        </article>
+      </section>
+
+      {/* Knowledge Base Article 2: Opzegtermijn 5 werkdagen */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl font-bold text-text-main mb-4">Opzegtermijn 5 werkdagen: flits overstappen</h2>
+          <div className="prose prose-sm max-w-none text-text-muted space-y-4">
+            <p>
+              De opzegtermijn voor energiecontracten is in 2026 drastisch ingekort. Waar je vroeger 30 dagen moest wachten, is het nu slechts 5 werkdagen. Dit is een gamechanger voor consumenten die actief willen profiteren van prijsdalingen.
+            </p>
+            <p>
+              Dit betekent dat je veel sneller kunt reageren op marktveranderingen. Zakt de stroomprijs plots? Dan kun je nu snel switchen naar een goedkoper contract. Geen maandenlange verplichting meer aan een dure deal.
+            </p>
+            <p>
+              Een belangrijk onderscheid: opzegtermijn is niet hetzelfde als opzegvergoeding. Je mag sneller opzeggen (5 werkdagen), maar als je een vast contract hebt afgesloten, kan de leverancier nog steeds een vergoeding vragen als je voortijdig stopt. Lees je contract goed — modelcontracten moeten dit transparant vermelden.
+            </p>
+          </div>
+          <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
+            <p className="font-semibold text-amber-900 mb-2">Kennertip</p>
+            <p className="text-sm text-amber-800">
+              Maak van "5 werkdagen" onderdeel van je routinecheck. Controleer eens per maand of er goedkopere aanbiedingen zijn. Met korte opzegperiodes loont het nu echt om actief te blijven.
+            </p>
+          </div>
+          <p className="text-xs text-text-muted mt-4">Bron: ACM Energiewet 2026, consumentengids</p>
+        </article>
+      </section>
+
+      {/* Knowledge Base Article 3: Modelcontracten 2026 */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl font-bold text-text-main mb-4">Modelcontracten 2026: eindelijk transparantie</h2>
+          <div className="prose prose-sm max-w-none text-text-muted space-y-4">
+            <p>
+              De Autoriteit Consument & Markt (ACM) heeft voor 2026 nieuwe standaardcontracten vastgesteld. Elke grote leverancier moet minstens twee contracttypen aanbieden: een vast contract (fixed term) en een contract voor onbepaalde duur (indefinite).
+            </p>
+            <p>
+              Het grote voordeel: deze modelcontracten zijn gestandaardiseerd en vergelijkbaar. Je kunt ze echt naast elkaar leggen zonder in de fijne print verdwaald te raken. Geen verborgen termen meer in onleesbare bijlagen.
+            </p>
+            <p>
+              Voor zonnepaneel-eigenaren is er een specifiek verscherpte regel: de terugleverkosten (wat je krijgt als je stroom teruggeeft) moeten nu expliciet per kWh worden vermeld. Niet verstopt in een vastrecht of verdeeld over onbegrijpelijke componenten. Dit maakt vergelijken veel eerlijker.
+            </p>
+          </div>
+          <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
+            <p className="font-semibold text-amber-900 mb-2">Kennertip</p>
+            <p className="text-sm text-amber-800">
+              Gebruik modelcontracten als je benchmark. Als een leverancier iets aanpast of afwijkt, weet je precies wat anders is. Dit geeft je macht in onderhandelingen.
+            </p>
+          </div>
+          <p className="text-xs text-text-muted mt-4">Bron: ACM Modelcontracten 2026</p>
+        </article>
+      </section>
+
+      {/* Knowledge Base Article 4: Welkomstbonussen */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl font-bold text-text-main mb-4">Welkomstbonussen: alleen geld, geen gadgets</h2>
+          <div className="prose prose-sm max-w-none text-text-muted space-y-4">
+            <p>
+              Jaren lang konden leveranciers consumenten lokken met allerlei voordelen: gratis tablets, cadeaubonnen, kerstpakketten. Sinds 2026 mag dat niet meer. Welkomstbonussen mogen uitsluitend in contanten (of creditering op je rekening) worden gegeven.
+            </p>
+            <p>
+              Dit is geen toeval. De regelgever wil voorkomen dat bonussen verwarrend werken. Een tablet kost de leverancier minder dan je zou denken, maar jij ervaart het als veel meer waard. Contanten zijn helder: je ziet precies wat je krijgt.
+            </p>
+            <p>
+              Hoeveel mogen leveranciers je eigenlijk geven? De Consumentenbond heeft geconstateerd dat bonussen tot €688 voorkomen. Maar bedenk: een bonus van €500 is aardig, maar betekent niets als je jaarlijks €600 meer betaalt dan bij een concurrent.
+            </p>
+          </div>
+          <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
+            <p className="font-semibold text-amber-900 mb-2">Kennertip</p>
+            <p className="text-sm text-amber-800">
+              Focus altijd op de totale jaarlijkse kosten, niet op de welkomstbonus. De bonus is icing op de cake — het contract zelf moet goed zijn.
+            </p>
+          </div>
+          <p className="text-xs text-text-muted mt-4">Bron: Consumentenbond, ACM richtlijnen 2026</p>
+        </article>
+      </section>
+
+      {/* Knowledge Base Article 5: Bescherming bij faillissement */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <article className="rounded-xl border border-border p-8 bg-white">
+          <h2 className="text-2xl font-bold text-text-main mb-4">Bescherming bij faillissement: je raakt nooit zonder stroom</h2>
+          <div className="prose prose-sm max-w-none text-text-muted space-y-4">
+            <p>
+              Een van de zwaarwegendste beschermingen van de Energiewet: als je leverancier failliet gaat, gebeurt het volgende automatisch. Je wordt binnen 20 werkdagen overgezet naar een nieuwe leverancier. Geen onderbreking, geen gedoe.
+            </p>
+            <p>
+              Let op: gedurende de overstap (de "vensterperiode") kun je zelf niet switchen naar een ander bedrijf. Je zit even vast bij de noodfornuitswijzer. Dit is een bescherming — het zorgt voor stabiliteit en voorkoomt chaos op de markt. Meestal duurt dit niet meer dan 20 dagen.
+            </p>
+            <p>
+              Een praktisch detail: je oude contractvoorwaarden gelden vaak nog even door totdat het contract officieel overgezet is. Zorg dat je je meterstand noteert voordat de overgang plaatsvindt. Dit voorkomt latere disputen over verbruik.
+            </p>
+          </div>
+          <div className="mt-6 p-4 bg-amber-50 border-l-4 border-amber-400 rounded">
+            <p className="font-semibold text-amber-900 mb-2">Kennertip</p>
+            <p className="text-sm text-amber-800">
+              Noteer je meterstand als je hoort dat je leverancier in problemen zit. Dit is belangrijk voor afstemming tussen de oude en nieuwe leverancier. Je hebt rechtszekerheid.
+            </p>
+          </div>
+          <p className="text-xs text-text-muted mt-4">Bron: Energiewet 2026, artikel faillissementsbescherming</p>
+        </article>
       </section>
 
       {/* CTA */}

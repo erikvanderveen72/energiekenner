@@ -99,7 +99,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
   const cheapest = results[0]?.monthly ?? 0;
   const mostExpensive = results[results.length - 1]?.monthly ?? 0;
   const maxBar = mostExpensive > 0 ? mostExpensive : 1;
-  const yearSaving = ((mostExpensive - cheapest) * 12).toFixed(0);
+  const yearSaving = ((mostExpensive - cheapest) * 12).toFixed(0).replace(".", ",");
 
   return (
     <div>
@@ -288,7 +288,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
         <div className="sm:text-right">
           <p className="text-green-100 text-xs sm:text-sm">Goedkoopst voor jouw verbruik</p>
           <p className="text-xl sm:text-2xl font-bold">{results[0]?.name}</p>
-          <p className="text-green-100 text-xs sm:text-sm">&euro; {results[0]?.monthly.toFixed(2)}/mnd</p>
+          <p className="text-green-100 text-xs sm:text-sm">&euro; {results[0]?.monthly.toFixed(2).replace(".", ",")}/mnd</p>
         </div>
       </div>
 
@@ -326,7 +326,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
           {results.map((provider, idx) => {
             const barWidth = maxBar > 0 ? Math.max((provider.monthly / maxBar) * 100, 10) : 10;
             const isCheapest = idx === 0;
-            const saving = ((provider.monthly - cheapest) * 12).toFixed(0);
+            const saving = ((provider.monthly - cheapest) * 12).toFixed(0).replace(".", ",");
 
             return (
               <div
@@ -351,7 +351,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
                   </div>
                   <div className="text-right">
                     <span className={`text-base font-bold ${isCheapest ? "text-green-600" : "text-text-main"}`}>
-                      &euro; {provider.monthly.toFixed(2)}
+                      &euro; {provider.monthly.toFixed(2).replace(".", ",")}
                     </span>
                     <span className="text-xs text-text-muted">/mnd</span>
                   </div>
@@ -369,7 +369,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
                 </div>
                 <div className="flex justify-between items-center mt-1.5">
                   {hasSolar && provider.feedInCost > 0 ? (
-                    <span className="text-[10px] text-yellow-600">teruglevering: &euro;{provider.feedInCost.toFixed(3)}/kWh</span>
+                    <span className="text-[10px] text-yellow-600">teruglevering: &euro;{provider.feedInCost.toFixed(3).replace(".", ",")}/kWh</span>
                   ) : <span />}
                   {isCheapest ? (
                     <span className="text-[10px] font-bold text-green-600">Goedkoopst</span>
@@ -387,7 +387,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
           {results.map((provider, idx) => {
             const barWidth = maxBar > 0 ? Math.max((provider.monthly / maxBar) * 100, 5) : 5;
             const isCheapest = idx === 0;
-            const saving = ((provider.monthly - cheapest) * 12).toFixed(0);
+            const saving = ((provider.monthly - cheapest) * 12).toFixed(0).replace(".", ",");
 
             return (
               <div key={provider.name} className="group">
@@ -416,7 +416,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
                       )}
                     </div>
                     {hasSolar && provider.feedInCost > 0 && (
-                      <span className="text-[10px] text-yellow-600">teruglevering: &euro;{provider.feedInCost.toFixed(3)}/kWh</span>
+                      <span className="text-[10px] text-yellow-600">teruglevering: &euro;{provider.feedInCost.toFixed(3).replace(".", ",")}/kWh</span>
                     )}
                   </div>
 
@@ -433,7 +433,7 @@ export function Calculator({ providers: rawProviders }: CalculatorProps) {
                         }}
                       >
                         <span className="text-white text-xs font-bold whitespace-nowrap">
-                          &euro; {provider.monthly.toFixed(2)}
+                          &euro; {provider.monthly.toFixed(2).replace(".", ",")}
                         </span>
                       </div>
                     </div>

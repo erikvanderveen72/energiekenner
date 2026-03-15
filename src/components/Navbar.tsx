@@ -12,6 +12,8 @@ export function Navbar() {
     { href: "/dynamisch", label: "Dynamisch" },
     { href: "/zonnepanelen", label: "Zonnepanelen" },
     { href: "/thuisbatterij", label: "Batterij & V2G" },
+    { href: "/warmtepompen", label: "Warmtepompen" },
+    { href: "/slimme-technologie", label: "Slim Sturen" },
     { href: "/energiewet", label: "Energiewet" },
     { href: "/duurzaamheid", label: "Groen" },
     { href: "/calculator", label: "Calculator" },
@@ -20,7 +22,7 @@ export function Navbar() {
   ];
 
   return (
-    <nav className="sticky top-0 z-50 bg-white/80 backdrop-blur-lg border-b border-border">
+    <nav className="sticky top-0 z-50 bg-white/90 backdrop-blur-xl border-b border-stone-200/60">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
@@ -46,12 +48,12 @@ export function Navbar() {
 
           {/* CTA */}
           <div className="hidden md:block">
-            <a
-              href="#vergelijk"
+            <Link
+              href="/#vergelijk"
               className="inline-flex items-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary-dark transition-colors shadow-sm"
             >
               Direct vergelijken
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
@@ -99,13 +101,13 @@ export function Navbar() {
                 {link.label}
               </Link>
             ))}
-            <a
-              href="#vergelijk"
+            <Link
+              href="/#vergelijk"
               className="block mt-2 text-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-semibold"
               onClick={() => setMobileOpen(false)}
             >
               Direct vergelijken
-            </a>
+            </Link>
           </div>
         </div>
       )}

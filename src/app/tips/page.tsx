@@ -91,9 +91,9 @@ const categoryColors: Record<string, string> = {
 export default function TipsPage() {
   return (
     <>
-      <section className="bg-gradient-to-br from-teal-500 to-emerald-600 text-white py-16">
+      <section className="bg-gradient-to-br from-teal-500 to-emerald-600 text-white py-12 sm:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h1 className="text-3xl md:text-5xl font-extrabold">Bespaartips 2026</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-5xl font-extrabold leading-tight">Bespaartips 2026</h1>
           <p className="mt-4 text-lg text-teal-100 max-w-2xl">
             Van quick wins tot slimme technologie. Bespaar honderden euro&apos;s op je energierekening met bewezen methodes.
           </p>
@@ -157,6 +157,144 @@ export default function TipsPage() {
             <div className="bg-white rounded-lg p-4 border border-teal-200">
               <p className="text-2xl font-bold text-teal-600">0% rente</p>
               <p className="text-xs text-text-muted mt-1">Lening via Nationaal Warmtefonds (inkomen tot €60k)</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Article 1: Groningen subsidies in detail */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <div className="rounded-xl border border-teal-300 bg-white p-8">
+          <h2 className="text-2xl font-bold text-text-main mb-4">Groningen subsidies: Alles wat je wilt weten</h2>
+
+          <div className="space-y-6">
+            {/* SNN Subsidie Verduurzaming */}
+            <div className="border-l-4 border-emerald-500 pl-6">
+              <h3 className="text-lg font-semibold text-text-main mb-2">SNN Subsidie Verduurzaming Groningen (NCG)</h3>
+              <div className="bg-emerald-50 rounded-lg p-4 mb-3">
+                <p className="text-3xl font-bold text-emerald-600">€ 7.000</p>
+                <p className="text-sm text-emerald-900 mt-1">Voor woningeigenaren in het NCG versterkingsprogramma met oude energielabel</p>
+              </div>
+              <p className="text-sm text-text-muted mb-3">
+                Deze subsidie ondersteunt verbetering van zonnepanelen, isolatie, HR++ glas en vergelijkbare duurzaamheidsmaatregelen.
+              </p>
+            </div>
+
+            {/* SNN Subsidie Verduurzaming en Verbetering */}
+            <div className="border-l-4 border-teal-500 pl-6">
+              <h3 className="text-lg font-semibold text-text-main mb-2">SNN Subsidie Verduurzaming en Verbetering</h3>
+              <div className="bg-teal-50 rounded-lg p-4 mb-3">
+                <p className="text-3xl font-bold text-teal-600">€ 17.000</p>
+                <p className="text-sm text-teal-900 mt-1">Voor gelijktijdige verbetering én duurzaamheidsinvestering</p>
+              </div>
+              <p className="text-sm text-text-muted">
+                <strong className="text-text-main">Let op:</strong> Dit kost echter een lange wachttijd voor beoordeling of herbeoordeling van je woning. Plan je aanvraag ruim van tevoren in.
+              </p>
+            </div>
+
+            {/* Deadline */}
+            <div className="bg-amber-50 border border-amber-300 rounded-lg p-4">
+              <h4 className="font-semibold text-amber-900 mb-2">Deadline: 31 mei 2026, 23:59</h4>
+              <p className="text-sm text-amber-800">
+                Beide subsidies delen dezelfde subsidiepot. Aanvragen zijn mogelijk tot 31 mei 2026. Plan je aanvraag op tijd in.
+              </p>
+            </div>
+
+            {/* Waardevermeerderingsregeling */}
+            <div className="border-l-4 border-orange-500 pl-6">
+              <h3 className="text-lg font-semibold text-text-main mb-2">Waardevermeerderingsregeling (bevingsschade)</h3>
+              <div className="bg-orange-50 rounded-lg p-4 mb-3">
+                <p className="text-2xl font-bold text-orange-600">Max € 4.000</p>
+                <p className="text-sm text-orange-900 mt-1">Minimum €1.000 erkende schadevergoeding</p>
+              </div>
+              <p className="text-sm text-text-muted">
+                Dit is de laatste opening voor deze subsidie. Heb je bevingsschade? Dit kan significant bijdragen aan renovatiekosten.
+              </p>
+            </div>
+
+            {/* Kennertip */}
+            <div className="bg-gradient-to-r from-teal-50 to-emerald-50 border-2 border-teal-400 rounded-lg p-5">
+              <h4 className="font-semibold text-teal-900 mb-2 flex items-center gap-2">
+                <span className="text-xl">💡</span> Kennertip
+              </h4>
+              <p className="text-sm text-text-muted">
+                Wacht niet op "perfecte zekerheid" als je aan de voorwaarden voldoet. Begin nu al met het verzamelen van bewijsmateriaal en het plannen van maatregelen. De bureaucratie kan langzaam gaan, maar jouw aanvraag hoeft niet tot het laatste moment te wachten.
+              </p>
+            </div>
+
+            {/* Sources */}
+            <div className="text-xs text-text-muted space-y-1">
+              <p><strong>Bronnen:</strong> snn.nl, rijksoverheid.nl</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Article 2: Quick wins - onderbouwd */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12">
+        <div className="rounded-xl border border-teal-300 bg-white p-8">
+          <h2 className="text-2xl font-bold text-text-main mb-4">Quick wins in huis: Onderbouwde besparingen</h2>
+
+          <div className="space-y-6">
+            {/* Douchegedrag */}
+            <div className="border-l-4 border-blue-500 pl-6">
+              <h3 className="text-lg font-semibold text-text-main mb-2">Korter douchen: Van 7 naar 5 minuten</h3>
+              <div className="bg-blue-50 rounded-lg p-4 mb-3">
+                <p className="text-3xl font-bold text-blue-600">€ 36/jaar</p>
+                <p className="text-sm text-blue-900 mt-1">Per persoon, bij reductie van 7,4 naar 5 minuten duschen</p>
+              </div>
+              <p className="text-sm text-text-muted">
+                Milieu Centraal adviseert een maximale douchetijd van 5 minuten. Veel huishoudens douchen langer dan nodig. Deze kleine verandering bespaart zowel gas (warm water) als water.
+              </p>
+            </div>
+
+            {/* Wassen eco-mode */}
+            <div className="border-l-4 border-green-500 pl-6">
+              <h3 className="text-lg font-semibold text-text-main mb-2">Wasmachine: Eco-programma gebruiken</h3>
+              <div className="bg-green-50 rounded-lg p-4 mb-3">
+                <p className="text-3xl font-bold text-green-600">25% besparing</p>
+                <p className="text-sm text-green-900 mt-1">Eco-programma vs. normaal katoen bij gelijke temperatuur</p>
+              </div>
+              <p className="text-sm text-text-muted mb-3">
+                Het eco-programma gebruikt minder energie en water bij dezelfde reinigingskracht. Het duurt langer, maar je verbruikt aanzienlijk minder stroom en water.
+              </p>
+            </div>
+
+            {/* Verwarming */}
+            <div className="border-l-4 border-orange-500 pl-6">
+              <h3 className="text-lg font-semibold text-text-main mb-2">CV-ketel temperatuur: De kunst van het laag zetten</h3>
+              <div className="bg-orange-50 rounded-lg p-4 mb-3">
+                <p className="text-sm text-orange-900 font-semibold">Standaard: 80°C → Advies: 50-70°C</p>
+              </div>
+              <p className="text-sm text-text-muted mb-3">
+                Natuur & Milieu adviseert om je CV-ketel aanvoertemperatuur naar 70°C, 60°C, of zelfs 50°C te verlagen. Dit is veel lager dan de fabrieksinstelling en bespaart tot <strong>€100 per jaar</strong> zonder verlies van comfort.
+              </p>
+              <p className="text-xs text-text-muted italic">
+                Tip: Veel ketelinstallateurs stellen nog altijd in op 80°C uit gewoonte. Vraag expliciet om lager in te stellen.
+              </p>
+            </div>
+
+            {/* Kennertip */}
+            <div className="bg-gradient-to-r from-teal-50 to-emerald-50 border-2 border-teal-400 rounded-lg p-5">
+              <h4 className="font-semibold text-teal-900 mb-2 flex items-center gap-2">
+                <span className="text-xl">💡</span> Kennertip: Meetweek strategie
+              </h4>
+              <p className="text-sm text-text-muted mb-3">
+                Kies één week per maand als "meetweek":
+              </p>
+              <ul className="text-sm text-text-muted space-y-1 ml-4">
+                <li>• Noteer je douchetijden</li>
+                <li>• Zet altijd het eco-programma aan</li>
+                <li>• Check je P1-data om het verschil te zien</li>
+              </ul>
+              <p className="text-sm text-text-muted mt-3">
+                Dit geeft je concrete feedback en houdt je accountable. Over het hele jaar voelt dit aan als kleine stappen, maar de besparing loopt op.
+              </p>
+            </div>
+
+            {/* Sources */}
+            <div className="text-xs text-text-muted space-y-1">
+              <p><strong>Bronnen:</strong> milieucentraal.nl, natuurenmilieu.nl</p>
             </div>
           </div>
         </div>
