@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useState } from "react";
 
 export function Navbar() {
@@ -8,8 +9,12 @@ export function Navbar() {
 
   const links = [
     { href: "/", label: "Vergelijker" },
-    { href: "/dynamisch", label: "Dynamische tarieven" },
+    { href: "/dynamisch", label: "Dynamisch" },
     { href: "/zonnepanelen", label: "Zonnepanelen" },
+    { href: "/thuisbatterij", label: "Batterij & V2G" },
+    { href: "/energiewet", label: "Energiewet" },
+    { href: "/duurzaamheid", label: "Groen" },
+    { href: "/tips", label: "Tips" },
     { href: "/netbeheer", label: "Netbeheer" },
   ];
 
@@ -19,23 +24,9 @@ export function Navbar() {
         <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded-lg bg-primary flex items-center justify-center">
-              <svg
-                className="w-5 h-5 text-white"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
-                strokeWidth={2}
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M13 10V3L4 14h7v7l9-11h-7z"
-                />
-              </svg>
-            </div>
+            <Image src="/favicon.svg" alt="Energiekenner logo" width={32} height={32} className="rounded-lg" />
             <span className="font-bold text-lg text-text-main">
-              Energievergelijker
+              Energie<span className="text-primary">kenner</span>
             </span>
           </Link>
 
