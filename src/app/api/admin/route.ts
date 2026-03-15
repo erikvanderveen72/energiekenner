@@ -1,17 +1,16 @@
 import { createClient } from "@supabase/supabase-js";
 import { NextRequest, NextResponse } from "next/server";
+import {
+  ADMIN_PASSWORD,
+  SUPABASE_SERVICE_ROLE_KEY,
+  SUPABASE_URL,
+} from "@/lib/server-config";
 
 // Admin API - gebruikt de service_role key voor schrijftoegang
 // BELANGRIJK: service_role key NOOIT in de browser exposen
-const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD || "energiekenner2026";
 
 function getServiceClient() {
-  const url = process.env.NEXT_PUBLIC_SUPABASE_URL!;
-  const serviceKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
-  if (!serviceKey) {
-    throw new Error("SUPABASE_SERVICE_ROLE_KEY niet geconfigureerd");
-  }
-  return createClient(url, serviceKey);
+  return createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 }
 
 function checkAuth(request: NextRequest): boolean {
@@ -21,16 +20,6 @@ function checkAuth(request: NextRequest): boolean {
 
 // GET: Haal alle providers op
 export async function GET(request: NextRequest) {
-  // Debug: check welke env vars beschikbaar zijn
-  if (request.nextUrl.searchParams.get("debug") === "env") {
-    return NextResponse.json({
-      hasAdminPassword: !!process.env.ADMIN_PASSWORD,
-      hasServiceKey: !!process.env.SUPABASE_SERVICE_ROLE_KEY,
-      hasSupabaseUrl: !!process.env.NEXT_PUBLIC_SUPABASE_URL,
-      adminPasswordLength: (process.env.ADMIN_PASSWORD || "").length,
-    });
-  }
-
   if (!checkAuth(request)) {
     return NextResponse.json({ error: "Ongeautoriseerd" }, { status: 401 });
   }
