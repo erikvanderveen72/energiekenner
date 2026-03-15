@@ -31,6 +31,7 @@ export function Footer() {
               <li><Link href="/warmtepompen" className="text-gray-300 hover:text-white transition-colors">Warmtepompen</Link></li>
               <li><Link href="/slimme-technologie" className="text-gray-300 hover:text-white transition-colors">Slim Sturen</Link></li>
               <li><Link href="/salderen" className="text-gray-300 hover:text-white transition-colors">Salderingsregeling 2027</Link></li>
+              <li><Link href="/opzegvergoeding" className="text-gray-300 hover:text-white transition-colors">Opzegvergoeding</Link></li>
               <li><Link href="/energievergelijkers" className="text-gray-300 hover:text-white transition-colors">Hoe werken vergelijkers?</Link></li>
               <li><Link href="/netbeheer" className="text-gray-300 hover:text-white transition-colors">Netbeheerkosten</Link></li>
             </ul>

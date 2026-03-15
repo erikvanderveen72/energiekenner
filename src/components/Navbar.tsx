@@ -33,6 +33,7 @@ export function Navbar() {
     { href: "/thuisbatterij", label: "Thuisbatterij & V2G" },
     { href: "/slimme-technologie", label: "Slim Energie Sturen" },
     { href: "/energiewet", label: "Energiewet 2026" },
+    { href: "/opzegvergoeding", label: "Opzegvergoeding" },
     { href: "/energievergelijkers", label: "Hoe werken vergelijkers?" },
     { href: "/duurzaamheid", label: "Groene stroom" },
     { href: "/tips", label: "Bespaartips" },
