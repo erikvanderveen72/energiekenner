@@ -6,10 +6,21 @@ import {
   SUPABASE_URL,
 } from "@/lib/server-config";
 
-// Admin API - gebruikt de service_role key voor schrijftoegang
-// BELANGRIJK: service_role key NOOIT in de browser exposen
+// Anon key voor lezen (werkt altijd via RLS public read policies)
+const ANON_KEY =
+  process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ||
+  "sb_publishable_M_AC9_j3IYl5YGT88zHgPw_lu3U5yAC";
 
-function getServiceClient() {
+function getReadClient() {
+  return createClient(SUPABASE_URL, ANON_KEY);
+}
+
+function getWriteClient() {
+  if (!SUPABASE_SERVICE_ROLE_KEY) {
+    throw new Error(
+      "Service role key niet geconfigureerd. Voeg NEXT_PUBLIC_SRK toe in Vercel Environment Variables."
+    );
+  }
   return createClient(SUPABASE_URL, SUPABASE_SERVICE_ROLE_KEY);
 }
 
@@ -18,17 +29,33 @@ function checkAuth(request: NextRequest): boolean {
   return auth === ADMIN_PASSWORD;
 }
 
-// GET: Haal alle providers op
+const validTables = [
+  "energy_providers",
+  "dynamic_providers",
+  "grid_operators",
+  "energy_tax",
+  "ttf_prices",
+];
+
+// GET: Haal alle providers op (gebruikt anon key - altijd beschikbaar)
 export async function GET(request: NextRequest) {
+  // Auth-only check: verifieert wachtwoord zonder data op te halen
+  if (request.nextUrl.searchParams.get("check") === "auth") {
+    if (!checkAuth(request)) {
+      return NextResponse.json({ error: "Ongeautoriseerd" }, { status: 401 });
+    }
+    return NextResponse.json({ ok: true });
+  }
+
   if (!checkAuth(request)) {
     return NextResponse.json({ error: "Ongeautoriseerd" }, { status: 401 });
   }
 
   try {
-    const supabase = getServiceClient();
-    const table = request.nextUrl.searchParams.get("table") || "energy_providers";
+    const supabase = getReadClient();
+    const table =
+      request.nextUrl.searchParams.get("table") || "energy_providers";
 
-    const validTables = ["energy_providers", "dynamic_providers", "grid_operators", "energy_tax", "ttf_prices"];
     if (!validTables.includes(table)) {
       return NextResponse.json({ error: "Ongeldige tabel" }, { status: 400 });
     }
@@ -36,7 +63,10 @@ export async function GET(request: NextRequest) {
     const { data, error } = await supabase
       .from(table)
       .select("*")
-      .order(table === "energy_providers" ? "estimated_monthly" : "name", { ascending: true });
+      .order(
+        table === "energy_providers" ? "estimated_monthly" : "name",
+        { ascending: true }
+      );
 
     if (error) throw error;
     return NextResponse.json({ data });
@@ -46,18 +76,17 @@ export async function GET(request: NextRequest) {
   }
 }
 
-// PUT: Update een provider
+// PUT: Update een provider (vereist service role key)
 export async function PUT(request: NextRequest) {
   if (!checkAuth(request)) {
     return NextResponse.json({ error: "Ongeautoriseerd" }, { status: 401 });
   }
 
   try {
-    const supabase = getServiceClient();
+    const supabase = getWriteClient();
     const body = await request.json();
     const { table, id, updates } = body;
 
-    const validTables = ["energy_providers", "dynamic_providers", "grid_operators", "energy_tax", "ttf_prices"];
     if (!validTables.includes(table)) {
       return NextResponse.json({ error: "Ongeldige tabel" }, { status: 400 });
     }
@@ -76,18 +105,17 @@ export async function PUT(request: NextRequest) {
   }
 }
 
-// POST: Voeg een nieuwe provider toe
+// POST: Voeg een nieuwe provider toe (vereist service role key)
 export async function POST(request: NextRequest) {
   if (!checkAuth(request)) {
     return NextResponse.json({ error: "Ongeautoriseerd" }, { status: 401 });
   }
 
   try {
-    const supabase = getServiceClient();
+    const supabase = getWriteClient();
     const body = await request.json();
     const { table, record } = body;
 
-    const validTables = ["energy_providers", "dynamic_providers", "grid_operators", "energy_tax", "ttf_prices"];
     if (!validTables.includes(table)) {
       return NextResponse.json({ error: "Ongeldige tabel" }, { status: 400 });
     }
@@ -105,26 +133,22 @@ export async function POST(request: NextRequest) {
   }
 }
 
-// DELETE: Verwijder een provider
+// DELETE: Verwijder een provider (vereist service role key)
 export async function DELETE(request: NextRequest) {
   if (!checkAuth(request)) {
     return NextResponse.json({ error: "Ongeautoriseerd" }, { status: 401 });
   }
 
   try {
-    const supabase = getServiceClient();
+    const supabase = getWriteClient();
     const body = await request.json();
     const { table, id } = body;
 
-    const validTables = ["energy_providers", "dynamic_providers", "grid_operators", "energy_tax", "ttf_prices"];
     if (!validTables.includes(table)) {
       return NextResponse.json({ error: "Ongeldige tabel" }, { status: 400 });
     }
 
-    const { error } = await supabase
-      .from(table)
-      .delete()
-      .eq("id", id);
+    const { error } = await supabase.from(table).delete().eq("id", id);
 
     if (error) throw error;
     return NextResponse.json({ success: true });

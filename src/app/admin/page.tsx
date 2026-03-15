@@ -85,7 +85,8 @@ export default function AdminPage() {
     e.preventDefault();
     setAuthError("");
     try {
-      const res = await fetch("/api/admin?table=energy_providers", {
+      // Aparte auth-check: verifieert alleen het wachtwoord, geen database
+      const res = await fetch("/api/admin?check=auth", {
         headers: { "x-admin-password": password },
       });
       if (res.ok) {
