@@ -14,6 +14,7 @@ export function Navbar() {
     { href: "/thuisbatterij", label: "Batterij & V2G" },
     { href: "/energiewet", label: "Energiewet" },
     { href: "/duurzaamheid", label: "Groen" },
+    { href: "/calculator", label: "Calculator" },
     { href: "/tips", label: "Tips" },
     { href: "/netbeheer", label: "Netbeheer" },
   ];
