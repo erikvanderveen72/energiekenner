@@ -52,6 +52,17 @@ const nextConfig: NextConfig = {
     formats: ["image/avif", "image/webp"],
     minimumCacheTTL: 60 * 60 * 24 * 30,
   },
+  async redirects() {
+    return [
+      // www → non-www redirect (301 permanent)
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.energiekenner.nl" }],
+        destination: "https://energiekenner.nl/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {
