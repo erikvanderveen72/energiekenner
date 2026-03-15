@@ -28,6 +28,9 @@ const providerUrls: Record<string, string> = {
   "Coolblue Energie": "https://www.coolblue.nl/energie",
   "Pure Energie": "https://www.pureenergie.nl",
   "Vrijopnaam": "https://www.vrijopnaam.nl",
+  "Energiek": "https://www.energiek.nl",
+  "Frank Energie": "https://www.frankenergie.nl",
+  "NextEnergy": "https://www.nextenergy.nl",
 };
 
 // Brand colors per leverancier (achtergrond + tekst)
@@ -47,6 +50,9 @@ const providerColors: Record<string, { bg: string; text: string }> = {
   "Coolblue Energie": { bg: "bg-blue-100", text: "text-blue-600" },
   "Pure Energie": { bg: "bg-green-100", text: "text-green-600" },
   "Vrijopnaam": { bg: "bg-indigo-100", text: "text-indigo-700" },
+  "Energiek": { bg: "bg-amber-100", text: "text-amber-700" },
+  "Frank Energie": { bg: "bg-orange-100", text: "text-orange-600" },
+  "NextEnergy": { bg: "bg-violet-100", text: "text-violet-700" },
 };
 
 const getProviderColor = (name: string) => providerColors[name] || { bg: "bg-stone-100", text: "text-stone-600" };
@@ -61,6 +67,7 @@ const comparisonSites = [
 // Standaard verbruik (CBS gemiddelde huishouden)
 const DEFAULT_KWH = 2400;
 const DEFAULT_GAS = 1000;
+const DEFAULT_SOLAR_KWH = 3000; // Gemiddelde opbrengst 10 panelen
 
 export function ComparisonTable({ providers }: Props) {
   const [greenOnly, setGreenOnly] = useState(false);
@@ -71,6 +78,8 @@ export function ComparisonTable({ providers }: Props) {
   const dropdownRef = useRef<HTMLDivElement>(null);
   const [kwhUsage, setKwhUsage] = useState(DEFAULT_KWH);
   const [gasUsage, setGasUsage] = useState(DEFAULT_GAS);
+  const [hasSolar, setHasSolar] = useState(false);
+  const [solarKwh, setSolarKwh] = useState(DEFAULT_SOLAR_KWH);
 
   // Sluit dropdown bij klik buiten
   useEffect(() => {
@@ -83,17 +92,43 @@ export function ComparisonTable({ providers }: Props) {
     return () => document.removeEventListener("mousedown", handleClick);
   }, []);
 
-  // Herbereken maandbedrag op basis van aangepast verbruik
+  // Herbereken maandbedrag op basis van aangepast verbruik + zonnepanelen
   function calcMonthly(provider: EnergyProvider): number {
     const base = provider.estimated_monthly ?? 0;
     // Verschil t.o.v. standaard verbruik herberekenen via per-eenheid tarieven
     const kwhDiff = kwhUsage - DEFAULT_KWH;
     const gasDiff = gasUsage - DEFAULT_GAS;
     const adjustment = (kwhDiff * Number(provider.kwh_rate) + gasDiff * Number(provider.gas_rate)) / 12;
-    return base + adjustment;
+
+    let solarAdjustment = 0;
+    if (hasSolar && solarKwh > 0) {
+      // Teruglevering: hoeveel kWh wordt teruggeleverd aan het net
+      // Bij saldering (2026): je verbruik wordt verminderd, maar je betaalt terugleverkosten over het teruggeleverde deel
+      const feedInKwh = solarKwh; // Bruto opwek die wordt teruggeleverd
+
+      // Besparing: je koopt minder stroom in (saldering tot einde 2026)
+      const savingsPerYear = Math.min(feedInKwh, kwhUsage) * Number(provider.kwh_rate);
+
+      // Terugleverkosten: sommige leveranciers rekenen dit per kWh
+      const feedInCostPerYear = feedInKwh * Number(provider.feed_in_cost_kwh ?? 0);
+
+      // Terugleververgoeding: sommige leveranciers geven een vergoeding per kWh
+      const feedInCompPerYear = feedInKwh * Number(provider.feed_in_compensation ?? 0);
+
+      // Netto effect per maand: besparing - kosten + vergoeding
+      solarAdjustment = (-savingsPerYear + feedInCostPerYear - feedInCompPerYear) / 12;
+    }
+
+    return base + adjustment + solarAdjustment;
   }
 
-  const isCustomUsage = kwhUsage !== DEFAULT_KWH || gasUsage !== DEFAULT_GAS;
+  // Bereken alleen de terugleverkosten per maand (voor weergave in tabel)
+  function calcFeedInCostMonthly(provider: EnergyProvider): number {
+    if (!hasSolar || solarKwh <= 0) return 0;
+    return (solarKwh * Number(provider.feed_in_cost_kwh ?? 0)) / 12;
+  }
+
+  const isCustomUsage = kwhUsage !== DEFAULT_KWH || gasUsage !== DEFAULT_GAS || hasSolar;
 
   const sorted = useMemo(() => {
     let filtered = providers;
@@ -116,7 +151,7 @@ export function ComparisonTable({ providers }: Props) {
         : (bVal as number) - (aVal as number);
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [providers, greenOnly, sortField, sortDir, searchQuery, kwhUsage, gasUsage]);
+  }, [providers, greenOnly, sortField, sortDir, searchQuery, kwhUsage, gasUsage, hasSolar, solarKwh]);
 
   const cheapestMonthly = sorted.length > 0 ? calcMonthly(sorted[0]) : 0;
 
@@ -282,16 +317,66 @@ export function ComparisonTable({ providers }: Props) {
           </div>
           {isCustomUsage && (
             <button
-              onClick={() => { setKwhUsage(DEFAULT_KWH); setGasUsage(DEFAULT_GAS); }}
+              onClick={() => { setKwhUsage(DEFAULT_KWH); setGasUsage(DEFAULT_GAS); setHasSolar(false); setSolarKwh(DEFAULT_SOLAR_KWH); }}
               className="text-xs text-primary hover:text-primary-dark font-medium transition-colors py-2.5"
             >
               Reset
             </button>
           )}
         </div>
+
+        {/* Zonnepanelen toggle + invoer */}
+        <div className="mt-4 pt-4 border-t border-border">
+          <button
+            onClick={() => setHasSolar(!hasSolar)}
+            className={`inline-flex items-center gap-2.5 px-4 py-2.5 rounded-lg text-sm font-medium border transition-all ${
+              hasSolar
+                ? "bg-amber-50 border-amber-300 text-amber-800"
+                : "bg-white border-border text-text-muted hover:border-amber-300 hover:text-amber-700"
+            }`}
+          >
+            <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+              <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+            </svg>
+            Ik heb zonnepanelen
+            {hasSolar && (
+              <svg className="w-4 h-4 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M5 13l4 4L19 7" />
+              </svg>
+            )}
+          </button>
+
+          {hasSolar && (
+            <div className="mt-3 grid grid-cols-1 sm:grid-cols-2 gap-3">
+              <div>
+                <label htmlFor="solar-input" className="block text-sm text-text-muted mb-1">Jaarlijkse opwek</label>
+                <div className="flex items-center gap-2">
+                  <input
+                    id="solar-input"
+                    type="number"
+                    value={solarKwh}
+                    onChange={(e) => setSolarKwh(Math.max(0, Number(e.target.value)))}
+                    className="w-full px-3 py-2.5 rounded-lg border border-amber-200 bg-white text-sm font-medium focus:outline-none focus:ring-2 focus:ring-amber-300/50 focus:border-amber-400 transition-all"
+                    min={0}
+                    step={100}
+                  />
+                  <span className="text-xs text-text-muted whitespace-nowrap">kWh/jaar</span>
+                </div>
+              </div>
+              <div className="flex items-end">
+                <p className="text-xs text-amber-700 bg-amber-50 rounded-lg px-3 py-2.5 border border-amber-200 leading-relaxed">
+                  <strong>Let op:</strong> Terugleverkosten verschillen sterk per leverancier (€0 - €0,18/kWh). De vergelijker berekent nu je netto maandkosten inclusief terugleverkosten en saldering.
+                </p>
+              </div>
+            </div>
+          )}
+        </div>
+
         <p className="text-xs text-text-muted mt-3">
           {isCustomUsage
-            ? "Maandbedragen zijn herberekend op basis van jouw verbruik."
+            ? hasSolar
+              ? "Maandbedragen zijn herberekend inclusief saldering en terugleverkosten."
+              : "Maandbedragen zijn herberekend op basis van jouw verbruik."
             : "Standaard: gemiddeld huishouden (2.400 kWh stroom, 1.000 m\u00B3 gas per jaar)."}
         </p>
       </div>
@@ -394,7 +479,7 @@ export function ComparisonTable({ providers }: Props) {
               </div>
 
               {/* Details grid */}
-              <div className="mt-3 grid grid-cols-3 gap-3">
+              <div className={`mt-3 grid ${hasSolar ? "grid-cols-2 sm:grid-cols-4" : "grid-cols-3"} gap-3`}>
                 <div>
                   <p className="text-xs text-text-muted">Stroom/kWh</p>
                   <p className="text-sm font-mono font-medium text-text-main">{formatEuro(provider.kwh_rate)}</p>
@@ -403,6 +488,18 @@ export function ComparisonTable({ providers }: Props) {
                   <p className="text-xs text-text-muted">Gas/m³</p>
                   <p className="text-sm font-mono font-medium text-text-main">{formatEuro(provider.gas_rate)}</p>
                 </div>
+                {hasSolar && (
+                  <div>
+                    <p className="text-xs text-text-muted">Teruglever/kWh</p>
+                    <p className="text-sm font-mono font-medium">
+                      {provider.feed_in_cost_kwh != null && Number(provider.feed_in_cost_kwh) > 0 ? (
+                        <span className="text-red-600">{formatEuro(provider.feed_in_cost_kwh)}</span>
+                      ) : (
+                        <span className="text-accent">€ 0,00</span>
+                      )}
+                    </p>
+                  </div>
+                )}
                 <div>
                   <p className="text-xs text-text-muted">Bonus</p>
                   <p className="text-sm font-medium">
@@ -414,6 +511,16 @@ export function ComparisonTable({ providers }: Props) {
                   </p>
                 </div>
               </div>
+
+              {/* Terugleverkosten detail als zonnepanelen actief */}
+              {hasSolar && calcFeedInCostMonthly(provider) > 0 && (
+                <div className="mt-2 flex items-center gap-1.5 text-xs text-red-600 bg-red-50 rounded-lg px-3 py-1.5">
+                  <svg className="w-3.5 h-3.5 flex-shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+                  </svg>
+                  Terugleverkosten: {formatEuro(calcFeedInCostMonthly(provider))}/mnd
+                </div>
+              )}
 
               {/* Action button */}
               <div className="mt-3">
@@ -443,6 +550,16 @@ export function ComparisonTable({ providers }: Props) {
               >
                 Gas/m³ <SortIcon field="gas_rate" />
               </th>
+              {hasSolar && (
+                <th className="text-right px-4 py-3 font-semibold text-amber-700 whitespace-nowrap">
+                  <span className="inline-flex items-center gap-1">
+                    <svg className="w-4 h-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                      <path strokeLinecap="round" strokeLinejoin="round" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364 6.364l-.707-.707M6.343 6.343l-.707-.707m12.728 0l-.707.707M6.343 17.657l-.707.707M16 12a4 4 0 11-8 0 4 4 0 018 0z" />
+                    </svg>
+                    Teruglever/kWh
+                  </span>
+                </th>
+              )}
               <th
                 className="text-right px-4 py-3 font-semibold text-text-muted cursor-pointer select-none hover:text-text-main"
                 onClick={() => toggleSort("welcome_bonus")}
@@ -494,6 +611,19 @@ export function ComparisonTable({ providers }: Props) {
                   <td className="text-right px-4 py-4 font-mono text-sm">
                     {formatEuro(provider.gas_rate)}
                   </td>
+                  {hasSolar && (
+                    <td className="text-right px-4 py-4">
+                      {provider.feed_in_cost_kwh != null && Number(provider.feed_in_cost_kwh) > 0 ? (
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-red-50 text-red-600">
+                          {formatEuro(provider.feed_in_cost_kwh)}
+                        </span>
+                      ) : (
+                        <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-accent-light text-accent">
+                          € 0,00
+                        </span>
+                      )}
+                    </td>
+                  )}
                   <td className="text-right px-4 py-4">
                     {provider.welcome_bonus > 0 ? (
                       <span className="inline-flex items-center px-2.5 py-1 rounded-full text-xs font-semibold bg-warning-light text-warning">
