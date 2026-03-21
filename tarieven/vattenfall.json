@@ -1,0 +1,28 @@
+{
+  "provider": "Vattenfall",
+  "product": "Nederlandse Groene Stroom en Aardgas tot 1 jaar vast",
+  "updated": "2026-03-21",
+  "source": "gaslicht.com",
+  "stroom": {
+    "normaal_kwh": 0.2827,
+    "dal_kwh": 0.2827,
+    "vastrecht_maand": 8.99
+  },
+  "gas": {
+    "tarief_m3": 1.6237,
+    "vastrecht_maand": 7.99
+  },
+  "kosten_jaar": {
+    "stroom": 607.10,
+    "gas": 1986.11,
+    "totaal_voor_korting": 2593.21,
+    "welkomstbonus": 335.00,
+    "totaal_na_korting": 2258.21
+  },
+  "maandkosten": 188.18,
+  "contract": {
+    "duur": "Tot 30-04-2027",
+    "type": "vast",
+    "opzegtermijn": "5 dagen"
+  }
+}
