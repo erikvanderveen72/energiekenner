@@ -1,9 +1,11 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useState, useRef, useEffect } from "react";
 
 export function Navbar() {
+  const pathname = usePathname();
   const [mobileOpen, setMobileOpen] = useState(false);
   const [meerOpen, setMeerOpen] = useState(false);
   const meerRef = useRef<HTMLDivElement>(null);
@@ -58,21 +60,32 @@ export function Navbar() {
 
           {/* Desktop nav */}
           <div className="hidden md:flex items-center gap-1">
-            {mainLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="px-3 py-2 rounded-lg text-sm font-medium text-text-muted hover:text-text-main hover:bg-surface-alt transition-colors whitespace-nowrap"
-              >
-                {link.label}
-              </Link>
-            ))}
+            {mainLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`px-3 py-2 rounded-lg text-sm font-medium transition-colors whitespace-nowrap ${
+                    isActive
+                      ? "text-primary bg-primary-light/50"
+                      : "text-text-muted hover:text-text-main hover:bg-surface-alt"
+                  }`}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
 
             {/* Meer dropdown */}
             <div ref={meerRef} className="relative">
               <button
                 onClick={() => setMeerOpen(!meerOpen)}
-                className="inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium text-text-muted hover:text-text-main hover:bg-surface-alt transition-colors"
+                className={`inline-flex items-center gap-1 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
+                  meerLinks.some((l) => pathname === l.href)
+                    ? "text-primary bg-primary-light/50"
+                    : "text-text-muted hover:text-text-main hover:bg-surface-alt"
+                }`}
               >
                 Meer
                 <svg
@@ -134,16 +147,23 @@ export function Navbar() {
       {mobileOpen && (
         <div className="md:hidden border-t border-border bg-white">
           <div className="px-4 py-3 space-y-1">
-            {allLinks.map((link) => (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="block px-3 py-2 rounded-lg text-sm font-medium text-text-muted hover:text-text-main hover:bg-surface-alt"
-                onClick={() => setMobileOpen(false)}
-              >
-                {link.label}
-              </Link>
-            ))}
+            {allLinks.map((link) => {
+              const isActive = pathname === link.href;
+              return (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`block px-3 py-2 rounded-lg text-sm font-medium ${
+                    isActive
+                      ? "text-primary bg-primary-light/50"
+                      : "text-text-muted hover:text-text-main hover:bg-surface-alt"
+                  }`}
+                  onClick={() => setMobileOpen(false)}
+                >
+                  {link.label}
+                </Link>
+              );
+            })}
             <Link
               href="/#vergelijk"
               className="block mt-2 text-center px-4 py-2 rounded-lg bg-primary text-white text-sm font-semibold"

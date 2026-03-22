@@ -49,6 +49,7 @@ export function OrganizationSchema() {
     contactPoint: {
       "@type": "ContactPoint",
       contactType: "customer service",
+      email: "info@energiekenner.nl",
       availableLanguage: ["Dutch", "nl"],
       areaServed: "NL",
     },

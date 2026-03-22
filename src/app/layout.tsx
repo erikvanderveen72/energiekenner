@@ -7,6 +7,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
+import { ScrollToTop } from "@/components/ScrollToTop";
 import { WebsiteSchema, OrganizationSchema, ServiceSchema } from "@/components/StructuredData";
 
 const inter = Inter({
@@ -114,6 +115,7 @@ export default function RootLayout({
         </Suspense>
         <main id="main-content" className="flex-1">{children}</main>
         <Footer />
+        <ScrollToTop />
         <CookieConsent />
 
         {/* Google Consent Mode v2 - moet VOOR gtag laden */}

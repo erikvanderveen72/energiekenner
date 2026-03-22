@@ -212,6 +212,7 @@ export function ComparisonTable({ providers, gridOperators = [] }: Props) {
   }, [providers, greenOnly, sortField, sortDir, searchQuery, kwhUsage, gasUsage, hasSolar, solarKwh]);
 
   const cheapestMonthly = sorted.length > 0 ? calcMonthly(sorted[0]) : 0;
+  const avgMonthly = sorted.length > 0 ? sorted.reduce((sum, p) => sum + calcMonthly(p), 0) / sorted.length : 0;
 
   function toggleSort(field: SortField) {
     if (sortField === field) {
@@ -583,7 +584,7 @@ export function ComparisonTable({ providers, gridOperators = [] }: Props) {
               </div>
 
               {/* Price highlight */}
-              <div className="mt-3 flex items-baseline gap-3">
+              <div className="mt-3 flex items-baseline gap-3 flex-wrap">
                 <div className="flex items-baseline gap-1">
                   <span className="text-2xl font-bold text-text-main">
                     {formatEuro(calcMonthly(provider))}
@@ -594,6 +595,22 @@ export function ComparisonTable({ providers, gridOperators = [] }: Props) {
                   <span className="text-text-muted">1e jaar:</span>
                   <span className="font-semibold text-text-main">{formatEuro(calcYearlyCost(provider))}</span>
                 </div>
+                {(() => {
+                  const diff = calcMonthly(provider) - avgMonthly;
+                  const diffYearly = Math.round(diff * 12);
+                  if (Math.abs(diffYearly) >= 5) {
+                    return diffYearly < 0 ? (
+                      <span className="text-xs font-semibold text-accent bg-accent-light rounded-full px-2 py-0.5">
+                        €{Math.abs(diffYearly)}/jaar goedkoper
+                      </span>
+                    ) : (
+                      <span className="text-xs font-medium text-red-600 bg-red-50 rounded-full px-2 py-0.5">
+                        +€{diffYearly}/jaar vs gem.
+                      </span>
+                    );
+                  }
+                  return null;
+                })()}
               </div>
 
               {/* Details grid */}
@@ -759,6 +776,18 @@ export function ComparisonTable({ providers, gridOperators = [] }: Props) {
                       {formatEuro(calcMonthly(provider))}
                     </span>
                     <span className="text-text-muted text-xs">/mnd</span>
+                    {(() => {
+                      const diff = calcMonthly(provider) - avgMonthly;
+                      const diffYearly = Math.round(diff * 12);
+                      if (Math.abs(diffYearly) >= 5) {
+                        return diffYearly < 0 ? (
+                          <div className="text-xs font-semibold text-accent mt-0.5">€{Math.abs(diffYearly)}/jaar goedkoper</div>
+                        ) : (
+                          <div className="text-xs text-red-500 mt-0.5">+€{diffYearly}/jaar vs gem.</div>
+                        );
+                      }
+                      return null;
+                    })()}
                   </td>
                   <td className="text-right px-4 py-4">
                     <span className="font-semibold text-sm text-text-main">

@@ -223,6 +223,46 @@ export default async function Home() {
         <StatsBar stats={stats} />
       </section>
 
+      {/* Hoe werkt het? - 3 stappen */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-text-main">In 3 stappen je energierekening verlagen</h2>
+          <p className="text-text-muted mt-2">Vergelijken, kiezen en besparen — zonder gedoe.</p>
+        </div>
+        <div className="grid md:grid-cols-3 gap-6">
+          <div className="relative rounded-2xl border border-border bg-white p-6 text-center group hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-md">1</div>
+            <div className="w-14 h-14 rounded-2xl bg-sky-100 flex items-center justify-center mx-auto mt-2 mb-4 group-hover:bg-sky-200 transition-colors">
+              <svg className="w-7 h-7 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+              </svg>
+            </div>
+            <h3 className="font-bold text-text-main text-lg">Vul je verbruik in</h3>
+            <p className="text-sm text-text-muted mt-2 leading-relaxed">Zoek je jaarverbruik op je energierekening of gebruik het gemiddelde. Heb je zonnepanelen? Dat kan ook!</p>
+          </div>
+          <div className="relative rounded-2xl border border-border bg-white p-6 text-center group hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-md">2</div>
+            <div className="w-14 h-14 rounded-2xl bg-emerald-100 flex items-center justify-center mx-auto mt-2 mb-4 group-hover:bg-emerald-200 transition-colors">
+              <svg className="w-7 h-7 text-emerald-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+              </svg>
+            </div>
+            <h3 className="font-bold text-text-main text-lg">Vergelijk alle aanbieders</h3>
+            <p className="text-sm text-text-muted mt-2 leading-relaxed">Sorteer op prijs, bonus of terugleverkosten. Filter op groene stroom en bekijk je persoonlijke maandkosten.</p>
+          </div>
+          <div className="relative rounded-2xl border border-border bg-white p-6 text-center group hover:shadow-lg hover:-translate-y-1 transition-all duration-200">
+            <div className="absolute -top-4 left-1/2 -translate-x-1/2 w-8 h-8 rounded-full bg-primary text-white flex items-center justify-center text-sm font-bold shadow-md">3</div>
+            <div className="w-14 h-14 rounded-2xl bg-amber-100 flex items-center justify-center mx-auto mt-2 mb-4 group-hover:bg-amber-200 transition-colors">
+              <svg className="w-7 h-7 text-amber-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <h3 className="font-bold text-text-main text-lg">Stap over & bespaar</h3>
+            <p className="text-sm text-text-muted mt-2 leading-relaxed">Overstappen duurt sinds de Energiewet 2026 nog maar 5 werkdagen. Je nieuwe leverancier regelt alles voor je.</p>
+          </div>
+        </div>
+      </section>
+
       {/* Comparison Table */}
       <section id="vergelijk" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
         <div className="mb-8">
@@ -595,6 +635,20 @@ export default async function Home() {
               <p className="mt-2 text-white/80 max-w-lg">
                 Vergelijk nu alle {providers.length} energieleveranciers en ontdek hoeveel jij kunt besparen op je energierekening.
               </p>
+              <div className="mt-4 flex gap-6 text-sm">
+                <div>
+                  <span className="text-2xl font-bold text-white">€{Math.round((avgMonthly - (cheapest?.estimated_monthly ?? 0)) * 12)}</span>
+                  <p className="text-white/60 text-xs mt-0.5">mogelijke besparing/jaar</p>
+                </div>
+                <div className="border-l border-white/20 pl-6">
+                  <span className="text-2xl font-bold text-white">5</span>
+                  <p className="text-white/60 text-xs mt-0.5">werkdagen overstappen</p>
+                </div>
+                <div className="border-l border-white/20 pl-6 hidden sm:block">
+                  <span className="text-2xl font-bold text-white">{providers.length}</span>
+                  <p className="text-white/60 text-xs mt-0.5">leveranciers vergeleken</p>
+                </div>
+              </div>
             </div>
             <a
               href="#vergelijk"

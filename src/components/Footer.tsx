@@ -40,7 +40,7 @@ export function Footer() {
             </div>
           </div>
 
-          {/* Links */}
+          {/* Vergelijken links */}
           <div>
             <h3 className="font-semibold mb-3 text-sm uppercase tracking-wider text-gray-400">
               Vergelijken
@@ -50,16 +50,29 @@ export function Footer() {
                 <li><Link href="/" className="text-gray-300 hover:text-white transition-colors">Vaste contracten</Link></li>
                 <li><Link href="/dynamisch" className="text-gray-300 hover:text-white transition-colors">Dynamische tarieven</Link></li>
                 <li><Link href="/zonnepanelen" className="text-gray-300 hover:text-white transition-colors">Zonnepanelen</Link></li>
-                <li><Link href="/verbruik" className="text-gray-300 hover:text-white transition-colors">Energieverbruik</Link></li>
                 <li><Link href="/warmtepompen" className="text-gray-300 hover:text-white transition-colors">Warmtepompen</Link></li>
-                <li><Link href="/slimme-technologie" className="text-gray-300 hover:text-white transition-colors">Slim Sturen</Link></li>
-                <li><Link href="/salderen" className="text-gray-300 hover:text-white transition-colors">Salderingsregeling 2027</Link></li>
-                <li><Link href="/opzegvergoeding" className="text-gray-300 hover:text-white transition-colors">Opzegvergoeding</Link></li>
+                <li><Link href="/calculator" className="text-gray-300 hover:text-white transition-colors">Energiecalculator</Link></li>
+                <li><Link href="/netbeheer" className="text-gray-300 hover:text-white transition-colors">Netbeheerkosten</Link></li>
                 <li><Link href="/energievergelijkers" className="text-gray-300 hover:text-white transition-colors">Hoe werken vergelijkers?</Link></li>
+              </ul>
+            </nav>
+
+            <h3 className="font-semibold mt-6 mb-3 text-sm uppercase tracking-wider text-gray-400">
+              Kennisbank
+            </h3>
+            <nav aria-label="Kennisbank">
+              <ul className="space-y-2 text-sm">
+                <li><Link href="/verbruik" className="text-gray-300 hover:text-white transition-colors">Energieverbruik</Link></li>
+                <li><Link href="/salderen" className="text-gray-300 hover:text-white transition-colors">Salderingsregeling 2027</Link></li>
+                <li><Link href="/energiewet" className="text-gray-300 hover:text-white transition-colors">Energiewet 2026</Link></li>
+                <li><Link href="/opzegvergoeding" className="text-gray-300 hover:text-white transition-colors">Opzegvergoeding</Link></li>
+                <li><Link href="/thuisbatterij" className="text-gray-300 hover:text-white transition-colors">Thuisbatterij &amp; V2G</Link></li>
+                <li><Link href="/slimme-technologie" className="text-gray-300 hover:text-white transition-colors">Slim Sturen</Link></li>
                 <li><Link href="/energie-delen" className="text-gray-300 hover:text-white transition-colors">Energie Delen</Link></li>
                 <li><Link href="/energie-apps" className="text-gray-300 hover:text-white transition-colors">Energie-Apps</Link></li>
                 <li><Link href="/laadpalen" className="text-gray-300 hover:text-white transition-colors">Laadpalen &amp; EV</Link></li>
-                <li><Link href="/netbeheer" className="text-gray-300 hover:text-white transition-colors">Netbeheerkosten</Link></li>
+                <li><Link href="/duurzaamheid" className="text-gray-300 hover:text-white transition-colors">Groene stroom</Link></li>
+                <li><Link href="/tips" className="text-gray-300 hover:text-white transition-colors">Bespaartips</Link></li>
                 <li><Link href="/begrippenlijst" className="text-gray-300 hover:text-white transition-colors">Begrippenlijst</Link></li>
               </ul>
             </nav>
