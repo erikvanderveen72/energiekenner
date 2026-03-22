@@ -4,6 +4,7 @@ import { fallbackDynamicProviders } from "@/lib/fallback-data";
 import type { DynamicProvider } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const revalidate = 60;
 
@@ -176,6 +177,8 @@ export default async function DynamischPage() {
           ))}
         </div>
       </section>
+
+      <RelatedPages currentPage="dynamisch" relatedKeys={["vergelijker", "calculator", "slimme-technologie", "thuisbatterij"]} />
     </>
   );
 }

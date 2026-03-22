@@ -6,6 +6,7 @@ import type { EnergyProvider } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ZonnepanelenKeuzehulp } from "@/components/Keuzehulp";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const revalidate = 60;
 
@@ -417,6 +418,8 @@ export default async function ZonnepanelenPage() {
           </a>
         </div>
       </section>
+
+      <RelatedPages currentPage="zonnepanelen" relatedKeys={["salderen", "thuisbatterij", "vergelijker", "energie-delen"]} />
     </>
   );
 }

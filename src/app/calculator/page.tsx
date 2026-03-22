@@ -4,6 +4,7 @@ import { supabase } from "@/lib/supabase";
 import { fallbackProviders } from "@/lib/fallback-data";
 import type { EnergyProvider } from "@/lib/database.types";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const revalidate = 60;
 
@@ -52,6 +53,8 @@ export default async function CalculatorPage() {
       <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-10">
         <Calculator providers={providers} />
       </section>
+
+      <RelatedPages currentPage="calculator" relatedKeys={["vergelijker", "dynamisch", "verbruik", "zonnepanelen"]} />
     </>
   );
 }

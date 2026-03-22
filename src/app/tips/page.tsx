@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Bespaartips Energie: Geld besparen op Gas & Stroom | Energiekenner.nl",
@@ -324,6 +325,8 @@ export default function TipsPage() {
           </Link>
         </div>
       </section>
+
+      <RelatedPages currentPage="tips" relatedKeys={["verbruik", "vergelijker", "zonnepanelen", "warmtepompen"]} />
     </>
   );
 }

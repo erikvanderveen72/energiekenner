@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Groene Stroom 2026: Duurzame Energie | Energiekenner.nl",
@@ -311,6 +312,8 @@ export default function DuurzaamheidPage() {
           </Link>
         </div>
       </section>
+
+      <RelatedPages currentPage="duurzaamheid" relatedKeys={["zonnepanelen", "energie-delen", "vergelijker", "warmtepompen"]} />
     </>
   );
 }

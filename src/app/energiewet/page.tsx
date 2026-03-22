@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FAQSchema } from "@/components/StructuredData";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Energiewet 2026: Wetgeving & Regelingen | Energiekenner.nl",
@@ -361,6 +362,8 @@ export default function EnergiewetPage() {
           </Link>
         </div>
       </section>
+
+      <RelatedPages currentPage="energiewet" relatedKeys={["opzegvergoeding", "dynamisch", "vergelijker", "energievergelijkers"]} />
     </>
   );
 }

@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { FAQSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Laadpalen 2026: Types, Kosten & Installatie | Energiekenner.nl",
@@ -597,6 +598,8 @@ export default function LaadpalenPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPages currentPage="laadpalen" relatedKeys={["dynamisch", "verbruik", "slimme-technologie", "vergelijker"]} />
     </>
   );
 }

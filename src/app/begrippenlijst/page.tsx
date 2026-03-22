@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import Link from "next/link";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Begrippenlijst Energie | Alle Energietermen Uitgelegd",
@@ -225,6 +226,8 @@ export default function BegrippenlijstPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPages currentPage="begrippenlijst" relatedKeys={["vergelijker", "energiewet", "verbruik", "tips"]} />
     </>
   );
 }

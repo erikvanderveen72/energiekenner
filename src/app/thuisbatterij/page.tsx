@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FAQSchema, ArticleSchema } from "@/components/StructuredData";
 import { PaybackChart, RevenueBreakdown, LfpVsNmcTable, PriceTrendChart } from "@/components/BatteryCharts";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Thuisbatterij 2026: Kosten, Rendement & Vergelijking | Energiekenner.nl",
@@ -540,6 +541,8 @@ export default function ThuisbatterijPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPages currentPage="thuisbatterij" relatedKeys={["zonnepanelen", "dynamisch", "salderen", "slimme-technologie"]} />
     </>
   );
 }

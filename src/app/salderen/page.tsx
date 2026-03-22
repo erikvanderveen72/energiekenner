@@ -4,6 +4,7 @@ import { PageHero } from "@/components/PageHero";
 import { FAQSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { SalderenKeuzehulp } from "@/components/Keuzehulp";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Salderingsregeling 2026 2027: Eindstand Energiekenner.nl",
@@ -936,6 +937,8 @@ export default function SalderenPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPages currentPage="salderen" relatedKeys={["zonnepanelen", "thuisbatterij", "vergelijker", "energiewet"]} />
     </>
   );
 }

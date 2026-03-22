@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { WarmtepompKeuzehulp } from "@/components/Keuzehulp";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Warmtepompen 2026: Types, Kosten & ISDE Subsidie | Energiekenner.nl",
@@ -762,6 +763,8 @@ export default function WarmtepompenPage() {
           </a>
         </div>
       </section>
+
+      <RelatedPages currentPage="warmtepompen" relatedKeys={["vergelijker", "verbruik", "tips", "duurzaamheid"]} />
     </>
   );
 }

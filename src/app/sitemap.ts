@@ -22,5 +22,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/tips`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${baseUrl}/netbeheer`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/begrippenlijst`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
+    { url: `${baseUrl}/energie-delen`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
+    { url: `${baseUrl}/energie-apps`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
   ];
 }

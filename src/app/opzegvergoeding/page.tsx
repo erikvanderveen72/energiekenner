@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { FAQSchema, BreadcrumbSchema } from "@/components/StructuredData";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Opzegvergoeding Energiecontract 2026 | Energiekenner.nl",
@@ -674,6 +675,8 @@ export default function OpzegvergoedingPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPages currentPage="opzegvergoeding" relatedKeys={["energiewet", "vergelijker", "dynamisch", "begrippenlijst"]} />
     </>
   );
 }

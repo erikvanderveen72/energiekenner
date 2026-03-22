@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Slim Energie Sturen 2026: Smart Grid & HEMS | Energiekenner.nl",
@@ -142,6 +143,8 @@ export default function SlimmeTechnologiePage() {
           </Link>
         </div>
       </section>
+
+      <RelatedPages currentPage="slimme-technologie" relatedKeys={["dynamisch", "thuisbatterij", "energie-apps", "vergelijker"]} />
     </>
   );
 }

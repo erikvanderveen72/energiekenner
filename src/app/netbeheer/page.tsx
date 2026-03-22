@@ -4,6 +4,7 @@ import { fallbackGridOperators } from "@/lib/fallback-data";
 import type { GridOperator } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const revalidate = 60;
 
@@ -151,6 +152,8 @@ export default async function NetbeheerPage() {
           </p>
         </div>
       </section>
+
+      <RelatedPages currentPage="netbeheer" relatedKeys={["vergelijker", "verbruik", "begrippenlijst", "energiewet"]} />
     </>
   );
 }

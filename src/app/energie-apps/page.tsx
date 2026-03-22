@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FAQSchema, ArticleSchema } from "@/components/StructuredData";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Beste Energie-Apps 2026: Vergelijking & Ranking | Energiekenner.nl",
@@ -338,6 +339,8 @@ export default function EnergieAppsPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPages currentPage="energie-apps" relatedKeys={["slimme-technologie", "dynamisch", "verbruik", "tips"]} />
     </>
   );
 }

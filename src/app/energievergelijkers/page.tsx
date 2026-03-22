@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Energievergelijkers 2026: Vergelijk Providers | Energiekenner.nl",
@@ -437,6 +438,8 @@ export default function EnergievergelijkersPage() {
           </Link>
         </div>
       </section>
+
+      <RelatedPages currentPage="energievergelijkers" relatedKeys={["vergelijker", "energiewet", "tips", "begrippenlijst"]} />
     </>
   );
 }

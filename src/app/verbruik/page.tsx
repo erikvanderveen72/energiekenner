@@ -1,15 +1,9 @@
 "use client";
 
-import type { Metadata } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
-
-const metadata = {
-  title: "Energieverbruik: Apparaten & Kosten 2026 | Energiekenner.nl",
-  description: "Ontdek energieverbruik per apparaat en bespaartips voor gas en stroom in Nederland.",
-};
 
 interface Appliance {
   name: string;

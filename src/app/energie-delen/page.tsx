@@ -3,6 +3,7 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { FAQSchema, ArticleSchema } from "@/components/StructuredData";
+import { RelatedPages } from "@/components/RelatedPages";
 
 export const metadata: Metadata = {
   title: "Energie Delen 2026: Stroom Delen met Buren & Familie | Energiekenner.nl",
@@ -344,6 +345,8 @@ export default function EnergieDelenPage() {
           </div>
         </div>
       </section>
+
+      <RelatedPages currentPage="energie-delen" relatedKeys={["zonnepanelen", "energiewet", "duurzaamheid", "vergelijker"]} />
     </>
   );
 }
