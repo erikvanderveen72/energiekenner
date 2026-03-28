@@ -2,14 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
-  title: "Bespaartips Energie: Geld besparen op Gas & Stroom | Energiekenner.nl",
-  description: "Praktische bespaartips om uw gas- en stroomverbruik te reduceren en geld te besparen.",
+  title: "Bespaartips Energie 2026: Bespaar tot €450 op Gas & Stroom | Energiekenner.nl",
+  description: "20+ praktische bespaartips voor je gas- en stroomverbruik. Van gratis tips tot slimme investeringen. Bespaar honderden euro's per jaar op je energierekening.",
   alternates: {
     canonical: "https://energiekenner.nl/tips",
   },
 };
+
+export const revalidate = 3600;
 
 const tips = [
   {
@@ -87,6 +90,30 @@ const categoryColors: Record<string, string> = {
   Contract: "bg-green-100 text-green-700",
   Tech: "bg-purple-100 text-purple-700",
 };
+
+const faqItems = [
+  {
+    question: "Hoeveel kun je besparen met energietips in 2026?",
+    answer: "Met de 8 bespaartips uit deze gids kun je gemiddeld €450 tot €900 per jaar besparen. De grootste winsten kom je binnen met leverancierwisseling (€450/jaar), sluipverbruik elimineren (€250/jaar) en de CV-ketel op 50°C zetten (€100/jaar). In 2026 is de flitsoverstap in slechts 5 werkdagen mogelijk, dus overstappen is nog nooit zo makkelijk geweest."
+  },
+  {
+    question: "Wat is het verschil tussen een digitale en analoge meter in 2026?",
+    answer: "Vanaf 2026 zijn analoge meters verboden in Nederland. Digitale slimme meters geven je real-time inzicht in je verbruik en maken dynamische contracten mogelijk. Met een P1-dongle (ongeveer €30) kun je je verbruik live op je smartphone volgen, wat gemiddeld tot 10% minder verbruik leidt. Dit is je eerste stap naar energiebewustzijn."
+  },
+  {
+    question: "Hoe bespaar je zonder grote investeringen?",
+    answer: "De makkelijkste besparingen zit in sluipverbruik, douchegedrag en je CV-ketel instellen. Schakel oude apparaten uit (kan €250/jaar schelen), zet je ketel op 50°C in plaats van 80°C (€100/jaar), en zorg voor een waterbesparende douchekop (€170/jaar). Deze maatregelen kosten bijna niks en geven direct resultaat in 2026."
+  },
+  {
+    question: "Is het waard om naar een dynamisch contract over te stappen?",
+    answer: "Met een dynamisch contract en thuisbatterij kun je €300 tot €900 per jaar besparen in 2026. Je kunt elektriciteit kopen op het goedkoopste moment (soms gratis bij negatieve prijzen) en verbruiken in dure uren. Dit vergt wel wat technische kennis en een investering in een batterij, maar het groeit snel populairder."
+  },
+  {
+    question: "Wat gebeurt er in 2026 met energiesubsidies voor Groningen?",
+    answer: "Groningen-bewoners hebben in 2026 toegang tot unieke subsidies: tot €17.000 voor verduurzaming en verbetering, tot €4.000 waardevermeerding, en 0% rente via het Nationaal Warmtefonds. De deadline is 31 mei 2026 dus plan je aanvraag nu al in. Begin met het verzamelen van bewijsmateriaal voor het sterkste dossier."
+  }
+];
+
 
 export default function TipsPage() {
   return (
@@ -322,6 +349,48 @@ export default function TipsPage() {
           <Link href="/#vergelijk" className="inline-flex items-center mt-4 px-6 py-3 bg-white text-teal-600 rounded-lg font-semibold hover:bg-teal-50 transition-colors">
             Vergelijk nu
           </Link>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <FAQSchema items={faqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-8">Veelgestelde vragen over bespaartips</h2>
+        <div className="space-y-3">
+          {faqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-text-main hover:bg-surface-alt transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+        <div className="bg-stone-900 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            De grootste besparing? Overstappen van leverancier
+          </h2>
+          <p className="text-stone-400 mb-8 max-w-xl mx-auto">
+            Met de juiste leverancier bespaar je tot €450 per jaar. Vergelijk alle tarieven en ontdek hoeveel jij kunt besparen.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/#vergelijk" className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
+              Vergelijk leveranciers
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+            <a href="/calculator" className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all">
+              Bereken je besparing
+            </a>
+          </div>
         </div>
       </section>
     </>

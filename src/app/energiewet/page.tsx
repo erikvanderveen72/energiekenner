@@ -12,6 +12,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 3600;
+
 const rights = [
   {
     icon: (

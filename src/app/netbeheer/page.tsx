@@ -4,6 +4,7 @@ import { fallbackGridOperators } from "@/lib/fallback-data";
 import type { GridOperator } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
 
 export const revalidate = 60;
 
@@ -22,7 +23,7 @@ async function getGridOperators(): Promise<GridOperator[]> {
 
 export const metadata: Metadata = {
   title: "Netbeheerkosten 2026: Componenten & Berekening | Energiekenner.nl",
-  description: "Begrijp netbeheerkosten: wat zijn ze, hoe worden ze berekend en welke leverancier bepaalt dit?",
+  description: "Vergelijk netbeheerkosten per regio in 2026: Liander, Stedin, Enexis en meer. Bekijk tarieven, componenten en waarom je netbeheerder niet zelf kiest. Overzicht per netbeheerder.",
   alternates: {
     canonical: "https://energiekenner.nl/netbeheer",
   },
@@ -31,6 +32,29 @@ export const metadata: Metadata = {
 export default async function NetbeheerPage() {
   const operators = await getGridOperators();
   const avg = operators.reduce((sum, o) => sum + o.total_yearly, 0) / operators.length;
+
+  const faqItems = [
+    {
+      question: "Wat zijn netbeheerkosten?",
+      answer: "Netbeheerkosten zijn de transporttarieven die je betaalt voor het gebruik van het elektriciteits- en gasnetwerk. Dit zijn vaste bedragen per jaar die je energieleverancier doorberekent. In 2026 betaal je gemiddeld €150–250 per jaar, afhankelijk van jouw netbeheerder en verbruik."
+    },
+    {
+      question: "Kan je zelf je netbeheerder kiezen?",
+      answer: "Nee, je netbeheerder wordt bepaald door je adres. Er zijn acht netbeheerders in Nederland: Liander, Stedin, Enexis, TenneT, Westland Infra, Rendo, Brakel en Delta. Je hebt geen keuze, maar je leverancier (bijvoorbeeld Essent of energiedirect.nl) factureren de kosten door."
+    },
+    {
+      question: "Waarom zijn netbeheerkosten in 2026 gestegen?",
+      answer: "Het elektriciteitsnet moet overal in Nederland worden verzwaard vanwege zonnepanelen, warmtepompen en elektrische auto's. De netbeheerders investeren miljarden euro's in de netinfrastructuur. Deze kosten zijn goed nieuws op lange termijn, maar werden voor 2026 doorgerekend: een stijging van 15–25% voor veel huishoudens."
+    },
+    {
+      question: "Wat is het verschil tussen de netbeheerders?",
+      answer: "De netbeheerders hebben verschillende tariefstructuren. Liander (Noord, Midden) is meestal goedkoper dan Stedin (Rotterdam, Amsterdam) of Enexis (Brabant, Limburg). TenneT beheert het hoogspanningsnet landelijk. Binnen jouw regio zijn de kosten hetzelfde voor iedereen met dezelfde aansluiting."
+    },
+    {
+      question: "Zijn netbeheerkosten al inbegrepen in de energieprijs?",
+      answer: "Ja, je leverancier voegt de netbeheertarieven toe aan je totale energiefactuur. Je ziet ze apart op je factuur als 'transporttarieven' of 'netbeheerkosten'. Deze kosten kunnen niet bespaard worden, maar je kunt wel besparen op de leveranciersprijs door leveranciers te vergelijken (tot €400 per jaar verschil)."
+    }
+  ];
 
   return (
     <>
@@ -147,8 +171,44 @@ export default async function NetbeheerPage() {
         <div className="rounded-xl bg-green-50 border border-green-200 p-8">
           <h2 className="text-xl font-bold text-text-main mb-3">Waarom stijgen de netbeheerkosten?</h2>
           <p className="text-sm text-green-900">
-            Het elektriciteitsnet heeft op veel plaatsen in Nederland zijn maximale capaciteit bereikt. Door de groei van zonnepanelen, warmtepompen en elektrische auto&apos;s zijn miljardeninvesteringen nodig om het net te verzwaren. Deze kosten worden via de netbeheertarieven doorberekend aan consumenten.
+            Het elektriciteitsnet heeft op veel plaatsen in Nederland zijn maximale capaciteit bereikt. Door de groei van zonnepanelen, warmtepompen en elektrische auto&apos;s zijn miljardeninvesteringen nodig om het net te verzwagen. Deze kosten worden via de netbeheertarieven doorberekend aan consumenten.
           </p>
+        </div>
+      </section>
+
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <FAQSchema items={faqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-8">Veelgestelde vragen over netbeheerkosten</h2>
+        <div className="space-y-3">
+          {faqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-text-main hover:bg-surface-alt transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+        <div className="bg-stone-900 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Benieuwd naar je totale energiekosten?</h2>
+          <p className="text-stone-400 mb-8 max-w-xl mx-auto">Netbeheerkosten staan vast, maar je leverancierstarief niet. Vergelijk alle leveranciers en bespaar op het deel waar je wél invloed op hebt.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/#vergelijk" className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
+              Vergelijk leveranciers
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+            <a href="/calculator" className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all">
+              Bereken je energiekosten
+            </a>
+          </div>
         </div>
       </section>
     </>

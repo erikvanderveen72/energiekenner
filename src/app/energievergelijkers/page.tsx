@@ -2,14 +2,40 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
+
+const faqItems = [
+  {
+    question: "Hoe werken energievergelijkers in Nederland?",
+    answer: "Energievergelijkers verzamelen tarieven van alle leveranciers en tonen ze op één plek. Commerciële vergelijkers (Independer, Pricewise) verdienen commissie per overstap en tonen soms niet alle aanbieders. Onafhankelijke vergelijkers zoals Energiekenner.nl tonen alle leveranciers zonder commissie.",
+  },
+  {
+    question: "Zijn alle energievergelijkers onafhankelijk?",
+    answer: "Nee. De meeste vergelijkers zoals Independer en Pricewise ontvangen provisie van leveranciers per afgesloten contract. Dit kan de volgorde en zichtbaarheid van aanbiedingen beïnvloeden. Check altijd of een vergelijker alle leveranciers toont en of er een financiële relatie bestaat.",
+  },
+  {
+    question: "Wat is het verschil tussen Energiekenner.nl en andere vergelijkers?",
+    answer: "Energiekenner.nl is 100% onafhankelijk en ontvangt geen provisie. We tonen alle leveranciers op actuele tarieven inclusief belastingen. Bij commerciële vergelijkers mis je soms aanbieders die geen commissie betalen, waardoor je mogelijk niet de goedkoopste optie ziet.",
+  },
+  {
+    question: "Moet ik een vergelijker gebruiken om over te stappen?",
+    answer: "Nee, je kunt ook rechtstreeks bij een leverancier een contract afsluiten. Een vergelijker is handig om snel alle opties te zien. Sinds de Energiewet 2026 duurt overstappen maximaal 5 werkdagen, ongeacht of je via een vergelijker of direct overstapt.",
+  },
+  {
+    question: "Hoe vaak moet ik mijn energiecontract vergelijken?",
+    answer: "Vergelijk minimaal bij het aflopen van je contract en bij grote marktschommelingen. In 2026 verschilt de jaarprijs tussen de goedkoopste en duurste leverancier tot €450. Een jaarlijkse check kost 5 minuten en kan honderden euro's besparen.",
+  },
+];
 
 export const metadata: Metadata = {
-  title: "Energievergelijkers 2026: Vergelijk Providers | Energiekenner.nl",
-  description: "Vergelijk energieleveranciers online met onze handige energievergelijkers voor stroom en gas.",
+  title: "Hoe Werken Energievergelijkers? Onafhankelijk Vergelijken 2026 | Energiekenner.nl",
+  description: "Hoe werken energievergelijkers in Nederland? Ontdek het verschil tussen onafhankelijke en commerciële vergelijkers. Waar moet je op letten en wie betaalt wie?",
   alternates: {
     canonical: "https://energiekenner.nl/energievergelijkers",
   },
 };
+
+export const revalidate = 3600;
 
 export default function EnergievergelijkersPage() {
   return (
@@ -419,22 +445,49 @@ export default function EnergievergelijkersPage() {
         </article>
       </section>
 
+      {/* FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <FAQSchema items={faqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-8">Veelgestelde vragen over energievergelijkers</h2>
+        <div className="space-y-3">
+          {faqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-text-main hover:bg-surface-alt transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
       {/* CTA */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-12 mb-16">
-        <div className="rounded-2xl bg-gradient-to-r from-emerald-600 to-teal-600 p-8 sm:p-12 text-center text-white">
-          <h2 className="text-2xl sm:text-3xl font-bold mb-3">Klaar om te vergelijken?</h2>
-          <p className="text-emerald-100 mb-6 max-w-xl mx-auto">
-            Op Energiekenner.nl vergelijk je alle leveranciers onafhankelijk en transparant. Geen verborgen commissies, geen ontbrekende aanbieders.
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+        <div className="bg-stone-900 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Klaar om onafhankelijk te vergelijken?</h2>
+          <p className="text-stone-400 mb-8 max-w-xl mx-auto">
+            Op Energiekenner.nl vergelijk je alle leveranciers transparant. Geen commissie, geen ontbrekende aanbieders.
           </p>
-          <Link
-            href="/#vergelijk"
-            className="inline-flex items-center px-6 py-3 rounded-xl bg-white text-emerald-700 font-semibold hover:bg-emerald-50 transition-colors shadow-lg"
-          >
-            Direct energie vergelijken
-            <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-              <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-            </svg>
-          </Link>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/#vergelijk"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+            >
+              Direct vergelijken
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+            <Link
+              href="/calculator"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all"
+            >
+              Bereken je besparing
+            </Link>
+          </div>
         </div>
       </section>
     </>

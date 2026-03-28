@@ -2,14 +2,17 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
 
 export const metadata: Metadata = {
   title: "Groene Stroom 2026: Duurzame Energie | Energiekenner.nl",
-  description: "Informatie over groene stroom, hernieuwbare energie en duurzaamheid in Nederland.",
+  description: "Vergelijk groene stroomleveranciers in Nederland op duurzaamheidsscore. Pure Energie, Vandebron, Greenchoice en meer. Ontdek wie écht groen levert in 2026.",
   alternates: {
     canonical: "https://energiekenner.nl/duurzaamheid",
   },
 };
+
+export const revalidate = 3600;
 
 const providers = [
   { name: "Pure Energie", score: "10.0", source: "100% NL Wind & Zon", strategy: "9x groenste leverancier, eigen opwek >400M kWh", color: "bg-green-600" },
@@ -18,6 +21,30 @@ const providers = [
   { name: "Vandebron", score: "9.5", source: "100% NL Wind/Zon", strategy: "Lokale bronnen, directe inkoop bij producenten", color: "bg-green-500" },
   { name: "Eneco", score: "8.0", source: "Grote focus op NL Wind", strategy: "Investering in windparken en warmtenetten", color: "bg-green-400" },
 ];
+
+const faqItems = [
+  {
+    question: "Hoeveel bespaar je jaarlijks door groen stroom te kiezen?",
+    answer: "Dat hangt af van je verbruik en de leverancier. Een gemiddeld huishouden bespaart € 80-150 per jaar door naar Pure Energie of Vrijopnaam te wisselen in plaats van duurder groene opties. Plus: je helpt 250+ kg CO2 per jaar besparen met 100% Nederlands opgewekte stroom."
+  },
+  {
+    question: "Wat is het verschil tussen Garanties van Oorsprong en Nederlands opgewekte stroom?",
+    answer: "Garanties van Oorsprong (GvO's) zijn certificaten die bewijzen dat stroom uit hernieuwbare bronnen komt - maar ze kunnen ook uit buitenlandse windmolens of waterkracht komen. Nederlands opgewekte stroom is altijd beter voor de energietransitie: je investeert direct in Nederlandse windparken en zonnepanelen. Check het stroometiket op je rekening om te zien waar je stroom werkelijk vandaan komt."
+  },
+  {
+    question: "Zijn energiegemeenschappen echt legaal geworden in 2026?",
+    answer: "Ja, sinds 1 januari 2026 mag je als huishouden je overschot zonnestroom rechtmatig verkopen aan buren zonder licentie - maar alleen onder strikte voorwaarden. De praktische uitwerking (metingen, belastingen, contracten) groeit nog. Veel initiatieven werken met experimentele systemen. Voor een stabiele situatie wacht je beter tot 2027 als de standaarden klaar zijn."
+  },
+  {
+    question: "Wat betekent Directive 2024/825 voor groene stroomclaims?",
+    answer: "Sinds maart 2026 mag geen leverancier meer vague claims als 'eco-vriendelijk' of 'groen' gebruiken zonder bewijs. Je mag alleen 100% groen zeggen als het stroometiket dit onderbouwt. Dit verbiedt veel greenwashing en maakt het makkelijker om leveranciers eerlijk te vergelijken. Bedrijven die liegen, krijgen boetes."
+  },
+  {
+    question: "Hoe controleer je of de groene stroom van je leverancier echt Nederlands is?",
+    answer: "Vraag je leverancier om het stroometiket en de verdeling van GvO's. Pure Energie en Vrijopnaam publiceren dit expliciet: 100% Nederlandse wind of zon. Voor andere leveranciers: bel ze op en vra waar hun certificaten vandaan komen. Sites als hier.nu laten je het stroometiket controleren. Nederlandse opwek staat ook in het jaarverslag van leveranciers."
+  }
+];
+
 
 export default function DuurzaamheidPage() {
   return (
@@ -302,13 +329,39 @@ export default function DuurzaamheidPage() {
         </div>
       </section>
 
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
-        <div className="rounded-xl bg-gradient-to-r from-green-500 to-emerald-500 p-8 text-white text-center">
-          <h2 className="text-2xl font-bold">Kies bewust groen</h2>
-          <p className="mt-2 text-green-100">Vergelijk leveranciers op prijs én duurzaamheid.</p>
-          <Link href="/#vergelijk" className="inline-flex items-center mt-4 px-6 py-3 bg-white text-green-600 rounded-lg font-semibold hover:bg-green-50 transition-colors">
-            Vergelijk leveranciers
-          </Link>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <FAQSchema items={faqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-8">Veelgestelde vragen over groene stroom</h2>
+        <div className="space-y-3">
+          {faqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-text-main hover:bg-surface-alt transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+        <div className="bg-stone-900 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Klaar om groen te vergelijken?</h2>
+          <p className="text-stone-400 mb-8 max-w-xl mx-auto">Vergelijk groene stroomleveranciers op prijs én duurzaamheid. Vind de leverancier die bij jouw waarden past.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <a href="/#vergelijk" className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all">
+              Vergelijk leveranciers
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </a>
+            <a href="/dynamisch" className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all">
+              Dynamische groene stroom
+            </a>
+          </div>
         </div>
       </section>
     </>

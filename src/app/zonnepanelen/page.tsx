@@ -6,6 +6,34 @@ import type { EnergyProvider } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
 import { ZonnepanelenKeuzehulp } from "@/components/Keuzehulp";
+import { FAQSchema } from "@/components/StructuredData";
+
+const faqItems = [
+  {
+    question: "Wat zijn terugleverkosten voor zonnepanelen in 2026?",
+    answer: "Terugleverkosten zijn kosten die je energieleverancier in rekening brengt wanneer je overtollige zonnestroom teruglevert aan het net. In 2026 variëren deze van €0,00 tot €0,07 per kWh, afhankelijk van je leverancier. Niet elke leverancier brengt deze kosten in rekening.",
+  },
+  {
+    question: "Wanneer stopt de salderingsregeling?",
+    answer: "De salderingsregeling wordt per 1 januari 2027 definitief afgeschaft. In 2026 kun je nog 100% van je teruggeleverde stroom salderen. Vanaf 2027 ontvang je een terugleververgoeding van gemiddeld €0,05 tot €0,10 per kWh in plaats van het volle leveringstarief.",
+  },
+  {
+    question: "Welke energieleverancier is het beste voor zonnepanelen in 2026?",
+    answer: "De beste leverancier hangt af van je situatie. Leveranciers zonder terugleverkosten (zoals Vandebron en Greenchoice) zijn voordelig als je veel teruglevert. Bij dynamische contracten profiteer je van hoge middagprijzen. Vergelijk altijd op basis van je eigen opwek en verbruikspatroon.",
+  },
+  {
+    question: "Hoeveel kan ik besparen met zonnepanelen in 2026?",
+    answer: "Met gemiddeld 10 zonnepanelen (3.500 kWp) bespaar je in 2026 tussen €700 en €1.100 per jaar dankzij saldering. Vanaf 2027 daalt dit naar €400-€600 per jaar. Een thuisbatterij kan de besparing na 2027 weer verhogen doordat je meer eigen stroom benut.",
+  },
+  {
+    question: "Moet ik nu nog zonnepanelen kopen voor de saldering stopt?",
+    answer: "Ja, 2026 is een goed moment. Je profiteert nog een vol jaar van 100% saldering, en de panelen verdienen zich snel terug. Zelfs na 2027 blijven zonnepanelen rendabel door eigen verbruik, terugleververgoedingen en eventueel een thuisbatterij of energie delen.",
+  },
+  {
+    question: "Wat is energie delen en hoe werkt het met zonnepanelen?",
+    answer: "Sinds de Energiewet 2026 kun je overtollige zonnestroom direct verkopen aan buren, familie of andere huishoudens voor circa €0,15/kWh — veel meer dan de standaard terugleververgoeding. Dit heet 'energie delen' en maakt zonnepanelen ook na de saldering extra rendabel.",
+  },
+];
 
 export const revalidate = 60;
 
@@ -407,14 +435,47 @@ export default async function ZonnepanelenPage() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <FAQSchema items={faqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-8">Veelgestelde vragen over zonnepanelen</h2>
+        <div className="space-y-3">
+          {faqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-text-main hover:bg-surface-alt transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-12">
-        <div className="rounded-xl bg-gradient-to-br from-orange-600 to-yellow-500 p-8 text-white text-center">
-          <h2 className="text-2xl font-bold mb-3">Klaar om uw zonnepanelen optimaal in te zetten?</h2>
-          <p className="text-orange-100 mb-6 max-w-2xl mx-auto">Vergelijk nu de beste teruglever tarieven en bereid u voor op 2027. De tijd voor voorbereiding is nu.</p>
-          <a href="/" className="inline-block bg-white text-orange-600 font-semibold px-8 py-3 rounded-lg hover:bg-orange-50 transition-colors">
-            Naar vergelijker
-          </a>
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+        <div className="bg-stone-900 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Klaar om je zonnepanelen optimaal in te zetten?</h2>
+          <p className="text-stone-400 mb-8 max-w-xl mx-auto">Vergelijk terugleverkosten van alle leveranciers en bereid je voor op 2027. Profiteer nu nog van volledige saldering.</p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/#vergelijk"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+            >
+              Vergelijk alle leveranciers
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+            <Link
+              href="/salderen"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all"
+            >
+              Salderingsregeling 2027
+            </Link>
+          </div>
         </div>
       </section>
     </>

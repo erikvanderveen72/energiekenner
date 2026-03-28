@@ -13,6 +13,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 3600;
+
 const faqItems = [
   {
     question: "Mag ik energie delen met mijn buren?",

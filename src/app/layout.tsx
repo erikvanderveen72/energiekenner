@@ -7,7 +7,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/Footer";
 import { CookieConsent } from "@/components/CookieConsent";
 import { AnalyticsTracker } from "@/components/AnalyticsTracker";
-import { WebsiteSchema, OrganizationSchema, ServiceSchema } from "@/components/StructuredData";
+import { WebsiteSchema, OrganizationSchema, ServiceSchema, GeoTargetingSchema } from "@/components/StructuredData";
 
 const inter = Inter({
   subsets: ["latin"],
@@ -59,11 +59,20 @@ export const metadata: Metadata = {
     locale: "nl_NL",
     siteName: "Energiekenner.nl",
     url: "https://energiekenner.nl",
+    images: [
+      {
+        url: "https://energiekenner.nl/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Energiekenner.nl - Energie Vergelijken 2026",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Energie Vergelijken 2026 - Onafhankelijk & Gratis | Energiekenner.nl",
     description: "Vergelijk alle energieleveranciers op actuele tarieven. Bespaar tot €450 per jaar op stroom en gas.",
+    images: ["https://energiekenner.nl/opengraph-image"],
   },
   alternates: {
     canonical: "https://energiekenner.nl",
@@ -71,15 +80,26 @@ export const metadata: Metadata = {
       "nl-NL": "https://energiekenner.nl",
     },
   },
+  robots: {
+    index: true,
+    follow: true,
+    "max-snippet": -1,
+    "max-image-preview": "large" as const,
+    "max-video-preview": -1,
+  },
   other: {
     "geo.region": "NL",
     "geo.placename": "Nederland",
-    "geo.position": "52.3676;4.9041",
-    "ICBM": "52.3676, 4.9041",
+    "geo.position": "52.1326;5.2913",
+    "ICBM": "52.1326, 5.2913",
     "content-language": "nl",
     "rating": "general",
-    "distribution": "global",
-    "revisit-after": "3 days",
+    "distribution": "Netherlands",
+    "revisit-after": "1 days",
+    "target": "nl",
+    "audience": "Nederlandse consumenten",
+    "DC.language": "nl",
+    "DC.coverage": "Nederland",
   },
   verification: {
     // Voeg hier je Google Search Console verificatie toe
@@ -103,6 +123,7 @@ export default function RootLayout({
         <WebsiteSchema />
         <OrganizationSchema />
         <ServiceSchema />
+        <GeoTargetingSchema />
       </head>
       <body className="min-h-screen flex flex-col antialiased">
         <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-2 focus:left-2 focus:z-[100] focus:bg-primary focus:text-white focus:px-4 focus:py-2 focus:rounded-lg focus:text-sm focus:font-semibold">

@@ -1,9 +1,38 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { supabase } from "@/lib/supabase";
 import { fallbackDynamicProviders } from "@/lib/fallback-data";
 import type { DynamicProvider } from "@/lib/database.types";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
+
+const faqItems = [
+  {
+    question: "Wat is een dynamisch energiecontract?",
+    answer: "Bij een dynamisch energiecontract betaal je de echte groothandelsprijs per uur (stroom via EPEX) of per dag (gas via TTF). De leverancier rekent daar een kleine opslag bovenop. Je prijs verandert dus continu, in tegenstelling tot een vast contract.",
+  },
+  {
+    question: "Is dynamische energie goedkoper dan een vast contract in 2026?",
+    answer: "Dat hangt af van je verbruikspatroon. In 2025 was dynamisch gemiddeld 10-15% goedkoper. Maar bij prijspieken (zoals in maart 2026 toen gas naar €68/MWh steeg) kan het tijdelijk duurder zijn. Flexibele verbruikers met zonnepanelen, thuisbatterij of EV-lader profiteren het meest.",
+  },
+  {
+    question: "Welke dynamische energieleverancier is het goedkoopst?",
+    answer: "Frank Energie en Tibber hebben momenteel de laagste opslagen per kWh. Zonneplan biedt extra voordeel als je zonnepanelen hebt. Vergelijk altijd de vaste kosten plus de opslagen — het goedkoopst hangt af van je verbruik en of je stroom en gas afneemt.",
+  },
+  {
+    question: "Heb ik een slimme meter nodig voor dynamische energie?",
+    answer: "Ja, een slimme meter is verplicht voor een dynamisch contract. De meter registreert je verbruik per uur, zodat de leverancier de juiste marktprijs kan doorberekenen. In Nederland heeft meer dan 85% van de huishoudens al een slimme meter.",
+  },
+  {
+    question: "Kan ik zelf kiezen wanneer ik stroom gebruik bij dynamisch?",
+    answer: "Ja, dat is het grote voordeel. Met een energie-app (Tibber, Frank Energie, Zonneplan) zie je de prijzen per uur vooruit. Je kunt je wasmachine, vaatwasser, EV-lader of thuisbatterij inplannen op de goedkoopste uren — vaak 's nachts of op zonnige middagen.",
+  },
+  {
+    question: "Wat is de opzegvergoeding bij een dynamisch contract?",
+    answer: "Dynamische contracten hebben geen vaste looptijd en geen opzegvergoeding. Je kunt op elk moment overstappen zonder kosten. Sinds de Energiewet 2026 is de opzegtermijn bovendien slechts 5 werkdagen.",
+  },
+];
 
 export const revalidate = 60;
 
@@ -174,6 +203,54 @@ export default async function DynamischPage() {
               <p className="text-sm text-text-muted mt-2">{item.desc}</p>
             </div>
           ))}
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <FAQSchema items={faqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-8">Veelgestelde vragen over dynamische energie</h2>
+        <div className="space-y-3">
+          {faqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-text-main hover:bg-surface-alt transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+        <div className="bg-stone-900 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">
+            Klaar om dynamisch te vergelijken?
+          </h2>
+          <p className="text-stone-400 mb-8 max-w-xl mx-auto">
+            Vergelijk alle dynamische leveranciers op opslagen en vaste kosten. Vind de beste match voor jouw verbruikspatroon.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/#vergelijk"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+            >
+              Vergelijk alle leveranciers
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+            <Link
+              href="/calculator"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all"
+            >
+              Bereken je besparing
+            </Link>
+          </div>
         </div>
       </section>
     </>

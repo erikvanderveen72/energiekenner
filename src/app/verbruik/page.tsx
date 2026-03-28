@@ -1,15 +1,37 @@
 "use client";
 
-import type { Metadata } from "next";
 import Link from "next/link";
 import { useState } from "react";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
 
-const metadata = {
-  title: "Energieverbruik: Apparaten & Kosten 2026 | Energiekenner.nl",
-  description: "Ontdek energieverbruik per apparaat en bespaartips voor gas en stroom in Nederland.",
-};
+const verbruikFaqItems = [
+  {
+    question: "Hoeveel kWh verbruikt een gemiddeld huishouden in 2026?",
+    answer: "Een gemiddeld Nederlands huishouden verbruikt circa 2.400 kWh stroom en 1.000 m³ gas per jaar. Maar dit verschilt sterk: een alleenstaande in een appartement verbruikt ~1.500 kWh, terwijl een gezin met warmtepomp en EV al snel op 5.000+ kWh zit.",
+  },
+  {
+    question: "Welk apparaat verbruikt de meeste energie?",
+    answer: "De grootste stroomverbruikers zijn warmtepompen (2.000-4.000 kWh/jaar), elektrische auto's (2.000-4.000 kWh/jaar), en drogers (300-500 kWh/jaar). Koelkasten zijn vaak vergeten maar staan 24/7 aan en verbruiken 150-300 kWh per jaar.",
+  },
+  {
+    question: "Hoeveel kan ik besparen door zuiniger apparaten?",
+    answer: "Energielabel A-apparaten verbruiken 30-50% minder dan G-label apparaten. Bij een gemiddeld huishouden scheelt dit €300-€500 per jaar. De investering verdien je vaak binnen 2-3 jaar terug.",
+  },
+  {
+    question: "Wat kost het om een elektrische auto thuis op te laden?",
+    answer: "Thuisladen kost gemiddeld €600-900 per jaar bij 15.000 km rijden (€0,25/kWh). Ter vergelijking: dezelfde afstand op benzine kost €1.500-2.000. Je bespaart dus €900-1.100 per jaar met een EV.",
+  },
+  {
+    question: "Hoe check ik mijn werkelijke energieverbruik?",
+    answer: "Controleer je slimme meter of gebruik de app van je netbeheerder (Liander, Stedin of Enexis). Veel mensen schatten hun verbruik verkeerd in. Het landelijk gemiddelde van 2.400 kWh klopt voor veel huishoudens niet meer door warmtepompen, EV's en thuiswerken.",
+  },
+  {
+    question: "In welk seizoen is mijn energieverbruik het hoogst?",
+    answer: "De winter is veruit het duurst: gemiddeld €220-280/maand door gasverbruik voor verwarming. In de zomer betaal je gemiddeld €80-120/maand. Een goede isolatie (label A/B) kan je winterkosten met 40-60% verlagen.",
+  },
+];
 
 interface Appliance {
   name: string;
@@ -596,6 +618,25 @@ export default function VerbruikPage() {
               </ul>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <FAQSchema items={verbruikFaqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-6">Veelgestelde vragen over energieverbruik</h2>
+        <div className="space-y-3">
+          {verbruikFaqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex justify-between items-center p-4 cursor-pointer font-medium text-text-main hover:bg-stone-50 transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-4 pb-4 text-text-muted text-sm">{item.answer}</div>
+            </details>
+          ))}
         </div>
       </section>
 

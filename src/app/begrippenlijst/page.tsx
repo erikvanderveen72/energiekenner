@@ -1,10 +1,34 @@
 import type { Metadata } from "next";
 import { PageHero } from "@/components/PageHero";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
 import Link from "next/link";
 
+const faqItems = [
+  {
+    question: "Wat is het verschil tussen kWh en kW?",
+    answer: "kW (kilowatt) is een eenheid van vermogen — hoeveel energie een apparaat op een bepaald moment verbruikt. kWh (kilowattuur) is een eenheid van energieverbruik — hoeveel energie er over een periode is verbruikt. Voorbeeld: een 2 kW wasmachine die 1,5 uur draait verbruikt 3 kWh.",
+  },
+  {
+    question: "Wat betekent TTF en waarom is het belangrijk?",
+    answer: "TTF (Title Transfer Facility) is de Europese gasbeurs in Amsterdam waar de groothandelsprijs voor aardgas wordt bepaald. De TTF-prijs heeft direct invloed op je energierekening: een hogere TTF-prijs betekent hogere gastarieven. In maart 2026 schommelde de prijs tussen €32 en €68 per MWh.",
+  },
+  {
+    question: "Wat is het verschil tussen variabel, vast en dynamisch contract?",
+    answer: "Bij een vast contract staat je tarief voor 1-3 jaar vast. Bij een variabel contract wordt je tarief elke 1-3 maanden aangepast. Bij een dynamisch contract betaal je de echte marktprijs per uur (stroom) of per dag (gas). Vast geeft zekerheid, dynamisch kan goedkoper zijn als je flexibel bent.",
+  },
+  {
+    question: "Wat is de energiebelasting en hoeveel is het in 2026?",
+    answer: "Energiebelasting is een belasting die je betaalt per verbruikte kWh stroom of m³ gas. In 2026 is dit €0,1108 per kWh stroom en €0,7268 per m³ gas. Daarbovenop betaal je ODE (Opslag Duurzame Energie) en 21% btw over het totaal. De belasting is gelijk bij alle leveranciers.",
+  },
+  {
+    question: "Wat zijn netbeheerkosten en kan ik die verlagen?",
+    answer: "Netbeheerkosten zijn transporttarieven voor het gebruik van het stroomnet. Deze worden bepaald door je netbeheerder (Liander, Stedin, Enexis) op basis van je adres. Je kunt deze kosten niet verlagen of je netbeheerder kiezen. In 2026 betaal je gemiddeld €150-€250 per jaar.",
+  },
+];
+
 export const metadata: Metadata = {
-  title: "Begrippenlijst Energie | Alle Energietermen Uitgelegd",
+  title: "Begrippenlijst Energie 2026 | Alle Energietermen Uitgelegd",
   description:
     "Begrippenlijst met alle energietermen: van kWh en TTF tot saldering en dynamisch contract. Duidelijke uitleg voor consumenten over stroom, gas en energiemarkt.",
   alternates: {
@@ -16,6 +40,8 @@ export const metadata: Metadata = {
     url: "https://energiekenner.nl/begrippenlijst",
   },
 };
+
+export const revalidate = 3600;
 
 interface Term {
   term: string;
@@ -212,15 +238,50 @@ export default function BegrippenlijstPage() {
             Totaal <strong className="text-text-main">{terms.length} energietermen</strong> uitgelegd. Mis je een begrip?{" "}
             <a href="mailto:info@energiekenner.nl" className="text-primary hover:text-primary-dark underline">Laat het ons weten</a>.
           </p>
-          <div className="mt-4">
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <FAQSchema items={faqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-8">Veelgestelde vragen over energietermen</h2>
+        <div className="space-y-3">
+          {faqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-text-main hover:bg-surface-alt transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+        <div className="bg-stone-900 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Nu je de termen kent: vergelijk zelf</h2>
+          <p className="text-stone-400 mb-8 max-w-xl mx-auto">
+            Met kennis van alle energietermen kun je beter vergelijken. Bekijk de actuele tarieven en vind de goedkoopste leverancier.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link
               href="/#vergelijk"
-              className="inline-flex items-center justify-center px-6 py-3 rounded-xl bg-primary text-white font-semibold text-sm hover:bg-primary-dark transition-colors shadow-sm"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
             >
-              Direct energie vergelijken
-              <svg className="w-4 h-4 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14m-7-7l7 7-7 7" />
+              Vergelijk alle leveranciers
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
+            </Link>
+            <Link
+              href="/calculator"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all"
+            >
+              Bereken je kosten
             </Link>
           </div>
         </div>

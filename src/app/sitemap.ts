@@ -19,6 +19,8 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${baseUrl}/opzegvergoeding`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/laadpalen`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
     { url: `${baseUrl}/duurzaamheid`, lastModified: now, changeFrequency: "weekly", priority: 0.75 },
+    { url: `${baseUrl}/energie-delen`, lastModified: now, changeFrequency: "monthly", priority: 0.8 },
+    { url: `${baseUrl}/energie-apps`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${baseUrl}/tips`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },
     { url: `${baseUrl}/netbeheer`, lastModified: now, changeFrequency: "monthly", priority: 0.7 },
     { url: `${baseUrl}/begrippenlijst`, lastModified: now, changeFrequency: "monthly", priority: 0.75 },

@@ -3,14 +3,44 @@ import Link from "next/link";
 import { PageHero } from "@/components/PageHero";
 import { WarmtepompKeuzehulp } from "@/components/Keuzehulp";
 import { Breadcrumbs } from "@/components/Breadcrumbs";
+import { FAQSchema } from "@/components/StructuredData";
+
+const faqItems = [
+  {
+    question: "Hoeveel kost een warmtepomp in 2026?",
+    answer: "Een lucht-water warmtepomp kost gemiddeld €8.000 tot €14.000 inclusief installatie. Een hybride warmtepomp kost €4.000 tot €7.000. Met ISDE-subsidie krijg je €1.000 tot €3.000 terug. De terugverdientijd is gemiddeld 7-12 jaar, afhankelijk van je gasverbruik en isolatie.",
+  },
+  {
+    question: "Welke warmtepomp is het beste voor mijn huis?",
+    answer: "Voor een goed geïsoleerd huis (label A/B) is een full-electric lucht-water warmtepomp ideaal. Voor matig geïsoleerd (label C/D) is een hybride warmtepomp het beste: die combineert de warmtepomp met je bestaande cv-ketel. Slecht geïsoleerde huizen (E/F/G) moeten eerst isoleren.",
+  },
+  {
+    question: "Krijg ik subsidie voor een warmtepomp in 2026?",
+    answer: "Ja, via de ISDE-subsidie (Investeringssubsidie Duurzame Energie) krijg je €1.000 tot €3.000 terug. Het budget is beperkt en kan opraken. Vraag de subsidie aan via RVO.nl nadat je warmtepomp is geïnstalleerd door een gecertificeerde installateur.",
+  },
+  {
+    question: "Moet mijn huis geïsoleerd zijn voor een warmtepomp?",
+    answer: "Voor een full-electric warmtepomp is goede isolatie belangrijk (minimaal label C, liefst A/B). De warmtepomp levert water van 35-45°C, terwijl een cv-ketel 70°C levert. Met vloerverwarming of lage-temperatuur radiatoren werkt het het best. Een hybride warmtepomp werkt ook in minder goed geïsoleerde woningen.",
+  },
+  {
+    question: "Hoeveel bespaar ik met een warmtepomp op gas?",
+    answer: "Een full-electric warmtepomp vervangt je gasverbruik volledig en bespaart 40-60% op verwarmingskosten. Bij 1.200 m³ gasverbruik bespaar je €800-€1.200 per jaar. Een hybride warmtepomp bespaart 30-50% op gas. Met een dynamisch stroomcontract en zonnepanelen bespaar je nog meer.",
+  },
+  {
+    question: "Hoe luid is een warmtepomp?",
+    answer: "Moderne lucht-water warmtepompen produceren 35-55 dB(A) op 3 meter afstand, vergelijkbaar met een koelkast. Er gelden wettelijke geluidsnormen. Plaats de buitenunit minimaal 2 meter van de erfgrens. Trillingdempers en een goede ondergrond verminderen geluidoverlast aanzienlijk.",
+  },
+];
 
 export const metadata: Metadata = {
   title: "Warmtepompen 2026: Types, Kosten & ISDE Subsidie | Energiekenner.nl",
-  description: "Ontdek warmtepomp types, kosten, ISDE subsidie en installatiedeisen in Nederland 2026.",
+  description: "Vergelijk warmtepomp types, kosten (€4.000-€14.000) en ISDE-subsidie tot €3.000. Lucht-water, hybride en bodem: ontdek welke warmtepomp bij jouw huis past in 2026.",
   alternates: {
     canonical: "https://energiekenner.nl/warmtepompen",
   },
 };
+
+export const revalidate = 3600;
 
 const heatPumpTypes = [
   {
@@ -750,16 +780,49 @@ export default function WarmtepompenPage() {
         <WarmtepompKeuzehulp />
       </section>
 
+      {/* FAQ Section */}
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-20">
+        <FAQSchema items={faqItems} />
+        <h2 className="text-2xl font-bold text-text-main mb-8">Veelgestelde vragen over warmtepompen</h2>
+        <div className="space-y-3">
+          {faqItems.map((item, i) => (
+            <details key={i} className="group rounded-xl border border-border bg-white overflow-hidden">
+              <summary className="flex items-center justify-between p-5 cursor-pointer font-medium text-text-main hover:bg-surface-alt transition-colors">
+                {item.question}
+                <svg className="w-5 h-5 text-text-muted transition-transform group-open:rotate-180 flex-shrink-0 ml-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M19 9l-7 7-7-7" />
+                </svg>
+              </summary>
+              <div className="px-5 pb-5 text-text-muted text-sm leading-relaxed">{item.answer}</div>
+            </details>
+          ))}
+        </div>
+      </section>
+
       {/* CTA Section */}
-      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-12">
-        <div className="rounded-xl bg-gradient-to-br from-rose-600 to-red-700 p-8 text-white text-center">
-          <h2 className="text-2xl font-bold mb-3">Klaar voor gasvrij verwarmen?</h2>
-          <p className="text-rose-100 mb-6 max-w-2xl mx-auto">
-            Begin met isolatie, kies het juiste type warmtepomp en optimaliseer je elektriciteitscontract. Het is niet alleen besparing, het is toekomstvast investeren.
+      <section className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mt-16 mb-20">
+        <div className="bg-stone-900 rounded-2xl p-8 md:p-12 text-center">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-4">Klaar voor gasvrij verwarmen?</h2>
+          <p className="text-stone-400 mb-8 max-w-xl mx-auto">
+            Een warmtepomp werkt het best met een voordelig stroomcontract. Vergelijk dynamische tarieven om je warmtepomp zo goedkoop mogelijk te laten draaien.
           </p>
-          <a href="/#vergelijk" className="inline-block bg-white text-red-600 font-semibold px-8 py-3 rounded-lg hover:bg-rose-50 transition-colors">
-            Naar vergelijker (dynamische elektra)
-          </a>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link
+              href="/#vergelijk"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white text-stone-900 font-bold rounded-xl shadow-lg hover:shadow-xl transition-all"
+            >
+              Vergelijk stroomtarieven
+              <svg className="w-5 h-5 ml-2" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </Link>
+            <Link
+              href="/dynamisch"
+              className="inline-flex items-center justify-center px-8 py-4 bg-white/10 text-white font-semibold rounded-xl border border-white/20 hover:bg-white/20 transition-all"
+            >
+              Dynamische tarieven bekijken
+            </Link>
+          </div>
         </div>
       </section>
     </>

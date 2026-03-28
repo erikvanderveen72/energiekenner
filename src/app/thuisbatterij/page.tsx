@@ -14,6 +14,8 @@ export const metadata: Metadata = {
   },
 };
 
+export const revalidate = 3600;
+
 const batteries = [
   { capacity: "3 kWh", price: "€ 3.000 – € 4.000", pricePerKwh: "€ 1.000 – € 1.333", profile: "Klein huishouden, laag dagelijks verbruik", yieldYear: "€ 150 – € 300", panels: "4–6", breakeven: "~15 jaar" },
   { capacity: "5 kWh", price: "€ 3.500 – € 5.500", pricePerKwh: "€ 700 – € 1.100", profile: "Gemiddeld huishouden, 6–8 zonnepanelen", yieldYear: "€ 300 – € 500", panels: "6–8", breakeven: "~11 jaar" },
