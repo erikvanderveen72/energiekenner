@@ -223,6 +223,134 @@ export default async function Home() {
         <StatsBar stats={stats} />
       </section>
 
+      {/* Vergelijkingssites CTA */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
+        <div className="rounded-2xl bg-gradient-to-br from-sky-50 to-emerald-50 border border-sky-200 p-6 md:p-8">
+          <div className="flex items-start gap-4 mb-4">
+            <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-sky-100 flex items-center justify-center">
+              <svg className="w-5 h-5 text-sky-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                <path strokeLinecap="round" strokeLinejoin="round" d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <div>
+              <h2 className="text-lg md:text-xl font-bold text-text-main">
+                Direct overstappen? Gebruik een vergelijkingssite
+              </h2>
+              <p className="text-text-muted text-sm mt-1">
+                Energiekenner.nl toont indicatieve tarieven ter vergelijking. Voor de meest actuele prijzen en direct overstappen kun je terecht bij deze onafhankelijke vergelijkingssites:
+              </p>
+            </div>
+          </div>
+
+          <div className="overflow-x-auto -mx-2">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="text-left text-text-muted text-xs uppercase tracking-wider">
+                  <th className="px-3 py-2">Vergelijkingssite</th>
+                  <th className="px-3 py-2 hidden sm:table-cell">Type</th>
+                  <th className="px-3 py-2 hidden md:table-cell">Bijzonderheid</th>
+                  <th className="px-3 py-2 text-right">Link</th>
+                </tr>
+              </thead>
+              <tbody className="divide-y divide-sky-100">
+                <tr className="hover:bg-white/60 transition-colors">
+                  <td className="px-3 py-3 font-medium text-text-main">Pricewise</td>
+                  <td className="px-3 py-3 text-text-muted hidden sm:table-cell">Onafhankelijk</td>
+                  <td className="px-3 py-3 text-text-muted hidden md:table-cell">Grootste vergelijker van NL, volledig aanbod</td>
+                  <td className="px-3 py-3 text-right">
+                    <a href="https://www.pricewise.nl/energie-vergelijken/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+                      Vergelijk
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="hover:bg-white/60 transition-colors">
+                  <td className="px-3 py-3 font-medium text-text-main">Gaslicht.com</td>
+                  <td className="px-3 py-3 text-text-muted hidden sm:table-cell">Onafhankelijk</td>
+                  <td className="px-3 py-3 text-text-muted hidden md:table-cell">Al 20+ jaar dé energievergelijker</td>
+                  <td className="px-3 py-3 text-right">
+                    <a href="https://www.gaslicht.com/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+                      Vergelijk
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="hover:bg-white/60 transition-colors">
+                  <td className="px-3 py-3 font-medium text-text-main">Consumentenbond</td>
+                  <td className="px-3 py-3 text-text-muted hidden sm:table-cell">Onafhankelijk</td>
+                  <td className="px-3 py-3 text-text-muted hidden md:table-cell">Betrouwbaar, met tests en reviews</td>
+                  <td className="px-3 py-3 text-right">
+                    <a href="https://www.consumentenbond.nl/energie-vergelijken" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+                      Vergelijk
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="hover:bg-white/60 transition-colors">
+                  <td className="px-3 py-3 font-medium text-text-main">Energievergelijker.nl</td>
+                  <td className="px-3 py-3 text-text-muted hidden sm:table-cell">Onafhankelijk</td>
+                  <td className="px-3 py-3 text-text-muted hidden md:table-cell">100% onafhankelijk, geen provisie</td>
+                  <td className="px-3 py-3 text-right">
+                    <a href="https://www.energievergelijker.nl/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+                      Vergelijk
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="hover:bg-white/60 transition-colors">
+                  <td className="px-3 py-3 font-medium text-text-main">Overstappen.nl</td>
+                  <td className="px-3 py-3 text-text-muted hidden sm:table-cell">Vergelijker</td>
+                  <td className="px-3 py-3 text-text-muted hidden md:table-cell">Breed aanbod + duidelijke stappen</td>
+                  <td className="px-3 py-3 text-right">
+                    <a href="https://www.overstappen.nl/energie/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+                      Vergelijk
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="hover:bg-white/60 transition-colors">
+                  <td className="px-3 py-3 font-medium text-text-main">Geld.nl</td>
+                  <td className="px-3 py-3 text-text-muted hidden sm:table-cell">Onafhankelijk</td>
+                  <td className="px-3 py-3 text-text-muted hidden md:table-cell">Gratis, transparant en makkelijk</td>
+                  <td className="px-3 py-3 text-right">
+                    <a href="https://www.geld.nl/energie-vergelijken" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+                      Vergelijk
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="hover:bg-white/60 transition-colors">
+                  <td className="px-3 py-3 font-medium text-text-main">Keuze.nl</td>
+                  <td className="px-3 py-3 text-text-muted hidden sm:table-cell">Onafhankelijk</td>
+                  <td className="px-3 py-3 text-text-muted hidden md:table-cell">Actuele tarieven per leverancier</td>
+                  <td className="px-3 py-3 text-right">
+                    <a href="https://www.keuze.nl/energie/energietarieven" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+                      Vergelijk
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                  </td>
+                </tr>
+                <tr className="hover:bg-white/60 transition-colors">
+                  <td className="px-3 py-3 font-medium text-text-main">EasySwitch</td>
+                  <td className="px-3 py-3 text-text-muted hidden sm:table-cell">Vergelijker</td>
+                  <td className="px-3 py-3 text-text-muted hidden md:table-cell">Snel vergelijken met prijsgrafieken</td>
+                  <td className="px-3 py-3 text-right">
+                    <a href="https://www.easyswitch.nl/" target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1 text-sky-600 hover:text-sky-800 font-medium">
+                      Vergelijk
+                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}><path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                    </a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <p className="text-xs text-text-muted mt-4 px-1">
+            Energiekenner.nl ontvangt geen provisie van bovenstaande partijen. We linken naar vergelijkingssites zodat je altijd de meest actuele tarieven kunt inzien en direct kunt overstappen.
+          </p>
+        </div>
+      </section>
+
       {/* Comparison Table */}
       <section id="vergelijk" className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mt-16">
         <div className="mb-8">
@@ -230,7 +358,7 @@ export default async function Home() {
             Energie vergelijken: alle leveranciers op een rij
           </h2>
           <p className="text-text-muted mt-2">
-            Alle tarieven inclusief energiebelasting en btw. Pas hieronder je verbruik aan voor een persoonlijke schatting.
+            Indicatieve tarieven inclusief energiebelasting en btw (bijgewerkt 28 maart 2026). Pas hieronder je verbruik aan voor een persoonlijke schatting.
           </p>
         </div>
         <ComparisonTable providers={providers} gridOperators={gridOperators} />
@@ -245,10 +373,10 @@ export default async function Home() {
             </svg>
           </div>
           <div>
-            <h3 className="font-semibold text-red-800">Marktupdate: Hoge volatiliteit</h3>
+            <h3 className="font-semibold text-red-800">Marktupdate: Extreme volatiliteit maart 2026</h3>
             <p className="text-sm text-red-700 mt-1">
-              Door het conflict in het Midden-Oosten schommelde de TTF-gasprijs in maart tussen &euro;32 en &euro;68 per MWh.
-              Vaste contracten bieden nu extra zekerheid tegenover deze marktschommelingen.
+              Door de escalatie in het Midden-Oosten en de blokkade van de Straat van Hormuz schommelde de TTF-gasprijs in maart tussen &euro;32 en &euro;72 per MWh. Op 19 maart steeg de beursprijs met 35% in &eacute;&eacute;n dag.
+              Vaste contracten bieden nu extra zekerheid tegenover deze extreme marktschommelingen.
             </p>
           </div>
         </div>
