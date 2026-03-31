@@ -7,34 +7,34 @@ import { FAQSchema } from "@/components/StructuredData";
 
 const faqItems = [
   {
-    question: "Hoeveel kost een warmtepomp in 2026?",
-    answer: "Een lucht-water warmtepomp kost gemiddeld €8.000 tot €14.000 inclusief installatie. Een hybride warmtepomp kost €4.000 tot €7.000. Met ISDE-subsidie krijg je €1.000 tot €3.000 terug. De terugverdientijd is gemiddeld 7-12 jaar, afhankelijk van je gasverbruik en isolatie.",
+    question: "Wat is de ISDE subsidie 2026 voor warmtepompen?",
+    answer: "De ISDE-subsidie (Investeringssubsidie Duurzame Energie) geeft in 2026 maximaal €3.225 terug voor warmtepompen. De berekening: €1.025 startbedrag + €225 per kW + €200 energielabel-bonus (A+++). Voor een 4kW lucht-water warmtepomp met A+++ label krijg je €2.125 terug. Vraag snel aan via RVO.nl want het budget is beperkt.",
   },
   {
-    question: "Welke warmtepomp is het beste voor mijn huis?",
-    answer: "Voor een goed geïsoleerd huis (label A/B) is een full-electric lucht-water warmtepomp ideaal. Voor matig geïsoleerd (label C/D) is een hybride warmtepomp het beste: die combineert de warmtepomp met je bestaande cv-ketel. Slecht geïsoleerde huizen (E/F/G) moeten eerst isoleren.",
+    question: "Hoeveel kosten de verschillende warmtepompen in 2026?",
+    answer: "Lucht-water warmtepomp: €7.000-€14.000 inclusief installatie. Hybride warmtepomp: €4.000-€8.000. Grond-water (aardwarmtepomp): €15.000-€25.000. Lucht-lucht: €2.000-€5.000. De meeste huiseigenaren kiezen lucht-water (€10.500 gemiddeld). Na ISDE-subsidie (€1.000-€3.000) betaal je €7.000-€11.000.",
   },
   {
-    question: "Krijg ik subsidie voor een warmtepomp in 2026?",
-    answer: "Ja, via de ISDE-subsidie (Investeringssubsidie Duurzame Energie) krijg je €1.000 tot €3.000 terug. Het budget is beperkt en kan opraken. Vraag de subsidie aan via RVO.nl nadat je warmtepomp is geïnstalleerd door een gecertificeerde installateur.",
+    question: "Hoe aanvragen: ISDE subsidie 2026 warmtepomp?",
+    answer: "ISDE-subsidie aanvragen stappen: 1) Kies een RVO-gecertificeerde installateur. 2) Zorg voor energielabel A+ of hoger. 3) Laat warmtepomp installeren. 4) Vraag via RVO.nl aan (formulier + offertes + installateurcertificaat). 5) RVO keurt goed en stuurt subsidie (€1.000-€3.000). Budget is beperkt: aanvragen loont dus snel.",
   },
   {
-    question: "Moet mijn huis geïsoleerd zijn voor een warmtepomp?",
-    answer: "Voor een full-electric warmtepomp is goede isolatie belangrijk (minimaal label C, liefst A/B). De warmtepomp levert water van 35-45°C, terwijl een cv-ketel 70°C levert. Met vloerverwarming of lage-temperatuur radiatoren werkt het het best. Een hybride warmtepomp werkt ook in minder goed geïsoleerde woningen.",
+    question: "Welke warmtepomp is het beste voor mijn huis in 2026?",
+    answer: "Voor goed geïsoleerd huis (label A/B): volledig elektische lucht-water warmtepomp. Voor matig geïsoleerd (label C/D): hybride warmtepomp (blijft CV-ketel gebruiken). Voor slecht geïsoleerd (E/F/G): eerst isoleren dan warmtepomp, of grond-water warmtepomp. Vraag installateur om energielabel-check.",
   },
   {
-    question: "Hoeveel bespaar ik met een warmtepomp op gas?",
-    answer: "Een full-electric warmtepomp vervangt je gasverbruik volledig en bespaart 40-60% op verwarmingskosten. Bij 1.200 m³ gasverbruik bespaar je €800-€1.200 per jaar. Een hybride warmtepomp bespaart 30-50% op gas. Met een dynamisch stroomcontract en zonnepanelen bespaar je nog meer.",
+    question: "Hoeveel bespaar ik per jaar met een aardwarmtepomp of lucht-water?",
+    answer: "Lucht-water warmtepomp: €800-€1.200 per jaar op gas (40-60% besparing). Aardwarmtepomp (grond-water): €1.200-€1.500 per jaar op gas (hogere efficiëntie SCOP 4.5-5.5). Hybride warmtepomp: €300-€600 per jaar op gas (30-50% besparing). Let op: elektriciteitsbehoefte stijgt met €600-€1.200/jaar. Netto-besparing hangt af van je elektriciteitscontract!",
   },
   {
-    question: "Hoe luid is een warmtepomp?",
-    answer: "Moderne lucht-water warmtepompen produceren 35-55 dB(A) op 3 meter afstand, vergelijkbaar met een koelkast. Er gelden wettelijke geluidsnormen. Plaats de buitenunit minimaal 2 meter van de erfgrens. Trillingdempers en een goede ondergrond verminderen geluidoverlast aanzienlijk.",
+    question: "Moet ik isolatie upgraden voor een warmtepomp in 2026?",
+    answer: "Voor een full-electric lucht-water warmtepomp: ja, minimaal energielabel C (liefst A/B). Betere isolatie = 30% hoger rendement. Voor een hybride warmtepomp: minder kritisch. Voor grond-water: minder isolatie-eisen door hogere SCOP. Controleer eerst je energielabel (op energieverslag.nl).",
   },
 ];
 
 export const metadata: Metadata = {
-  title: "Warmtepompen 2026: Types, Kosten & ISDE Subsidie | Energiekenner.nl",
-  description: "Vergelijk warmtepomp types, kosten (€4.000-€14.000) en ISDE-subsidie tot €3.000. Lucht-water, hybride en bodem: ontdek welke warmtepomp bij jouw huis past in 2026.",
+  title: "ISDE Subsidie 2026 Warmtepomp: €1.000-€3.000 Korting | Energiekenner.nl",
+  description: "ISDE subsidie warmtepomp 2026: €1.000-€3.000 korting. Kosten aardwarmtepomp & lucht-water warmtepomp €4.000-€14.000. Vergelijk types, RVO aanvragen, terugverdientijd 7-12 jaar.",
   alternates: {
     canonical: "https://energiekenner.nl/warmtepompen",
   },
